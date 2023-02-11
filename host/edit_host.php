@@ -301,7 +301,7 @@ $new_q3 = mysqli_real_escape_string($conn, $_POST['new_q3']);
     
 }
 
-$sql = "UPDATE $table_name SET Name='$new_Name', writer='$new_writer', img='$new_img', url='$new_url', q1='$new_q1', q2='$new_q2', q3='$new_q3', q1ak='$new_q1ak', q2ak='$new_q2ak', q3ak='$new_q3ak' WHERE id=$id";
+$sql = "UPDATE $table_name SET Name='$new_Name', writer='$new_writer', img='$new_img', url='$new_url', q1='$new_q1', q1a1='$new_q1a1', q1a2='$new_q1a2', q2='$new_q2', q2a1='$new_q2a1', q2a2='$new_q2a2', q3='$new_q3', q3a1='$new_q3a1', q3a2='$new_q3a2', q1ak='$new_q1ak', q2ak='$new_q2ak', q3ak='$new_q3ak' WHERE id=$id";
 if (mysqli_query($conn, $sql)) {
   echo "Record updated successfully";
 } else {
