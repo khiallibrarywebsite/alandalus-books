@@ -40,7 +40,7 @@
 
 <?php 
 require_once '../connect.php';
-
+$s=0;
 if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
   if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
     $password = $_GET['pass'];

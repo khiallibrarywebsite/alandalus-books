@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php
     require_once '../connect.php';
-
+    $s=0;
     if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
         $password = $_GET['pass'];
@@ -59,43 +59,60 @@
 </head>
 
 <body>
-<?php
+  <center>
+  <?php
+  if($s != 1){
 
+
+$table_name = $code . "_" . $stage . "_books";
+
+// Connect to database
 require_once '../connect.php';
 
-try {
-    // Pagination System
-    $getData = $conn->prepare("SELECT * FROM $table");
-    $getData->execute();
 
-    foreach ($getData as $data) {
-        $name = $data['name'];
-        echo '
-        <form method="POST" class="card bg-light m-1" style="width: 16.5rem;">
-        <a class="btn btn-warning" style="margin: 0.25rem 0.25rem 0 0.25rem;" href="edit_host.php?bookname='.$name.'&user='.$titleCompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><span class="badge mb-1 text-bg-primary">Edit</span></a>
-        <button name="delete" class="btn btn-info m-1" value="'.$name.'"><span class="badge text-bg-danger">Delete</span></button>
-            <div class="card-body">
-            <p class="bg-light card-text">'.$name.'</p>
-            </div>
-        </form>
-        ';
+// Retrieve all books from the table
+$sql = "SELECT * FROM $table_name";
+$result = mysqli_query($conn, $sql);
+
+// Generate a form for each book
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $book_id = $row["id"];
+        $edit_link = sprintf("edit_host.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
+        $book_name = $row["Name"];
+        $book_author = $row["writer"];
+        $book_img = $row["img"];
+        echo "<form action='' method='post'>";
+        echo "<img src='$book_img' style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../img/A.png\"'>";
+        echo "<h4>$book_name</h4>";
+        echo "<h5>$book_author</h5>";
+        echo "<input type='hidden' name='book_id' value='$book_id'>";
+        echo "<a href='$edit_link'>edit</a>";
+        echo "<br><br>";
+        echo "<input type='submit' name='delete' value='Delete'>";
+        echo "<br><br><br><br><br>";
+        echo "</form>";
     }
-    
-    if (isset($_POST['delete'])) {
-        $nameToDelete = $_POST['delete'];
-        $delete = $conn->prepare("DELETE FROM $table WHERE name = :name");
-        $delete->execute(array(":name" => $nameToDelete));
-         if ($delete->execute()) {
-         echo "<script>location.assign('host_edit.php?user='.$titleCompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.');</script>";
-        } else {
-            throw new Exception("Unable to delete record from the database");
-        }
-    }
-} catch (Exception $e) {
-    echo "Error: " . $e->getMessage();
+} else {
+    echo "No books found in the table.";
 }
 
+// Handle form submission
+if (isset($_POST["delete"])) {
+    $book_id = $_POST["book_id"];
+    $sql = "DELETE FROM $table_name WHERE id=$book_id";
+    if (mysqli_query($conn, $sql)) {
+        echo "Book deleted successfully.";
+    } else {
+        echo "Error deleting book: " . mysqli_error($conn);
+    }
+}
+
+// Close database connection
+mysqli_close($conn);
+  }
 ?>
+  </center>
 </body>
 
 </html>
