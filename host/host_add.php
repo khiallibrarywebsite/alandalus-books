@@ -179,62 +179,64 @@ if (mysqli_num_rows($result) > 0) {
             <label class="label">رابط الكتاب</label>
             <input type="text" name="new_url" class="form-control"  />
             </div>
-
             <div class="div" style="background-color: #f7f7f7;">
+
             <label class="label">سؤال الأول</label>
             <input type="text" name="new_q1" class="form-control" />
-          
+        
             <div class="question">
               <input type="radio" id="q1a1" name="new_q1ak">
-              <input for="q1a1" type="text" name="new_q1a1">
+              <label for="q1a1"><input type="text" name="new_q1a1"></label>
             </div>
-          
+        
             <div class="question">
               <input type="radio" id="q1a2" name="new_q1ak">
-              <input for="q1a2" type="text" name="new_q1a2">
+              <label for="q1a2"><input type="text" name="new_q1a2"></label>
             </div>
-          
+        
             <div class="question">
-              <input type="radio" id="q1a3" name="new_q1ak" >
-              <input for="q1a3" type="text" name="new_q1a3">
+              <input type="radio" id="q1a3" name="new_q1ak">
+              <label for="q1a3"><input type="text" name="new_q1a3"></label>
             </div>
           </div>
-
-            <div class="div" style="background-color: #f7f7f7;">
+        
+          <div class="div" style="background-color: #f7f7f7;">
             <label class="label">سؤال الثاني</label>
-            <input type="text" name="new_q2" class="form-control"  />
+            <input type="text" name="new_q2" class="form-control" />
+        
             <div class="question">
-              <input type="radio" id="q2a1" name="new_q2ak" >
-              <input for="q2a1" type="text" name="new_q2a1">
+              <input type="radio" id="q2a1" name="new_q2ak">
+              <label for="q2a1"><input type="text" name="new_q2a1"></label>
             </div>
-          
+        
             <div class="question">
-              <input type="radio" id="q2a2" name="new_q2ak" >
-              <input for="q2a2" type="text" name="new_q2a2">
+              <input type="radio" id="q2a2" name="new_q2ak">
+              <label for="q2a2"><input type="text" name="new_q2a2"></label>
             </div>
-          
+        
             <div class="question">
-              <input type="radio" id="q2a3" name="new_q2ak" >
-              <input for="q2a3" type="text" name="new_q2a3">
+              <input type="radio" id="q2a3" name="new_q2ak">
+              <label for="q2a3"><input type="text" name="new_q2a3"></label>
             </div>
-            </div>
-
-            <div class="div" style="background-color: #f7f7f7;">
+          </div>
+        
+          <div class="div" style="background-color: #f7f7f7;">
             <label class="label">سؤال الثالث</label>
             <input type="text" name="new_q3" class="form-control" />
+        
             <div class="question">
-              <input type="radio" id="q3a1" name="new_q3ak" >
-              <input for="q3a1" type="text" name="new_q3a1">
+              <input type="radio" id="q3a1" name="new_q3ak">
+              <label for="q3a1"><input type="text" name="new_q3a1"></label>
             </div>
-          
+        
             <div class="question">
-              <input type="radio" id="q3a2" name="new_q3ak" >
-              <input for="q3a2" type="text" name="new_q3a2">
+              <input type="radio" id="q3a2" name="new_q3ak">
+              <label for="q3a2"><input type="text" name="new_q3a2"></label>
             </div>
-          
+
             <div class="question">
               <input type="radio" id="q3a3" name="new_q3ak" >
-              <input for="q3a3" type="text" name="new_q3a3">
+              <label for="q3a3"><input type="text" name="new_q3a3"></label>
             </div>
             </div>
             
@@ -247,45 +249,56 @@ if (mysqli_num_rows($result) > 0) {
 
 
 // Handle form submissions
-if(isset($_POST['add'])){
-  if(!isset($_POST['new_q1ak']) 
-  || !isset($_POST['new_q2ak']) 
-  || !isset($_POST['new_q3ak']) 
-  || !isset($_POST['new_q3a1']) 
-  || !isset($_POST['new_q3a2']) 
-  || !isset($_POST['new_q3a3']) 
-  || !isset($_POST['new_q2a1']) 
-  || !isset($_POST['new_q2a2']) 
-  || !isset($_POST['new_q2a3']) 
-  || !isset($_POST['new_q1a1']) 
-  || !isset($_POST['new_q1a2']) 
-  || !isset($_POST['new_q1a3']) 
-  || !isset($_POST['new_Name']) 
-  || !isset($_POST['new_writer']) 
-  || !isset($_POST['new_img']) 
-  || !isset($_POST['new_url']) 
-  || !isset($_POST['new_q1']) 
-  || !isset($_POST['new_q2']) 
-  || !isset($_POST['new_q3'])){
-    echo "الرجاء ملئ حميع الخانات والإختيار الجابات الصحيحة للأسئلة المكتوبة";
-  }else{
 
-$id = $id;
-$new_Name = mysqli_real_escape_string($conn, $_POST['new_Name']);
-$new_writer = mysqli_real_escape_string($conn, $_POST['new_writer']);
-$new_img = mysqli_real_escape_string($conn, $_POST['new_img']);
-$new_url = mysqli_real_escape_string($conn, $_POST['new_url']);
-$new_q1 = mysqli_real_escape_string($conn, $_POST['new_q1']);
-$new_q1a1 = mysqli_real_escape_string($conn, $_POST['new_q1a1']);
-$new_q1a2 = mysqli_real_escape_string($conn, $_POST['new_q1a2']);
-$new_q1a3 = mysqli_real_escape_string($conn, $_POST['new_q1a3']);
-$new_q1ak = mysqli_real_escape_string($conn, $_POST['new_q1ak']);
-$new_q2 = mysqli_real_escape_string($conn, $_POST['new_q2']);
-$new_q2a1 = mysqli_real_escape_string($conn, $_POST['new_q2a1']);
-$new_q2a2 = mysqli_real_escape_string($conn, $_POST['new_q2a2']);
-$new_q2a3 = mysqli_real_escape_string($conn, $_POST['new_q2a3']);
-$new_q2ak = mysqli_real_escape_string($conn, $_POST['new_q2ak']);
-$new_q3 = mysqli_real_escape_string($conn, $_POST['new_q3']);
+if (isset($_POST['add'])) {
+    // Check if all form fields are set
+    $requiredFields = [
+      'new_q1ak',
+      'new_q2ak',
+      'new_q3ak',
+      'new_q3a1',
+      'new_q3a2',
+      'new_q3a3',
+      'new_q2a1',
+      'new_q2a2',
+      'new_q2a3',
+      'new_q1a1',
+      'new_q1a2',
+      'new_q1a3',
+      'new_Name',
+      'new_writer',
+      'new_img',
+      'new_url',
+      'new_q1',
+      'new_q2',
+      'new_q3'
+    ];
+    
+    foreach ($requiredFields as $field) {
+      if (!isset($_POST[$field])) {
+        echo "Please fill out all form fields and select the correct answers for the questions";
+        return;
+      }
+    }
+    
+    // Escape input
+    $id = $id;
+    $new_Name = mysqli_real_escape_string($conn, $_POST['new_Name']);
+    $new_writer = mysqli_real_escape_string($conn, $_POST['new_writer']);
+    $new_img = mysqli_real_escape_string($conn, $_POST['new_img']);
+    $new_url = mysqli_real_escape_string($conn, $_POST['new_url']);
+    $new_q1 = mysqli_real_escape_string($conn, $_POST['new_q1']);
+    $new_q1a1 = mysqli_real_escape_string($conn, $_POST['new_q1a1']);
+    $new_q1a2 = mysqli_real_escape_string($conn, $_POST['new_q1a2']);
+    $new_q1a3 = mysqli_real_escape_string($conn, $_POST['new_q1a3']);
+    $new_q1ak = mysqli_real_escape_string($conn, $_POST['new_q1ak']);
+    $new_q2 = mysqli_real_escape_string($conn, $_POST['new_q2']);
+    $new_q2a1 = mysqli_real_escape_string($conn, $_POST['new_q2a1']);
+    $new_q2a2 = mysqli_real_escape_string($conn, $_POST['new_q2a2']);
+    $new_q2a3 = mysqli_real_escape_string($conn, $_POST['new_q2a3']);
+    $new_q2ak = mysqli_real_escape_string($conn, $_POST['new_q2ak']);
+    $new_q3 = mysqli_real_escape_string($conn, $_POST['new_q3']);
+    
 $new_q3a1 = mysqli_real_escape_string($conn, $_POST['new_q3a1']);
 $new_q3a2 = mysqli_real_escape_string($conn, $_POST['new_q3a2']);
 $new_q3a3 = mysqli_real_escape_string($conn, $_POST['new_q3a3']);
@@ -320,7 +333,7 @@ if ($new_q1ak == $new_q1a3) {
     $q2a2 = $new_q2a2;
     $q2a1 = $new_q2a3;
   }else{
-    echo "Error adding record: '.$new_q2ak.'";
+    echo "Error adding record:$new_q2ak" ;
 
   }
 
@@ -337,7 +350,7 @@ if ($new_q1ak == $new_q1a3) {
     $q3a2 = $new_q3a2;
     $q3a1 = $new_q3a3;
   }else{
-    echo "Error adding record: $new_q3a3";
+    echo "Error adding record: $new_q3ak";
 
   }
 
@@ -353,7 +366,7 @@ if ($new_q1ak == $new_q1a3) {
 //mysqli_close($conn);
 }
 }
-}
+
 ?>
 
 
