@@ -148,13 +148,13 @@
             $new_q1 = 0;
             $new_q2 = 0;
             $new_q3 = 0;
-            $new_q1ak = 0;
+            $new_q1ak =$q1ak;
             $new_q1a1= 0;
             $new_q1a2= 0;
-            $new_q2ak = 0;
+            $new_q2ak = $q2ak;
             $new_q2a1= 0;
             $new_q2a2= 0;
-            $new_q3ak = 0;
+            $new_q3ak = $q3ak;
             $new_q3a1= 0;
             $new_q3a2= 0;
 
@@ -194,8 +194,8 @@
             </div>
           
             <div class="question">
-              <input type="radio" id="q1ak" name="new_q1ak" value="'.$q1ak.' >
-              <label  class="label12" for="q1ak" style="color:#ff0000;">'.$q1ak.'</label>
+              <input type="radio" id="q1a3" name="new_q1ak" value="'.$q1ak.'" >
+              <label for="q1a3">'.$q1ak.'</label>
             </div>
           </div>
           
@@ -217,8 +217,8 @@
             </div>
           
             <div class="question">
-              <input type="radio" id="q2ak" name="new_q2ak" value="'.$q2ak.' >
-              <label  class="label12" for="q2ak" style="color:#ff0000;">'.$q2ak.'</label>
+              <input type="radio" id="q2a3" name="new_q2ak" value="'.$q2ak.'" >
+              <label  for="q2a3" >'.$q2ak.'</label>
             </div>
             </div>
 
@@ -236,8 +236,8 @@
             </div>
           
             <div class="question">
-              <input type="radio" id="q3ak" name="new_q3ak" value="'.$q3ak.' >
-              <label  class="label12" for="q3ak" style="color:#ff0000;">'.$q3ak.'</label>
+              <input type="radio" id="q3a3" name="new_q3ak" value="'.$q3ak.'" >
+              <label for="q3a3" >'.$q3ak.'</label>
             </div>
             </div>
             
@@ -251,6 +251,15 @@
 
 // Handle form submissions
 if(isset($_POST['edit'])){
+  if(!isset($_POST['new_q1ak'])){
+    $_POST['new_q1ak']=$q1ak;
+  }
+  if(!isset($_POST['new_q2ak'])){
+    $_POST['new_q2ak']=$q2ak;
+  }
+  if(!isset($_POST['new_q3ak'])){
+    $_POST['new_q3ak']=$q3ak;
+  }
 $id = $_POST['id'];
 $new_Name = mysqli_real_escape_string($conn, $_POST['new_Name']);
 $new_writer = mysqli_real_escape_string($conn, $_POST['new_writer']);
@@ -260,46 +269,52 @@ $new_q1 = mysqli_real_escape_string($conn, $_POST['new_q1']);
 $new_q2 = mysqli_real_escape_string($conn, $_POST['new_q2']);
 $new_q3 = mysqli_real_escape_string($conn, $_POST['new_q3']);
 
-    if (isset($_POST['new_q1ak'])) {
-        $new_q1ak = mysqli_real_escape_string($conn, $_POST['new_q1ak']);
-        if($new_q1ak=$q1a1){
-            $new_q1a1=$q1ak;
-            $new_q1a2=$q1a2;
-        }elseif($new_q1ak=$q1a2){
-            $new_q1a2=$q1ak;
-            $new_q1a1=$q1a1;
-        }
-    } else {
+if ( mysqli_real_escape_string($conn, $_POST['new_q1ak']) != $q1ak) {
+  $new_q1ak = mysqli_real_escape_string($conn, $_POST['new_q1ak']);
+  if($new_q1ak !=$q1a1){
+    $new_q1a2=$q1ak;
+    $new_q1a1=$q1a1;
+  }elseif($new_q1ak != $q1a2){
+    $new_q1a1=$q1ak;
+    $new_q1a2=$q1a2;
+  }
+} else {
     $new_q1ak = $q1ak;
-    }
-
-    if (isset($_POST['new_q2ak'])) {
-        $new_q2ak = mysqli_real_escape_string($conn, $_POST['new_q2ak']);
-        if($new_q2ak=$q2a1){
-            $new_q2a1=$q2ak;
-            $new_q2a2=$q2a2;
-        }elseif($new_q2ak=$q2a2){
-            $new_q2a2=$q2ak;
-            $new_q2a1=$q2a1;
-        }
-    } else {
-        $new_q2ak = $q2ak;
-    }
-    
-    if (isset($_POST['new_q3ak'])) {
-        $new_q3ak = mysqli_real_escape_string($conn, $_POST['new_q3ak']);
-        if($new_q3ak=$q3a1){
-            $new_q3a1=$q3ak;
-            $new_q3a2=$q3a2;
-        }elseif($new_q3ak=$q3a2){
-            $new_q3a2=$q3ak;
-            $new_q3a1=$q3a1;
-        }
-    } else {
-        $new_q3ak = $q3ak;
-    }
-    
+    $new_q1a2=$q1a2;
+    $new_q1a1=$q1a1;
 }
+
+if (mysqli_real_escape_string($conn, $_POST['new_q3ak']) != $q3ak) {
+  $new_q3ak = mysqli_real_escape_string($conn, $_POST['new_q3ak']);
+  if($new_q3ak !=$q3a1){
+    $new_q3a2=$q3ak;
+    $new_q3a1=$q3a1;
+  }elseif($new_q3ak != $q3a2){
+    $new_q3a1=$q3ak;
+    $new_q3a2=$q3a2;
+  }
+} else {
+    $new_q3ak = $q3ak;
+    $new_q3a2=$q3a2;
+    $new_q3a1=$q3a1;
+}
+
+if ( mysqli_real_escape_string($conn, $_POST['new_q2ak']) != $q2ak) {
+  $new_q2ak = mysqli_real_escape_string($conn, $_POST['new_q2ak']);
+  if($new_q2ak !=$q2a1){
+    $new_q2a2=$q2ak;
+    $new_q2a1=$q2a1;
+  }elseif($new_q2ak != $q2a2){
+    $new_q2a1=$q2ak;
+    $new_q2a2=$q2a2;
+  }
+} else {
+    $new_q2ak = $q2ak;
+    $new_q2a2=$q2a2;
+    $new_q2a1=$q2a1;
+}
+
+
 
 $sql = "UPDATE $table_name SET Name='$new_Name', writer='$new_writer', img='$new_img', url='$new_url', q1='$new_q1', q1a1='$new_q1a1', q1a2='$new_q1a2', q2='$new_q2', q2a1='$new_q2a1', q2a2='$new_q2a2', q3='$new_q3', q3a1='$new_q3a1', q3a2='$new_q3a2', q1ak='$new_q1ak', q2ak='$new_q2ak', q3ak='$new_q3ak' WHERE id=$id";
 if (mysqli_query($conn, $sql)) {
@@ -308,6 +323,7 @@ if (mysqli_query($conn, $sql)) {
   echo "Error updating record: " . mysqli_error($conn);
 }
 mysqli_close($conn);
+}
 ?>
 
 
