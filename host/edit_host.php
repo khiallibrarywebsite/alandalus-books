@@ -196,13 +196,14 @@
             <div class="question">
               <input type="radio" id="q1a3" name="new_q1ak" value="'.$q1ak.'" >
               <label for="q1a3">'.$q1ak.'</label>
+              <script>
+              const new_q1a3t = document.getElementById("q1a3");
+              new_q1a3t.checked = true;
+            </script>
+              
             </div>
           </div>
           
-          <script>
-            document.querySelectorAll("input[name="q1"]")[0].checked = true;
-          </script>
-
             <div class="div" style="background-color: #f7f7f7;">
             <label class="label">سؤال الثاني</label>
             <input type="text" name="new_q2" class="form-control" value="'.$q2.'" />
@@ -219,6 +220,10 @@
             <div class="question">
               <input type="radio" id="q2a3" name="new_q2ak" value="'.$q2ak.'" >
               <label  for="q2a3" >'.$q2ak.'</label>
+              <script>
+              const new_q2a3t = document.getElementById("q2a3");
+              new_q2a3t.checked = true;
+            </script>
             </div>
             </div>
 
@@ -238,6 +243,10 @@
             <div class="question">
               <input type="radio" id="q3a3" name="new_q3ak" value="'.$q3ak.'" >
               <label for="q3a3" >'.$q3ak.'</label>
+              <script>
+              const new_q3a3t = document.getElementById("q3a3");
+              new_q3a3t.checked = true;
+            </script>
             </div>
             </div>
             

@@ -284,100 +284,101 @@ if (isset($_POST['add'])) {
       }
     }
  echo '
-                  <script>
+ <script>
+ window.onload = function() {
+   const inputText1 = document.getElementById("new_q1a1");
+   const radioInput1 = document.getElementById("q1a1");
+                 
+   inputText1.addEventListener("input", function() {
+     radioInput1.value = inputText1.value;
+   });
 
-                  const inputText1 = document.getElementById("new_q1a1");
-                  const radioInput1 = document.getElementById("q1a1");
-                  
-                  inputText.addEventListener("input", function() {
-                    radioInput1.value = inputText1.value;
-                  });
+   const inputText2 = document.getElementById("new_q1a2");
+   const radioInput2 = document.getElementById("q1a2");
+             
+   inputText2.addEventListener("input", function() {
+     radioInput2.value = inputText2.value;
+   });
 
-              const inputText2 = document.getElementById("new_q1a2");
-              const radioInput2 = document.getElementById("q1a2");
-              
-              inputText.addEventListener("input", function() {
-                radioInput2.value = inputText2.value;
-              });
+   const inputText3 = document.getElementById("new_q1a3");
+   const radioInput3 = document.getElementById("q1a3");
+             
+   inputText3.addEventListener("input", function() {
+     radioInput3.value = inputText3.value;
+   });
 
-              const inputText3 = document.getElementById("new_q1a3");
-              const radioInput3 = document.getElementById("q1a3");
-              
-              inputText.addEventListener("input", function() {
-                radioInput3.value = inputText3.value;
-              });
+   const inputText4 = document.getElementById("new_q2a1");
+   const radioInput4 = document.getElementById("q2a1");
+             
+   inputText4.addEventListener("input", function() {
+     radioInput4.value = inputText4.value;
+   });
 
+   const inputText5 = document.getElementById("new_q2a2");
+   const radioInput5 = document.getElementById("q2a2");
+             
+   inputText5.addEventListener("input", function() {
+     radioInput5.value = inputText5.value;
+   });
 
+   const inputText6 = document.getElementById("new_q2a3");
+   const radioInput6 = document.getElementById("q2a3");
+             
+   inputText6.addEventListener("input", function() {
+     radioInput6.value = inputText6.value;
+   });
 
-              const inputText4 = document.getElementById("new_q2a1");
-              const radioInput4 = document.getElementById("q2a1");
-              
-              inputText.addEventListener("input", function() {
-                radioInput4.value = inputText4.value;
-              });
+   const inputText7 = document.getElementById("new_q3a1");
+   const radioInput7 = document.getElementById("q3a1");
+             
+   inputText7.addEventListener("input", function() {
+     radioInput7.value = inputText7.value;
+   });
 
-              const inputText5 = document.getElementById("new_q2a2");
-              const radioInput5 = document.getElementById("q2a2");
-              
-              inputText.addEventListener("input", function() {
-                radioInput5.value = inputText5.value;
-              });
+   const inputText8 = document.getElementById("new_q3a2");
+   const radioInput8 = document.getElementById("q3a2");
+             
+   inputText8.addEventListener("input", function() {
+     radioInput8.value = inputText8.value;
+   });
 
-              const inputText6 = document.getElementById("new_q2a3");
-              const radioInput6 = document.getElementById("q2a3");
-              
-              inputText.addEventListener("input", function() {
-                radioInput6.value = inputText6.value;
-              });
+   const inputText9 = document.getElementById("new_q3a3");
+   const radioInput9 = document.getElementById("q3a3");
+             
+   inputText9.addEventListener("input", function() {
+     radioInput9.value = inputText9.value;
+   });
+ };
+</script>
 
-
-
-
-              const inputText7 = document.getElementById("new_q3a1");
-              const radioInput7 = document.getElementById("q3a1");
-              
-              inputText.addEventListener("input", function() {
-                radioInput7.value = inputText7.value;
-              });
-
-              const inputText8 = document.getElementById("new_q3a2");
-              const radioInput8 = document.getElementById("q3a2");
-              
-              inputText.addEventListener("input", function() {
-                radioInput8.value = inputText8.value;
-              });
-
-              const inputText9 = document.getElementById("new_q3a3");
-              const radioInput9 = document.getElementById("q3a3");
-              
-              inputText.addEventListener("input", function() {
-                radioInput9.value = inputText9.value;
-              });
-
-              </script>
               ';
+              $finish=2;
+              if ($finish == 2) {
     // Escape input
     $id = $id;
     $new_Name = mysqli_real_escape_string($conn, $_POST['new_Name']);
     $new_writer = mysqli_real_escape_string($conn, $_POST['new_writer']);
     $new_img = mysqli_real_escape_string($conn, $_POST['new_img']);
     $new_url = mysqli_real_escape_string($conn, $_POST['new_url']);
+    
     $new_q1 = mysqli_real_escape_string($conn, $_POST['new_q1']);
     $new_q1a1 = mysqli_real_escape_string($conn, $_POST['new_q1a1']);
     $new_q1a2 = mysqli_real_escape_string($conn, $_POST['new_q1a2']);
     $new_q1a3 = mysqli_real_escape_string($conn, $_POST['new_q1a3']);
-   $new_q1ak = mysqli_real_escape_string($conn, $_POST['new_q1ak']);
+    $new_q1ak = mysqli_real_escape_string($conn, $_POST['new_q1ak']);
+
     $new_q2 = mysqli_real_escape_string($conn, $_POST['new_q2']);
     $new_q2a1 = mysqli_real_escape_string($conn, $_POST['new_q2a1']);
     $new_q2a2 = mysqli_real_escape_string($conn, $_POST['new_q2a2']);
     $new_q2a3 = mysqli_real_escape_string($conn, $_POST['new_q2a3']);
-   $new_q2ak = mysqli_real_escape_string($conn, $_POST['new_q2ak']);
+    $new_q2ak = mysqli_real_escape_string($conn, $_POST['new_q2ak']);
+
     $new_q3 = mysqli_real_escape_string($conn, $_POST['new_q3']);
-    
-$new_q3a1 = mysqli_real_escape_string($conn, $_POST['new_q3a1']);
-$new_q3a2 = mysqli_real_escape_string($conn, $_POST['new_q3a2']);
-$new_q3a3 = mysqli_real_escape_string($conn, $_POST['new_q3a3']);
-$new_q3ak = mysqli_real_escape_string($conn, $_POST['new_q3ak']);
+    $new_q3a1 = mysqli_real_escape_string($conn, $_POST['new_q3a1']);
+    $new_q3a2 = mysqli_real_escape_string($conn, $_POST['new_q3a2']);
+    $new_q3a3 = mysqli_real_escape_string($conn, $_POST['new_q3a3']);
+    $new_q3ak = mysqli_real_escape_string($conn, $_POST['new_q3ak']);
+
 if ($new_q1ak == $new_q1a3) {
     $q1ak = $new_q1ak;
     $q1a2 = $new_q1a2;
@@ -397,7 +398,6 @@ if ($new_q1ak == $new_q1a3) {
     echo "Error adding record: $new_q1ak";
 
   }
-
   if ($new_q2ak == $new_q2a3) {
     $q2ak = $new_q2ak;
     $q2a2 = $new_q2a2;
@@ -435,8 +435,8 @@ if ($new_q1ak == $new_q1a3) {
     $finish=1;
   }else{
     echo "Error adding record: $new_q3ak";
-
-  
+  }
+}
 
     if ($finish == 1) {
         $sql = "INSERT INTO $table_name (id, Name, writer, img, url, q1, q1ak, q1a2, q1a1, q2, q2ak, q2a2, q2a1, q3, q3ak, q3a2, q3a1)
@@ -450,7 +450,7 @@ if ($new_q1ak == $new_q1a3) {
     
         mysqli_close($conn);
     }
-}
+
 }
   }
 ?>
