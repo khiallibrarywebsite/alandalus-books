@@ -73,7 +73,7 @@ require_once '../connect.php';
 // Retrieve all books from the table
 $sql = "SELECT * FROM $table_name";
 $result = mysqli_query($conn, $sql);
-
+echo "<a href='host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.''>رجوع</a>";
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
@@ -83,7 +83,7 @@ if (mysqli_num_rows($result) > 0) {
         $book_author = $row["writer"];
         $book_img = $row["img"];
         echo "<form action='' method='post'>";
-        echo "<a href='host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.''>رجوع</a>";
+
         echo "<img src='$book_img' style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../img/A.png\"'>";
         echo "<h4>$book_name</h4>";
         echo "<h5>$book_author</h5>";
