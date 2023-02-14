@@ -130,6 +130,7 @@ if (mysqli_num_rows($result) > 0) {
            }
 
     }
+    $finish=0;
             $new_Name = "";
             $new_writer = "";
             $new_img = "";
@@ -143,12 +144,15 @@ if (mysqli_num_rows($result) > 0) {
             $new_q1ak ="";
             $new_q1a1= "";
             $new_q1a2= "";
+            $new_q1a3 = "";
             $new_q2ak = "";
             $new_q2a1= "";
             $new_q2a2= "";
+            $new_q2a3 = "";
             $new_q3ak = "";
             $new_q3a1= "";
             $new_q3a2= "";
+            $new_q3a3 = "";
             $q1a1= "";
             $q1a2= "";
             $q1ak= "";
@@ -185,39 +189,39 @@ if (mysqli_num_rows($result) > 0) {
             <input type="text" name="new_q1" class="form-control" />
         
             <div class="question">
-              <input type="radio" id="q1a1" name="new_q1ak">
-              <label for="q1a1"><input type="text" name="new_q1a1"></label>
+            <input type="radio" id="q1a1" name="new_q1ak" value = "q1a1">
+              <label for="q1a1"><input type="text" name="new_q1a1"  id="new_q1a1"></label>
+            </div>
+
+            <div class="question">
+            <input type="radio" id="q1a2" name="new_q1ak" value = "q1a2">
+              <label for="q1a2"><input type="text" name="new_q1a2" id="new_q1a2"></label>
             </div>
         
             <div class="question">
-              <input type="radio" id="q1a2" name="new_q1ak">
-              <label for="q1a2"><input type="text" name="new_q1a2"></label>
-            </div>
-        
-            <div class="question">
-              <input type="radio" id="q1a3" name="new_q1ak">
-              <label for="q1a3"><input type="text" name="new_q1a3"></label>
+            <input type="radio" id="q1a3" name="new_q1ak" value = "q1a3">
+              <label for="q1a3"><input type="text" name="new_q1a3" id="new_q1a3"></label>
             </div>
           </div>
         
           <div class="div" style="background-color: #f7f7f7;">
             <label class="label">سؤال الثاني</label>
             <input type="text" name="new_q2" class="form-control" />
-        
             <div class="question">
-              <input type="radio" id="q2a1" name="new_q2ak">
-              <label for="q2a1"><input type="text" name="new_q2a1"></label>
+            <input type="radio" id="q2a1" name="new_q2ak" value = "q2a1">
+              <label for="q2a1"><input type="text" name="new_q2a1"  id="new_q2a1"></label>
+
             </div>
         
             <div class="question">
-              <input type="radio" id="q2a2" name="new_q2ak">
-              <label for="q2a2"><input type="text" name="new_q2a2"></label>
-            </div>
-        
-            <div class="question">
-              <input type="radio" id="q2a3" name="new_q2ak">
-              <label for="q2a3"><input type="text" name="new_q2a3"></label>
-            </div>
+            <input type="radio" id="q2a2" name="new_q2ak" value = "q2a2">
+              <label for="q2a2"><input type="text" name="new_q2a2"  id="new_q2a2"></label>
+              </div>
+
+              <div class="question">
+              <input type="radio" id="q2a3" name="new_q2ak" value = "q2a3">
+                <label for="q2a3" ><input type="text" name="new_q2a3" id="new_q2a3"></label>
+              </div>
           </div>
         
           <div class="div" style="background-color: #f7f7f7;">
@@ -225,27 +229,26 @@ if (mysqli_num_rows($result) > 0) {
             <input type="text" name="new_q3" class="form-control" />
         
             <div class="question">
-              <input type="radio" id="q3a1" name="new_q3ak">
-              <label for="q3a1"><input type="text" name="new_q3a1"></label>
+            <input type="radio" id="q3a1" name="new_q3ak" value = "q3a1">
+              <label for="q3a1"><input type="text" name="new_q3a1"  id="new_q3a1"></label>
             </div>
         
             <div class="question">
-              <input type="radio" id="q3a2" name="new_q3ak">
-              <label for="q3a2"><input type="text" name="new_q3a2"></label>
-            </div>
+            <input type="radio" id="q3a2" name="new_q3ak" value = "q3a2">
+              <label for="q3a2"><input type="text" name="new_q3a2"  id="new_q3a2"></label>
+              </div>
 
             <div class="question">
-              <input type="radio" id="q3a3" name="new_q3ak" >
-              <label for="q3a3"><input type="text" name="new_q3a3"></label>
+            <input type="radio" id="q3a3" name="new_q3ak" value = "q3a3">
+            <label for="q3a3"><input type="text" name="new_q3a3"  id="new_q3a3"></label>
             </div>
             </div>
-            
+
             <input type="submit" name="add" value="إضافة" class="btn btn-primary mt-2">
             
           </form>
           ';
 }
-
 
 
 // Handle form submissions
@@ -280,7 +283,79 @@ if (isset($_POST['add'])) {
         return;
       }
     }
-    
+ echo '
+                  <script>
+
+                  const inputText1 = document.getElementById("new_q1a1");
+                  const radioInput1 = document.getElementById("q1a1");
+                  
+                  inputText.addEventListener("input", function() {
+                    radioInput1.value = inputText1.value;
+                  });
+
+              const inputText2 = document.getElementById("new_q1a2");
+              const radioInput2 = document.getElementById("q1a2");
+              
+              inputText.addEventListener("input", function() {
+                radioInput2.value = inputText2.value;
+              });
+
+              const inputText3 = document.getElementById("new_q1a3");
+              const radioInput3 = document.getElementById("q1a3");
+              
+              inputText.addEventListener("input", function() {
+                radioInput3.value = inputText3.value;
+              });
+
+
+
+              const inputText4 = document.getElementById("new_q2a1");
+              const radioInput4 = document.getElementById("q2a1");
+              
+              inputText.addEventListener("input", function() {
+                radioInput4.value = inputText4.value;
+              });
+
+              const inputText5 = document.getElementById("new_q2a2");
+              const radioInput5 = document.getElementById("q2a2");
+              
+              inputText.addEventListener("input", function() {
+                radioInput5.value = inputText5.value;
+              });
+
+              const inputText6 = document.getElementById("new_q2a3");
+              const radioInput6 = document.getElementById("q2a3");
+              
+              inputText.addEventListener("input", function() {
+                radioInput6.value = inputText6.value;
+              });
+
+
+
+
+              const inputText7 = document.getElementById("new_q3a1");
+              const radioInput7 = document.getElementById("q3a1");
+              
+              inputText.addEventListener("input", function() {
+                radioInput7.value = inputText7.value;
+              });
+
+              const inputText8 = document.getElementById("new_q3a2");
+              const radioInput8 = document.getElementById("q3a2");
+              
+              inputText.addEventListener("input", function() {
+                radioInput8.value = inputText8.value;
+              });
+
+              const inputText9 = document.getElementById("new_q3a3");
+              const radioInput9 = document.getElementById("q3a3");
+              
+              inputText.addEventListener("input", function() {
+                radioInput9.value = inputText9.value;
+              });
+
+              </script>
+              ';
     // Escape input
     $id = $id;
     $new_Name = mysqli_real_escape_string($conn, $_POST['new_Name']);
@@ -291,12 +366,12 @@ if (isset($_POST['add'])) {
     $new_q1a1 = mysqli_real_escape_string($conn, $_POST['new_q1a1']);
     $new_q1a2 = mysqli_real_escape_string($conn, $_POST['new_q1a2']);
     $new_q1a3 = mysqli_real_escape_string($conn, $_POST['new_q1a3']);
-    $new_q1ak = mysqli_real_escape_string($conn, $_POST['new_q1ak']);
+   $new_q1ak = mysqli_real_escape_string($conn, $_POST['new_q1ak']);
     $new_q2 = mysqli_real_escape_string($conn, $_POST['new_q2']);
     $new_q2a1 = mysqli_real_escape_string($conn, $_POST['new_q2a1']);
     $new_q2a2 = mysqli_real_escape_string($conn, $_POST['new_q2a2']);
     $new_q2a3 = mysqli_real_escape_string($conn, $_POST['new_q2a3']);
-    $new_q2ak = mysqli_real_escape_string($conn, $_POST['new_q2ak']);
+   $new_q2ak = mysqli_real_escape_string($conn, $_POST['new_q2ak']);
     $new_q3 = mysqli_real_escape_string($conn, $_POST['new_q3']);
     
 $new_q3a1 = mysqli_real_escape_string($conn, $_POST['new_q3a1']);
@@ -307,14 +382,17 @@ if ($new_q1ak == $new_q1a3) {
     $q1ak = $new_q1ak;
     $q1a2 = $new_q1a2;
     $q1a1 = $new_q1a1;
+    $finish=1;
   } elseif ($new_q1ak == $new_q1a2) {
     $q1ak = $new_q1ak;
     $q1a2 = $new_q1a3;
     $q1a1 = $new_q1a1;
+    $finish=1;
   } elseif ($new_q1ak == $new_q1a1) {
     $q1ak = $new_q1ak;
     $q1a2 = $new_q1a2;
     $q1a1 = $new_q1a3;
+    $finish=1;
   }else{
     echo "Error adding record: $new_q1ak";
 
@@ -324,14 +402,17 @@ if ($new_q1ak == $new_q1a3) {
     $q2ak = $new_q2ak;
     $q2a2 = $new_q2a2;
     $q2a1 = $new_q2a1;
+    $finish=1;
   } elseif ($new_q2ak == $new_q2a2) {
     $q2ak = $new_q2ak;
     $q2a2 = $new_q2a3;
     $q2a1 = $new_q2a1;
+    $finish=1;
   } elseif ($new_q2ak == $new_q2a1) {
     $q2ak = $new_q2ak;
     $q2a2 = $new_q2a2;
     $q2a1 = $new_q2a3;
+    $finish=1;
   }else{
     echo "Error adding record:$new_q2ak" ;
 
@@ -340,33 +421,38 @@ if ($new_q1ak == $new_q1a3) {
   if ($new_q3ak == $new_q3a3) {
     $q3ak = $new_q3ak;
     $q3a2 = $new_q3a2;
-    $q3a1 = $new_q3a1;
+    $q3a1 = $new_q3a1;    
+    $finish=1;
   } elseif ($new_q3ak == $new_q3a2) {
     $q3ak = $new_q3ak;
     $q3a2 = $new_q3a3;
     $q3a1 = $new_q3a1;
+    $finish=1;
   } elseif ($new_q3ak == $new_q3a1) {
     $q3ak = $new_q3ak;
     $q3a2 = $new_q3a2;
     $q3a1 = $new_q3a3;
+    $finish=1;
   }else{
     echo "Error adding record: $new_q3ak";
 
-  }
-
-  //$sql = "INSERT INTO $table_name (id, Name, writer, img, url, q1, q1ak, q1a2, q1a1, q2, q2ak, q2a2, q2a1, q3, q3ak, q3a2, q3a1)
-  //VALUES ('$id', '$new_Name', '$new_writer', '$new_img', '$new_url', '$new_q1', '$q1ak', '$q1a2', '$q1a1', '$new_q2', '$q2ak', '$q2a2', '$q2a1', '$new_q3', '$q3ak', '$q3a2', '$q3a1')";
   
-//if (mysqli_query($conn, $sql)) {
- ///// echo "Record added successfully";
-//} else {
- // echo "Error adding record: " . mysqli_error($conn);
-//}
 
-//mysqli_close($conn);
+    if ($finish == 1) {
+        $sql = "INSERT INTO $table_name (id, Name, writer, img, url, q1, q1ak, q1a2, q1a1, q2, q2ak, q2a2, q2a1, q3, q3ak, q3a2, q3a1)
+        VALUES ('$id', '$new_Name', '$new_writer', '$new_img', '$new_url', '$new_q1', '$q1ak', '$q1a2', '$q1a1', '$new_q2', '$q2ak', '$q2a2', '$q2a1', '$new_q3', '$q3ak', '$q3a2', '$q3a1')";
+      
+        if (mysqli_query($conn, $sql)) {
+            echo "Record added successfully";
+        } else {
+            echo "Error adding record: " . mysqli_error($conn);
+        }
+    
+        mysqli_close($conn);
+    }
 }
 }
-
+  }
 ?>
 
 
