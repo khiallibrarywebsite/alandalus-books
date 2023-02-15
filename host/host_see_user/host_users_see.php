@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
+
+   <meta charset="UTF-8" />   
+       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php
     require_once '../connect.php';
     $s=0;
@@ -9,7 +13,8 @@
         $password = $_GET['pass'];
         $titlecompleter = $_GET['user'];
         $code=$_GET['school_code'];
-    // Use parameterized queries to prevent SQL injection attacks
+    
+        // Use parameterized queries to prevent SQL injection attacks
         $stmt = $conn->prepare("SELECT * FROM `host_$code` WHERE `username` = ? AND `password` = ?");
         $stmt->bind_param("ss", $titlecompleter, $password);
         $stmt->execute();
@@ -20,19 +25,17 @@
           // Use the fetch_assoc() method only once to retrieve the name
           $row = $result->fetch_assoc();
           $name = $row['name'];
+    
           // Use elseif to reduce redundant code and improve readability
           if (strpos($titlecompleter, "1") !== false) {
-            echo '<title>كيفية رفع ملفات جوجل درايف</title>';
+            echo '<title>حساب مشرف المستوي الأول '.$name.'</title>';
             $stage = 1;
-            $table_name = $code . "_" . $stage . "_books";
           } elseif (strpos($titlecompleter, "2") !== false) {
-         echo '<title>كيفية رفع ملفات جوجل درايف</title>'; 
+         echo '<title>حساب مشرف المستوي الثاني '.$name.'</title>'; 
          $stage = 2;
-         $table_name = $code . "_" . $stage . "_books";
        } elseif (strpos($titlecompleter, "3") !== false) {
-        echo '<title>كيفية رفع ملفات جوجل درايف</title>';
+        echo '<title>حساب مشرف المستوي الثالث '.$name.'</title>';
         $stage = 3;
-        $table_name = $code . "_" . $stage . "_books";
     } else {
     echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
@@ -53,19 +56,48 @@
 
 ?>
 
+</head>
 
-    </head>
 <body>
-    <center>
-<p>قم بتحميل الكتاب بصيغة بيدي اف علي جوجل درايف وبعد التحميل قم باختيار الكتاب</p>
-<img src="../img/1.png" height="500px" width="700px">
-<p>بعدها قم بالضغط علي الحصول علي الرابط</p>
-<img src="../img/2.png" height="500px" width="700px">
-<p>بعدها قم بالضغط علي الحصول علي الرابط</p>
-<p>وقم باختيار وصول عام اي شخص لديه الرابط لديه حق المشاهدة</p>
-<img src="../img/3.png" height="500px" width="700px">
-<p>بعد ذلك قم بنسخ الرابط ووضعه في انة رابط الكتاب في صفحة اضافة الكتاب</p>
-<p>للحصول علي الايدي الخاص بالكتاب قم بنسخ الرقم الذي يوجد في اخر الرابط</p>
-</center>
+  <center>
+  <?php
+  if($s != 1){
+
+
+$table_name =  "user_" .$code;
+
+// Connect to database
+require_once '../connect.php';
+
+
+// Retrieve all books from the table
+$sql = "SELECT * FROM `$table_name` WHERE `stage` = $stage ORDER BY `readedbooks` ASC";
+
+$result = mysqli_query($conn, $sql);
+$go = sprintf("host.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
+echo "<a href='$go'>رجوع</a>";
+// Generate a form for each book
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $user_name = $row["name"];
+        $scoore = $row["scoore"];
+        $readedbooks = $row["readedbooks"];
+        echo "<form>";
+        echo "<img src='../img/img.png' style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../img/A.png\"'>";
+        echo "<h4>الطالب :$user_name</h4>";
+        echo "<h5>عدد النقاط :$scoore</h5>";
+        echo "<h5>عدد الكتب المقروئة :$readedbooks</h5>";
+        echo "<a href=''><button>عرض الكتب المقروئة</button></a>";
+        echo "</form>";
+    }
+} else {
+    echo "No books found in the table.";
+}
+
+
+  }
+?>
+  </center>
 </body>
+
 </html>

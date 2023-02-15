@@ -120,7 +120,7 @@
        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php
-    require_once '../connect.php';
+    require_once '../../connect.php';
     $s=0;
     if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
@@ -152,19 +152,19 @@
         $stage = 3;
         $table_name = $code . "_" . $stage . "_books";
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
 
@@ -178,23 +178,24 @@
 <?php
   if($s != 1){
     
-    require_once '../connect.php';
-            // Retrieve all books from the table
-$sql = "SELECT * FROM $table_name";
-$result = mysqli_query($conn, $sql);
+    require_once '../../connect.php';
 
-// Generate a form for each book
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-          $id = rand(100000000, 999999999);
-           $id_book = $row["id"];
-           if($id_book = $id){
+    // Retrieve all books from the table
+    $sql = "SELECT * FROM $table_name";
+    $result = mysqli_query($conn, $sql);
+    
+    if (mysqli_num_rows($result) > 0) {
+        // Generate a form for each book
+        while ($row = mysqli_fetch_assoc($result)) {
             $id = rand(100000000, 999999999);
-            if($id_book = $id){
+            $id_book = $row["id"];
+            while ($id_book == $id) {
                 $id = rand(100000000, 999999999);
             }
-           }
-
+        }
+    } else {
+        // Table is empty, generate a new ID directly
+        $id = rand(100000000, 999999999);
     }
     $finish=0;
             $new_Name = "";
@@ -230,7 +231,7 @@ if (mysqli_num_rows($result) > 0) {
             $q3ak= "";
             $go_link = sprintf("host_how_add.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
             echo '
-            <a href="host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">رجوع</a>
+            <a href="../host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">رجوع</a>
             <form method="POST" class="container">
             <div class="div" style="background-color: #f7f7f7;">
             <input type="hidden" name="id" value="'.$id.'" />
@@ -361,7 +362,7 @@ if (isset($_POST['add'])) {
     $id = $id;
     $new_Name = mysqli_real_escape_string($conn, $_POST['new_Name']);
     $new_writer = mysqli_real_escape_string($conn, $_POST['new_writer']);
-    $new_img = mysqli_real_escape_string($conn, $_POST['new_img']);
+    $new_img = "https://drive.google.com/thumbnail?id=" . mysqli_real_escape_string($conn, $_POST['new_img']);
     $new_url = mysqli_real_escape_string($conn, $_POST['new_url']);
     
     $new_q1 = mysqli_real_escape_string($conn, $_POST['new_q1']);
@@ -454,7 +455,7 @@ if ($new_q1ak == $new_q1a3) {
         mysqli_close($conn);
     }
 
-}}
+}
   
 ?>
 

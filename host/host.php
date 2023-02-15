@@ -70,19 +70,19 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
     echo '<title>حساب مشرف المستوي الثالث '.$name.'</title>';
     $stage = 3;
 } else {
-echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
 $s = 1;
 }
 } else {
-echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
 $s = 1;
 }
 } else {
-echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
 $s = 1;
 }
 } else {
-echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
 $s = 1;
 }
 
@@ -121,11 +121,11 @@ if($s != 1){
 </nav>
 
 <div>
- <a href="host_users_see.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-left: 15%; line-height: 100px;">عرض الطلاب</div></a>
+ <a href="host_see_user/host_users_see.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-left: 15%; line-height: 100px;">عرض الطلاب</div></a>
 
- <a href="host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-right: 15%; line-height: 100px;">إضافة كتاب</div></a>
+ <a href="host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-right: 15%; line-height: 100px;">إضافة كتاب</div></a>
   
- <a href="host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-right: 30%; line-height: 100px;">تعديل الكتب</div></a>
+ <a href="host_edit/host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-right: 30%; line-height: 100px;">تعديل الكتب</div></a>
 
   </div>
   

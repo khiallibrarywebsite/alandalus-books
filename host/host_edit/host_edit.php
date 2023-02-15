@@ -6,7 +6,7 @@
        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php
-    require_once '../connect.php';
+    require_once '../../connect.php';
     $s=0;
     if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
@@ -37,19 +37,19 @@
         echo '<title>حساب مشرف المستوي الثالث '.$name.'</title>';
         $stage = 3;
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
 
@@ -67,13 +67,14 @@
 $table_name = $code . "_" . $stage . "_books";
 
 // Connect to database
-require_once '../connect.php';
+require_once '../../connect.php';
 
 
 // Retrieve all books from the table
 $sql = "SELECT * FROM $table_name";
 $result = mysqli_query($conn, $sql);
-echo "<a href='host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.''>رجوع</a>";
+$go = sprintf("../host.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
+echo "<a href='$go'>رجوع</a>";
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
@@ -84,7 +85,7 @@ if (mysqli_num_rows($result) > 0) {
         $book_img = $row["img"];
         echo "<form action='' method='post'>";
 
-        echo "<img src='$book_img' style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../img/A.png\"'>";
+        echo "<img src='$book_img' style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../../img/A.png\"'>";
         echo "<h4>$book_name</h4>";
         echo "<h5>$book_author</h5>";
         echo "<input type='hidden' name='book_id' value='$book_id'>";

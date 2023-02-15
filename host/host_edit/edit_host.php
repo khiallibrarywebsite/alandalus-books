@@ -54,7 +54,7 @@
        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php
-    require_once '../connect.php';
+    require_once '../../connect.php';
     $s=0;
     if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'],$_GET['id'])) {
       if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])&& !empty($_GET['id'])) {
@@ -87,19 +87,19 @@
         $stage = 3;
         $table_name = $code . "_" . $stage . "_books";
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
     } else {
-    echo '<center><a href="login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
 
@@ -113,7 +113,7 @@
 <?php
   if($s != 1){
     
-    require_once '../connect.php';
+    require_once '../../connect.php';
     $sql = "SELECT * FROM $table_name WHERE id=$id";
     $result = mysqli_query($conn, $sql);
     
