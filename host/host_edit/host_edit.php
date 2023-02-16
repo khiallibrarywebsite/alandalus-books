@@ -105,6 +105,7 @@ if (isset($_POST["delete"])) {
     $sql = "DELETE FROM $table_name WHERE id=$book_id";
     if (mysqli_query($conn, $sql)) {
         echo "Book deleted successfully.";
+        header("Refresh: 0");
     } else {
         echo "Error deleting book: " . mysqli_error($conn);
     }
