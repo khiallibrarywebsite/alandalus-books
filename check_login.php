@@ -3,9 +3,11 @@ require_once 'connect.php';
 
 $username = $_POST['username'];
 $password = $_POST['password'];
+$parts = explode(".", $username);
+$code = end($parts);
 
 // Check if the username contains "egyand"
-if (strpos($username, 'egyand') !== false) {
+/**if (strpos($username, 'egyand') !== false) {
     $school_code = 'egyand';
     $user_table = 'user_egyand';
     $host_table = 'host_egyand';
@@ -26,9 +28,9 @@ elseif (strpos($username, 'entand') !== false) {
 else {
       http_response_code(400); 
     exit();
-}
+}**/
 // Check if the username and password are in the host_table
-$query = "SELECT * FROM $host_table WHERE username='$username' AND password='$password'";
+$query = "SELECT * FROM 'host_$code WHERE username='$username' AND password='$password'";
 $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) > 0) {
         if ($school_code == "egyand") {

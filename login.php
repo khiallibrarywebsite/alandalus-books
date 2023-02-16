@@ -3,64 +3,66 @@
 
 <title>تسجيل دخول</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-  
- const getValues = () => {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  const xhr = new XMLHttpRequest();
-  xhr.open("POST", "check_login.php", true);
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      switch (xhr.status) {
-        case 200:
-          window.location.href = `user/user.php?user=${username}&school_code=egyand&pass=${password}`;
-          break;
-        case 201:
-          window.location.href = `user/user.php?user=${username}&school_code=ksaand&pass=${password}`;
-          break;
-        case 202:
-          window.location.href = `user/user.php?user=${username}&school_code=entand&pass=${password}`;
-          break;
-        case 400:
-          document.querySelector("#error").textContent = "Incorrect username or password";
-          break;
-        case 500:
-          window.location.href = `host/host.php?user=${username}&school_code=egyand&pass=${password}`;
-          break;
-        case 501:
-          window.location.href = `host/host.php?user=${username}&school_code=ksaand&pass=${password}`;
-          break;
-        case 502:
-          window.location.href = `host/host.php?user=${username}&school_code=entand&pass=${password}`;
-          break;
-        default:
-          console.error(`Unexpected status code: ${xhr.status}`);
-      }
-    }
-  };
-  xhr.send(`username=${username}&password=${password}`);
-};
-
-  </script>
-    
-
-
 </head>
 <body>
 <center>
-  <form>
+  <?php
+  echo'
+  <form method="POST" class="container">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username">
     <br><br>
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password">
+    <input type="password" id="password" name="password" >
     <br><br>
-    <input type="button" value="Submit" onclick="getValues()">
-  </form>
+    <input type="submit" name="login" value="تسجيل دخول" class="btn btn-primary mt-2">
+    </form>
     <div id="error"></div>
+    ';
+    require_once 'connect.php';
+
+    if (isset($_POST['login'])) {
+      // Check if all form fields are set
+      $requiredFields = [
+        'password',
+        'username'
+      ];
+      
+      foreach ($requiredFields as $field) {
+        if (!isset($_POST[$field])) {
+          echo "الرجاء ادخال كلمة السر و اسم المستخدم";
+          return;
+        }
+      }
+      $password = mysqli_real_escape_string($conn, $_POST['password']);
+      $username = mysqli_real_escape_string($conn, $_POST['username']);
+      if(strpos($username, ".") !== false){
+        $parts = explode(".", $username);
+        $code = end($parts);
+        $query = "SELECT * FROM host_$code WHERE username='$username' AND password='$password'";
+        $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) > 0) {
+          header("Location: host/host.php?user={$username}&school_code={$code}&pass={$password}");
+        }else{
+  
+          $query = "SELECT * FROM user_$code WHERE username='$username' AND password='$password'";
+          $result = mysqli_query($conn, $query);
+          if (mysqli_num_rows($result) > 0) {
+            header("Location: user/user.php?user={$username}&school_code={$code}&pass={$password}");
+          }else{
+            echo"<p>الرجاء ادخال كلمة سر و اسم مستخدم صحيحين</p>";
+          }
+        }
+  
+      }else{
+        echo"<p>الرجاء ادخال كلمة سر و اسم مستخدم صحيحين</p>";
+      }
+
+
+
+
+    }
+    ?>
 </center>
 </body>
 
