@@ -64,13 +64,11 @@
   <?php
   if($s != 1){
 
-
 $table_name =  "user_" .$code;
 
 // Connect to database
 require_once '../../connect.php';
-$go = sprintf("../host.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
-echo "<a href='$go'>رجوع</a>";
+$go = sprintf("host_users_see.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
 $number=0;
 // Retrieve all books from the table
 // Prepare the SQL query with placeholders for the bound parameters
@@ -105,6 +103,8 @@ $sql = "SELECT * FROM $table_name";
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
+    echo "<a href='$go'>رجوع</a>";
+
     while ($row = mysqli_fetch_assoc($result)) {
         $book_id = $row["id"];
         $book_name = $row["Name"];
