@@ -111,7 +111,7 @@ if (mysqli_num_rows($result) > 0) {
         $book_author = $row["writer"];
         $book_img = $row["img"];
         // Check if the book ID is already in the list of read books
-        if (strpos($id_readed_books, $book_id) !== false) {
+        if (strpos($id_readed_books, ",".$book_id.",") !== false) {
 
             echo "<img src='$book_img' style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../../img/A.png\"'>";
             echo "<h4>$book_name</h4>";

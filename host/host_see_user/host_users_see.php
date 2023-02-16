@@ -75,7 +75,7 @@ $sql = "SELECT * FROM `$table_name` WHERE `stage` = $stage ORDER BY `readedbooks
 
 $result = mysqli_query($conn, $sql);
 $go = sprintf("../host.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
-$go_to = sprintf("host_see_user_readed_books.php?user=%s&school_code=%s&pass=%s&user_name=%s", $titlecompleter, $code, $password, $username);
+$go_to = sprintf("/host_see_user_readed_books.php?user=%s&school_code=%s&pass=%s&user_name=%s", $titlecompleter, $code, $password, $username);
 echo "<a href='$go'>رجوع</a>";
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
@@ -89,7 +89,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<h4>الطالب :$user_name</h4>";
         echo "<h5>عدد النقاط :$scoore</h5>";
         echo "<h5>عدد الكتب المقروئة :$readedbooks</h5>";
-        echo "<a href='$go_to'><button>عرض الكتب المقروئة</button></a>";
+        echo "<a href=$go_to><button>عرض الكتب المقروئة</button></a>";
         echo "</form>";
     }
 } else {
