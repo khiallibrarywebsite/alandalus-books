@@ -75,21 +75,21 @@ $sql = "SELECT * FROM `$table_name` WHERE `stage` = $stage ORDER BY `readedbooks
 
 $result = mysqli_query($conn, $sql);
 $go = sprintf("../host.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
-$go_to = sprintf("/host_see_user_readed_books.php?user=%s&school_code=%s&pass=%s&user_name=%s", $titlecompleter, $code, $password, $username);
 echo "<a href='$go'>رجوع</a>";
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $user_name = $row["name"];
+        $users_name = $row["name"];
         $scoore = $row["scoore"];
         $readedbooks = $row["readedbooks"];
-        $username = $row["username"];
+        $username1 = $row["username"];
+        $go_to = sprintf("host_see_user_readed_books.php?user=%s&school_code=%s&pass=%s&user_name=%s", $titlecompleter, $code, $password, $username1);
         echo "<form>";
         echo "<img src='../../img/img.png' style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../img/A.png\"'>";
-        echo "<h4>الطالب :$user_name</h4>";
+        echo "<h4>الطالب :$users_name</h4>";
         echo "<h5>عدد النقاط :$scoore</h5>";
         echo "<h5>عدد الكتب المقروئة :$readedbooks</h5>";
-        echo "<a href=$go_to><button>عرض الكتب المقروئة</button></a>";
+        echo "<a href=$go_to>عرض الكتب المقروئة</a>";
         echo "</form>";
     }
 } else {
