@@ -228,18 +228,29 @@ if(isset($_POST['post'])){
       if($sa_q1ak == $q1ak){$scoore=$scoore+10;}
       if($sa_q2ak == $q2ak){$scoore=$scoore+10;}
       if($sa_q3ak == $q3ak){$scoore=$scoore+10;}
-      $sql = "SELECT * FROM $table WHERE username=$titlecompleter";
-      $result = mysqli_query($conn, $sql);
-      // Generate a form for each book
-      if (mysqli_num_rows($result) > 0) {
+      $stmt = $conn->prepare("SELECT * FROM `user_$code` WHERE `username` = ? AND `password` = ?");
+      $stmt->bind_param("ss", $titlecompleter, $password);
+      $stmt->execute();
+      $result = $stmt->get_result();
+  
+      // Check if the query was successful, and only continue if it was
+      if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
         $t_scoore = $row['scoore'];
         echo"<p>$t_scoore+$scoore</p>";
-        $sql = "UPDATE $table SET scoore='$t_scoore+$scoore' WHERE username=$titlecompleter";
+        $sql = "UPDATE `$table` SET `scoore` = `scoore` + '$scoore' WHERE `username` = '$titlecompleter'";
+
+        // execute the SQL query and handle errors
         if (mysqli_query($conn, $sql)) {
+          $num_rows_affected = mysqli_affected_rows($conn);
+          if ($num_rows_affected == 1) {
             echo "Record updated successfully";
           } else {
-            echo "Error updating record: " . mysqli_error($conn);
+            echo "No record updated";
           }
+        } else {
+          echo "Error updating record: " . mysqli_error($conn);
+        }
           mysqli_close($conn);
           }
         
@@ -247,7 +258,7 @@ if(isset($_POST['post'])){
       }
 
 }
-
+}
 
 ?>
 
