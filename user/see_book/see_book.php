@@ -62,6 +62,7 @@ echo "<a href='$go'>رجوع</a>";
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
+      $x=5;
         $Name = $row['Name'];
         $writer = $row['writer'];
         $img = $row['img'];
@@ -87,6 +88,7 @@ if (mysqli_num_rows($result) > 0) {
         $s_q3a1 = "";
         $s_q3a2 = "";
         $s_q3a3 = "";
+
 
 
         // Create an array with the answer choices
@@ -140,7 +142,7 @@ if (mysqli_num_rows($result) > 0) {
         <br><br>
         <div  style="background-color: #3E6BE6;>
         <label class="label"   name="new_q1">:السؤال الأول</label>
-        <label for="new_q1">'.$q2.'</label>
+        <label for="new_q1">'.$q1.'</label>
         </div>
 
         <div class="div" style="background-color: #f7f7f7;">
@@ -161,6 +163,7 @@ if (mysqli_num_rows($result) > 0) {
         </div>
         <img id="x1" src="../../img/x.png" style="display:none; weight: 50px; height: 50px;">
         <img id="t1" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
+        <h4 id="h1" style="display:none;">الإجابة الصحيحة : '.$q1ak.'</h4>
       </div>
       <br><br>
       <div  style="background-color: #3E6BE6;>
@@ -185,12 +188,13 @@ if (mysqli_num_rows($result) > 0) {
       </div>
       <img id="x2" src="../../img/x.png" style="display:none; weight: 50px; height: 50px;">
       <img id="t2" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
+      <h4 id="h2" style="display:none;">الإجابة الصحيحة : '.$q2ak.'</h4>
 
     </div>
     <br><br>
     <div  style="background-color: #3E6BE6;>
     <label class="label"   name="new_q3">:السؤال الثالث</label>
-    <label for="new_q3">'.$q2.'</label>
+    <label for="new_q3">'.$q3.'</label>
     </div>
 
     <div class="div" style="background-color: #f7f7f7;">
@@ -211,6 +215,7 @@ if (mysqli_num_rows($result) > 0) {
     </div>
     <img id="x3" src="../../img/x.png" style="display:none; weight: 50px; height: 50px;">
     <img id="t3" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
+    <h4 id="h3" style="display:none;">الإجابة الصحيحة : '.$q3ak.'</h4>
   </div>
   <input type="submit" name="post" value="ارسال" class="btn btn-primary mt-2">
 
@@ -234,10 +239,109 @@ if(isset($_POST['post'])){
           return;
         }
       }
-      $sa_q1ak =  mysqli_real_escape_string($conn, $_POST['q1ak']);
-      $sa_q2ak =  mysqli_real_escape_string($conn, $_POST['q2ak']);
-      $sa_q3ak =  mysqli_real_escape_string($conn, $_POST['q3ak']);
 
+      $sa_q1ak =  mysqli_real_escape_string($conn, $_POST['q1ak']);
+      $q1a1 =  $s_q1a1;
+      $q1a2 =  $s_q1a2;
+      $q1a3 =  $s_q1a3;
+
+      $sa_q2ak =  mysqli_real_escape_string($conn, $_POST['q2ak']);
+      $q2a1 =  $s_q2a1;
+      $q2a2 =  $s_q2a2;
+      $q2a3 =  $s_q2a3;
+      
+      $sa_q3ak =  mysqli_real_escape_string($conn, $_POST['q3ak']);
+      $q3a1 =  $s_q3a1;
+      $q3a2 =  $s_q3a2;
+      $q3a3 =  $s_q3a3;
+      $a=0;
+      $b=0;
+      $c=0;
+      $x=0;
+
+
+if ($x==0){
+    if($sa_q1ak  == $q1a1){
+      echo '
+      <script>
+      const q = document.getElementById("q1a1");
+      q.checked = true;
+      </script>
+      ';
+      $a=1;
+    }elseif ($sa_q1ak  == $q1a2){
+      echo '
+      <script>
+      const q = document.getElementById("q1a2");
+      q.checked = true;
+      </script>
+      ';
+      $a=1;
+    }elseif ($sa_q1ak  == $q1a3){
+      echo '
+      <script>
+      const q = document.getElementById("q1a3");
+      q.checked = true;
+      </script>
+      ';
+      $a=1;
+    }
+
+
+    if($sa_q3ak == $q3a1){
+      echo '
+      <script>
+      const q = document.getElementById("q3a1");
+      q.checked = true;
+      </script>
+      ';
+      $b=1;
+    }elseif ($sa_q3ak == $q3a2){
+      echo '
+      <script>
+      const q = document.getElementById("q3a2");
+      q.checked = true;
+      </script>
+      ';
+      $b=1;
+    }elseif ($sa_q3ak  == $q3a3){
+      echo '
+      <script>
+      const q = document.getElementById("q3a3");
+      q.checked = true;
+      </script>
+      ';
+      $b=1;
+    }
+
+
+    if($sa_q2ak == $q2a1){
+      echo '
+      <script>
+      const q = document.getElementById("q2a1");
+      q.checked = true;
+      </script>
+      ';
+      $c=1;
+    }elseif ($sa_q2ak == $q2a2){
+      echo '
+      <script>
+      const q = document.getElementById("q2a2");
+      q.checked = true;
+      </script>
+      ';
+      $c=1;
+    }elseif ($sa_q2ak == $q2a3){
+      echo '
+      <script>
+      const q = document.getElementById("q2a3");
+      q.checked = true;
+      </script>
+      ';
+      $c=1;
+    }
+  }
+if ($a ==1 && $b==1 && $c==1){
       if($sa_q1ak == $q1ak){
         $scoore=$scoore+10; 
         echo '
@@ -245,12 +349,15 @@ if(isset($_POST['post'])){
         document.getElementById("t1").style.display = "block";
         </script>
         ';
+        $x=2;
       }else{
         echo '
         <script>
         document.getElementById("x1").style.display = "block";
+        document.getElementById("h1").style.display = "block";
         </script>
         ';
+        $x=2;
       }
 
       if($sa_q2ak == $q2ak){
@@ -260,12 +367,15 @@ if(isset($_POST['post'])){
         document.getElementById("t2").style.display = "block";
         </script>
         ';
+        $x=2;
       }else{
         echo '
         <script>
         document.getElementById("x2").style.display = "block";
+        document.getElementById("h2").style.display = "block";
         </script>
         ';
+        $x=2;
       }
 
       if($sa_q3ak == $q3ak){
@@ -275,14 +385,18 @@ if(isset($_POST['post'])){
         document.getElementById("t3").style.display = "block";
         </script>
         ';
+        $x=2;
       }else{
         echo '
         <script>
         document.getElementById("x3").style.display = "block";
+        document.getElementById("h3").style.display = "block";
         </script>
         ';
+        $x=2;
       }
-      
+    }
+    if ($x==2){
       $stmt = $conn->prepare("SELECT * FROM `user_$code` WHERE `username` = ? AND `password` = ?");
       $stmt->bind_param("ss", $titlecompleter, $password);
       $stmt->execute();
@@ -291,6 +405,7 @@ if(isset($_POST['post'])){
       // Check if the query was successful, and only continue if it was
       if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
+          $id_readed_books = $row['id_readed_books'];
         $t_scoore = $row['scoore'];
         echo "<p>Total score: " . ($t_scoore + $scoore) . "</p>";
         $sql = "UPDATE `$table` SET `scoore` = `scoore` + '$scoore' WHERE `username` = '$titlecompleter'";
@@ -300,13 +415,18 @@ if(isset($_POST['post'])){
           $num_rows_affected = mysqli_affected_rows($conn);
           if ($num_rows_affected == 1) {
             echo "Record updated successfully";
+            $book = $id_book.',';
+            $sql = "UPDATE `$table` SET `id_readed_books` = CONCAT(`id_readed_books`, '$book') WHERE `username` = '$titlecompleter'";
           } else {
             echo "No record updated";
           }
         } else {
           echo "Error updating record: " . mysqli_error($conn);
         }
+      
+
           mysqli_close($conn);
+        }
           }
         
 
