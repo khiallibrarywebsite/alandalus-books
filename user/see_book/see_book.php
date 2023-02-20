@@ -26,7 +26,7 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'],$_GET['id'])) {
       $row = $result->fetch_assoc();
       $name = $row['name'];
       $stage = $row['stage'];
-
+echo'<title>حساب الطاب '.$name.'</title>';
 } else {
 echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
 $s = 1;
@@ -52,7 +52,24 @@ if($s != 1){
     require_once '../../connect.php';
     $table_name= $code.'_'.$stage.'_books';
     $table= 'user_'.$code;
+    $check="null";
+    $sql = "SELECT * FROM $table_name WHERE id=$id_book";
 
+    $stmt = $conn->prepare("SELECT id_readed_books FROM `user_$code` WHERE `username` = ? AND `password` = ?");
+    $stmt->bind_param("ss", $titlecompleter, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    // Check if the query was successful, and only continue if it was
+    if ($result && $result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $id_readed_books = $row['id_readed_books'];
+      if (strpos($id_readed_books, ",".$id_book.",") === false) {
+        $check = "ok";
+      } else {
+        $check = "false";
+      }
+    }
 // Retrieve all books from the table
 $sql = "SELECT * FROM $table_name WHERE id=$id_book";
 $result = mysqli_query($conn, $sql);
@@ -129,17 +146,21 @@ if (mysqli_num_rows($result) > 0) {
 
 
 
-        echo '<form  method="POST" class="container">
-        <img src='.$img.' style="width:118px; height: 179px" class="img-fluid img-thumbnail shadow" id="book-img" alt="Not Found" onerror="this.src=\"../img/A.png\"">
-        <h4>'.$Name.'</h4>
-        <h5>'.$writer.'</h5>
-        <a href="'.$url.'">تحميل الكتاب</a>
-        <p>يجب حل الأسئلة للحصول علي النقاط</p>
-        <br><br><br><br>
-        <p>--------------------------------------------------</p>
-        <br><br><br><br>
-        <h2>الأسئلة</h2>
-        <br><br>
+        echo '<form method="POST" class="container">
+        <img src="' . $img . '" style="width: 118px; height: 179px" class="img-fluid img-thumbnail shadow" id="book-img" alt="Not Found" onerror="this.src=\'../img/A.png\'">
+        <h4>' . $Name . '</h4>
+        <h5>' . $writer . '</h5>
+        <a href="' . $url . '">تحميل الكتاب</a>
+      </form>';
+
+if ($check === "ok") {
+  echo '<form method="POST" class="container">
+          <p>يجب حل الأسئلة للحصول على النقاط</p>
+          <br><br><br><br>
+          <p>--------------------------------------------------</p>
+          <br><br><br><br>
+          <h2>الأسئلة</h2>
+          <br><br>
         <div  style="background-color: #3E6BE6;>
         <label class="label"   name="new_q1">:السؤال الأول</label>
         <label for="new_q1">'.$q1.'</label>
@@ -218,8 +239,14 @@ if (mysqli_num_rows($result) > 0) {
     <h4 id="h3" style="display:none;">الإجابة الصحيحة : '.$q3ak.'</h4>
   </div>
   <input type="submit" name="post" value="ارسال" class="btn btn-primary mt-2">
+  </form>';
 
-        </form>';
+} elseif ($check === "false") {
+echo '<form class="container">
+    <p>لقد قرأت هذا الكتاب</p>
+  </form>';
+  $x=00;
+}
     }
 } else {
     echo "يرجي المحاولة مرة اخري";
@@ -264,84 +291,85 @@ if ($x==0){
     if($sa_q1ak  == $q1a1){
       echo '
       <script>
-      const q = document.getElementById("q1a1");
-      q.checked = true;
+      const a = document.getElementById("q1a1");
+      a.checked = true;
       </script>
       ';
       $a=1;
     }elseif ($sa_q1ak  == $q1a2){
       echo '
       <script>
-      const q = document.getElementById("q1a2");
-      q.checked = true;
+      const a = document.getElementById("q1a2");
+      a.checked = true;
       </script>
       ';
       $a=1;
     }elseif ($sa_q1ak  == $q1a3){
       echo '
       <script>
-      const q = document.getElementById("q1a3");
-      q.checked = true;
+      const a = document.getElementById("q1a3");
+      a.checked = true;
       </script>
       ';
       $a=1;
     }
 
-
+if( $a == 1){
     if($sa_q3ak == $q3a1){
       echo '
       <script>
-      const q = document.getElementById("q3a1");
-      q.checked = true;
+      const b = document.getElementById("q3a1");
+      b.checked = true;
       </script>
       ';
       $b=1;
     }elseif ($sa_q3ak == $q3a2){
       echo '
       <script>
-      const q = document.getElementById("q3a2");
-      q.checked = true;
+      const b = document.getElementById("q3a2");
+      b.checked = true;
       </script>
       ';
       $b=1;
     }elseif ($sa_q3ak  == $q3a3){
       echo '
       <script>
-      const q = document.getElementById("q3a3");
-      q.checked = true;
+      const b = document.getElementById("q3a3");
+      b.checked = true;
       </script>
       ';
       $b=1;
     }
-
-
+  }
+if($b==1 && $a == 1){
     if($sa_q2ak == $q2a1){
       echo '
       <script>
-      const q = document.getElementById("q2a1");
-      q.checked = true;
+      const c = document.getElementById("q2a1");
+      c.checked = true;
       </script>
       ';
       $c=1;
     }elseif ($sa_q2ak == $q2a2){
       echo '
       <script>
-      const q = document.getElementById("q2a2");
-      q.checked = true;
+      const c = document.getElementById("q2a2");
+      c.checked = true;
       </script>
       ';
       $c=1;
     }elseif ($sa_q2ak == $q2a3){
       echo '
       <script>
-      const q = document.getElementById("q2a3");
-      q.checked = true;
+      const c = document.getElementById("q2a3");
+      c.checked = true;
       </script>
       ';
       $c=1;
     }
   }
-if ($a ==1 && $b==1 && $c==1){
+}
+if ($a == 1 && $b == 1 && $c == 1){
       if($sa_q1ak == $q1ak){
         $scoore=$scoore+10; 
         echo '
@@ -407,18 +435,17 @@ if ($a ==1 && $b==1 && $c==1){
         while ($row = mysqli_fetch_assoc($result)) {
           $id_readed_books = $row['id_readed_books'];
         $t_scoore = $row['scoore'];
+        $book = $id_readed_books.$id_book.',';
         echo "<p>Total score: " . ($t_scoore + $scoore) . "</p>";
-        $sql = "UPDATE `$table` SET `scoore` = `scoore` + '$scoore' WHERE `username` = '$titlecompleter'";
+        $sql = "UPDATE `$table` SET `scoore` = `scoore` + '$scoore' , `readedbooks` = `readedbooks` + 1 ,  `id_readed_books` = '$book' WHERE `username` = '$titlecompleter'";
 
         // execute the SQL query and handle errors
         if (mysqli_query($conn, $sql)) {
           $num_rows_affected = mysqli_affected_rows($conn);
           if ($num_rows_affected == 1) {
-            echo "Record updated successfully";
-            $book = $id_book.',';
-            $sql = "UPDATE `$table` SET `id_readed_books` = CONCAT(`id_readed_books`, '$book') WHERE `username` = '$titlecompleter'";
-          } else {
-            echo "No record updated";
+            echo "تم ارسال الاجابة";
+           }else {
+            echo "لم يتم الارسال";
           }
         } else {
           echo "Error updating record: " . mysqli_error($conn);
@@ -434,6 +461,7 @@ if ($a ==1 && $b==1 && $c==1){
 
 }
 }
+
 
 ?>
 </center>
