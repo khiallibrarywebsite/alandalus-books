@@ -370,6 +370,7 @@ if($b==1 && $a == 1){
   }
 }
 if ($a == 1 && $b == 1 && $c == 1){
+  $scoore=0;
       if($sa_q1ak == $q1ak){
         $scoore=$scoore+10; 
         echo '
@@ -444,6 +445,16 @@ if ($a == 1 && $b == 1 && $c == 1){
           $num_rows_affected = mysqli_affected_rows($conn);
           if ($num_rows_affected == 1) {
             echo "تم ارسال الاجابة";
+            ob_start(); // start output buffering
+
+            // your PHP code here
+            
+            // make sure all output is captured and stored in the output buffer
+            ob_end_flush();
+            
+            // redirect to another page
+            header("Location: ../user.php?user=$titlecompleter&school_code=$code&pass=$password");
+            exit; // always exit after calling header()
            }else {
             echo "لم يتم الارسال";
           }
