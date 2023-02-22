@@ -50,7 +50,7 @@ echo'<title>حساب الطاب '.$name.'</title>';
     echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
     $s = 1;
     }
-    
+
 $stmt = $conn->prepare("SELECT id_readed_books FROM `user_$code` WHERE `username` = ? AND `password` = ?");
 $stmt->bind_param("ss", $titlecompleter, $password);
 $stmt->execute();
@@ -79,10 +79,9 @@ $s = 1;
 ?>
 </head>
 <body>
+<center>
 <?php
 if($s != 1){
-
-
 
     require_once '../../connect.php';
     $table_name= $code.'_'.$stage.'_books';
@@ -165,32 +164,33 @@ if (mysqli_num_rows($result) > 0) {
 
 
 echo'
-  <label class="label"   name="new_q1">:السؤال الأول</label>
-  <label for="new_q1">'.$q1.'</label>
-  </div>
+<div  style="background-color: #3E6BE6;">
+<label class="label"   name="new_q1">:السؤال الأول</label>
+<label for="new_q1">'.$q1.'</label>
+</div>
 
-  <div class="div" style="background-color: #f7f7f7;">
-  <div class="question">
-    <input type="radio" id="q1a1" name="q1ak" value="'.$s_q1a1.'" disabled>
-    <label for="q1a1">'.$s_q1a1.'</label>
-  </div>
+<div class="div" style="background-color: #f7f7f7;">
+<div class="question">
+  <input type="radio" id="q1a1" name="q1ak" value="'.$s_q1a1.'" disabled>
+  <label for="q1a1">'.$s_q1a1.'</label>
+</div>
 
-  <div class="question">
-    <input type="radio" id="q1a2" name="q1ak" value="'.$s_q1a2.'" disabled>
-    <label for="q1a2">'.$s_q1a2.'</label>
-  </div>
+<div class="question">
+  <input type="radio" id="q1a2" name="q1ak" value="'.$s_q1a2.'" disabled>
+  <label for="q1a2">'.$s_q1a2.'</label>
+</div>
 
-  <div class="question">
-    <input type="radio" id="q1a3" name="q1ak" value="'.$s_q1a3.'" disabled>
-    <label for="q1a3">'.$s_q1a3.'</label>
+<div class="question">
+  <input type="radio" id="q1a3" name="q1ak" value="'.$s_q1a3.'"  disabled>
+  <label for="q1a3">'.$s_q1a3.'</label>
 
-  </div>
-  <img id="x1" src="../../img/x.png" style="display:none; weight: 50px; height: 50px;">
-  <img id="t1" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
-  <h4 id="h1" style="display:none;">الإجابة الصحيحة : '.$q1ak.'</h4>
+</div>
+<img id="x1" src="../../img/x.png" style="display:none; weight: 50px; height: 50px;">
+<img id="t1" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
+<h4 id="h1" style="display:none;">الإجابة الصحيحة : '.$q1ak.'</h4>
 </div>
 <br><br>
-<div  style="background-color: #3E6BE6;>
+<div  style="background-color: #3E6BE6;">
 <label class="label"  name="new_q2">:السؤال الثاني</label>
 <label for="new_q2">'.$q2.'</label>
 </div>
@@ -216,7 +216,7 @@ echo'
 
 </div>
 <br><br>
-<div  style="background-color: #3E6BE6;>
+<div  style="background-color: #3E6BE6;">
 <label class="label"   name="new_q3">:السؤال الثالث</label>
 <label for="new_q3">'.$q3.'</label>
 </div>
@@ -355,11 +355,97 @@ if($q1id == 1){
   
       }
     }
+    if($q3id == 3){
+        $scoore=0;
+        if($ok1 == $q1ak){
+          $scoore=$scoore+10; 
+          echo '
+          <script>
+          document.getElementById("t1").style.display = "block";
+          </script>
+          ';
+          $x=2;
+        }else{
+          echo '
+          <script>
+          document.getElementById("x1").style.display = "block";
+          document.getElementById("h1").style.display = "block";
+          </script>
+          ';
+          $x=2;
+        }
+  
+        if($ok2 == $q2ak){
+          $scoore=$scoore+10;
+          echo '
+          <script>
+          document.getElementById("t2").style.display = "block";
+          </script>
+          ';
+          $x=2;
+        }else{
+          echo '
+          <script>
+          document.getElementById("x2").style.display = "block";
+          document.getElementById("h2").style.display = "block";
+          </script>
+          ';
+          $x=2;
+        }
+  
+        if($ok3 == $q3ak){
+          $scoore=$scoore+10;
+          echo '
+          <script>
+          document.getElementById("t3").style.display = "block";
+          </script>
+          ';
+          $x=2;
+        }else{
+          echo '
+          <script>
+          document.getElementById("x3").style.display = "block";
+          document.getElementById("h3").style.display = "block";
+          </script>
+          ';
+          $x=2;
+        }
+      }
+      if ($x==2){
+        $stmt = $conn->prepare("SELECT * FROM `user_$code` WHERE `username` = ? AND `password` = ?");
+        $stmt->bind_param("ss", $titlecompleter, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        // Check if the query was successful, and only continue if it was
+        if ($result && mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+          $t_scoore = $row['scoore'];
+          $sql = "UPDATE `$table` SET `scoore` = `scoore` + '$scoore' , `readedbooks` = `readedbooks` + 1  WHERE `username` = '$titlecompleter'";
+  
+          // execute the SQL query and handle errors
+          if (mysqli_query($conn, $sql)) {
+            $num_rows_affected = mysqli_affected_rows($conn);
+            if ($num_rows_affected == 1) {
+                echo "<p>مجموع نقاطك: " . ($t_scoore + $scoore) . "</p>";
+
+             }else {
+              echo "حدث خطا";
+            }
+          } else {
+            echo "Error updating record: " . mysqli_error($conn);
+          }
+        
+  
+            mysqli_close($conn);
+          } 
+    }
   }
 }
+  }
 }
   ?>
-
+</center>
 
   </body>
 </html>

@@ -1,5 +1,8 @@
 <html>
+  
+
 <head>
+  
 <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,6 +24,8 @@
 
 
 <?php 
+ob_start(); // start output buffering
+
 require_once '../../connect.php';
 $s=0;
 
@@ -48,7 +53,7 @@ echo'<title>حساب الطاب '.$name.'</title>';
   echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
   $s = 1;
   }
-  
+
 $stmt = $conn->prepare("SELECT id_readed_books FROM `user_$code` WHERE `username` = ? AND `password` = ?");
 $stmt->bind_param("ss", $titlecompleter, $password);
 $stmt->execute();
@@ -177,7 +182,7 @@ if (mysqli_num_rows($result) > 0) {
           <br><br><br><br>
           <h2>الأسئلة</h2>
           <br><br>
-        <div  style="background-color: #3E6BE6;>
+        <div  style="background-color: #3E6BE6;">
         <label class="label"   name="new_q1">:السؤال الأول</label>
         <label for="new_q1">'.$q1.'</label>
         </div>
@@ -203,7 +208,7 @@ if (mysqli_num_rows($result) > 0) {
         <h4 id="h1" style="display:none;">الإجابة الصحيحة : '.$q1ak.'</h4>
       </div>
       <br><br>
-      <div  style="background-color: #3E6BE6;>
+      <div  style="background-color: #3E6BE6;">
       <label class="label"  name="new_q2">:السؤال الثاني</label>
       <label for="new_q2">'.$q2.'</label>
       </div>
@@ -229,7 +234,7 @@ if (mysqli_num_rows($result) > 0) {
 
     </div>
     <br><br>
-    <div  style="background-color: #3E6BE6;>
+    <div  style="background-color: #3E6BE6;">
     <label class="label"   name="new_q3">:السؤال الثالث</label>
     <label for="new_q3">'.$q3.'</label>
     </div>
@@ -451,41 +456,26 @@ if ($a == 1 && $b == 1 && $c == 1){
       if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
           $id_readed_books = $row['id_readed_books'];
-        $t_scoore = $row['scoore'];
         $book = $id_readed_books.$id_book.':'.$sa_q1ak.':'.$sa_q2ak.':'.$sa_q3ak.',';
-        echo "<p>Total score: " . ($t_scoore + $scoore) . "</p>";
-        $sql = "UPDATE `$table` SET `scoore` = `scoore` + '$scoore' , `readedbooks` = `readedbooks` + 1 ,  `id_readed_books` = '$book' WHERE `username` = '$titlecompleter'";
+        $sql = "UPDATE `$table` SET `id_readed_books` = '$book' WHERE `username` = '$titlecompleter'";
 
         // execute the SQL query and handle errors
         if (mysqli_query($conn, $sql)) {
           $num_rows_affected = mysqli_affected_rows($conn);
           if ($num_rows_affected == 1) {
-            echo "تم ارسال الاجابة";
-            ob_start(); // start output buffering
-            // your PHP code here
-            // make sure all output is captured and stored in the output buffer
-            ob_end_flush();
             // redirect to another page
-            $see_book = sprintf("see_book.php?user=%s&school_code=%s&pass=%s&id=%s&check=true", $titlecompleter, $code, $password, $book_id);
-
-            header("Location: $see_book");
-            exit; // always exit after calling header()
-
-           }else {
-            echo "لم يتم الارسال";
+            $see_answers = 'see_answers.php?user=' . urlencode($titlecompleter) . '&school_code=' . urlencode($code) . '&pass=' . urlencode($password) . '&id=' . urlencode($id_book);
+            header("Location: $see_answers");
+            exit();
           }
-        } else {
-          echo "Error updating record: " . mysqli_error($conn);
         }
-      
-
-          mysqli_close($conn);
-        }
-          }
+      }
+    }
+  
         
 
       }
-
+      ob_end_flush(); // flush the output buffer
 }
 
 
