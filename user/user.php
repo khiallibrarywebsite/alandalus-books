@@ -136,13 +136,28 @@ if (mysqli_num_rows($result) > 0) {
         $book_author = $row["writer"];
         $book_img = $row["img"];
         $see_book = sprintf("see_book/see_book.php?user=%s&school_code=%s&pass=%s&id=%s&check=false", $titlecompleter, $code, $password, $book_id);
-       
-        echo "<form>";
-        echo "<img src=$book_img style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../img/A.png\"'>";
-        echo "<h4>$book_name</h4>";
-        echo "<h5>$book_author</h5>";
-        echo "<a href='$see_book'>مشاهدة الكتاب</a>";
-        echo "</form>";
+        $stmt = $conn->prepare("SELECT id_readed_books FROM `user_$code` WHERE `username` = ? AND `password` = ?");
+        $stmt->bind_param("ss", $titlecompleter, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+            // Check if the query was successful, and only continue if it was
+            if ($result && $result->num_rows > 0) {
+              $row = $result->fetch_assoc();
+              $id_readed_books = $row['id_readed_books'];
+              if (strpos($id_readed_books, ",".$book_id.":") === false) {
+                
+                echo "<form>";
+                echo "<img src=$book_img style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../img/A.png\"'>";
+                echo "<h4>$book_name</h4>";
+                echo "<h5>$book_author</h5>";
+                echo "<a href='$see_book'>مشاهدة الكتاب</a>";
+                echo "</form>";
+
+              } else {
+                $s = 1;
+              }
+            }
+
     }
 } else {
     echo "No books found in the table.";
