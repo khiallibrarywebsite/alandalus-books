@@ -1,12 +1,231 @@
 <html>
 <head>
-<meta charset="UTF-8" />   
-       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/styleme.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css"
+      integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"
+      rel="stylesheet"
+    />
+    <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
+
 
 <?php 
 require_once '../../connect.php';
 $s=0;
+// Handle form aq
+if (isset($_GET['ckeck'])){
+  if (!empty($_GET['ckeck'])){
+    if ($_GET['ckeck'] == "false"){
+
+  echo'
+  <label class="label"   name="new_q1">:السؤال الأول</label>
+  <label for="new_q1">'.$q1.'</label>
+  </div>
+
+  <div class="div" style="background-color: #f7f7f7;">
+  <div class="question">
+    <input type="radio" id="q1a1" name="q1ak" value="'.$s_q1a1.'" disabled>
+    <label for="q1a1">'.$s_q1a1.'</label>
+  </div>
+
+  <div class="question">
+    <input type="radio" id="q1a2" name="q1ak" value="'.$s_q1a2.'" disabled>
+    <label for="q1a2">'.$s_q1a2.'</label>
+  </div>
+
+  <div class="question">
+    <input type="radio" id="q1a3" name="q1ak" value="'.$s_q1a3.'" disabled>
+    <label for="q1a3">'.$s_q1a3.'</label>
+
+  </div>
+  <img id="x1" src="../../img/x.png" style="display:none; weight: 50px; height: 50px;">
+  <img id="t1" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
+  <h4 id="h1" style="display:none;">الإجابة الصحيحة : '.$q1ak.'</h4>
+</div>
+<br><br>
+<div  style="background-color: #3E6BE6;>
+<label class="label"  name="new_q2">:السؤال الثاني</label>
+<label for="new_q2">'.$q2.'</label>
+</div>
+
+<div class="div" style="background-color: #f7f7f7;">
+<div class="question">
+  <input type="radio" id="q2a1" name="q2ak" value="'.$s_q2a1.'" disabled>
+  <label for="q2a1">'.$s_q2a1.'</label>
+</div>
+
+<div class="question">
+  <input type="radio" id="q2a2" name="q2ak" value="'.$s_q2a2.'" disabled>
+  <label for="q2a2">'.$s_q2a2.'</label>
+</div>
+
+<div class="question">
+  <input type="radio" id="q2a3" name="q2ak" value="'.$s_q2a3.'"  disabled>
+  <label for="q2a3">'.$s_q2a3.'</label>
+</div>
+<img id="x2" src="../../img/x.png" style="display:none; weight: 50px; height: 50px;">
+<img id="t2" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
+<h4 id="h2" style="display:none;">الإجابة الصحيحة : '.$q2ak.'</h4>
+
+</div>
+<br><br>
+<div  style="background-color: #3E6BE6;>
+<label class="label"   name="new_q3">:السؤال الثالث</label>
+<label for="new_q3">'.$q3.'</label>
+</div>
+
+<div class="div" style="background-color: #f7f7f7;">
+<div class="question">
+<input type="radio" id="q3a1" name="q3ak" value="'.$s_q3a1.'" disabled>
+<label for="q3a1">'.$s_q3a1.'</label>
+</div>
+
+<div class="question">
+<input type="radio" id="q3a2" name="q3ak" value="'.$s_q3a2.'" disabled>
+<label for="q3a2">'.$s_q3a2.'</label>
+</div>
+
+<div class="question">
+<input type="radio" id="q3a3" name="q3ak" value="'.$s_q3a3.'"  disabled>
+<label for="q3a3">'.$s_q3a3.'</label>
+
+</div>
+<img id="x3" src="../../img/x.png" style="display:none; weight: 50px; height: 50px;">
+<img id="t3" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
+<h4 id="h3" style="display:none;">الإجابة الصحيحة : '.$q3ak.'</h4>
+</div>
+';
+
+  $stmt = $conn->prepare("SELECT * FROM  `user_$code` WHERE `username` = ? AND `password` = ?");
+  $stmt->bind_param("ss", $titlecompleter, $password);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  
+  // Check if the query was successful, and only continue if it was
+  if ($result && $result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $id_readed_books = $row['id_readed_books'];
+
+    if (strpos($id_readed_books, ",".$id_book.":".$s_q1a1) !== false) {
+      $ok1 = $s_q1a1;
+      echo'
+      <script>
+      const q1a1 = document.getElementById("q1a1");
+      q1a1.checked = true;
+      </script>
+      ';
+      $q1id = 1;
+
+    }elseif(strpos($id_readed_books, ",".$id_book.":".$s_q1a2) !== false){
+      $ok1 = $s_q1a2;
+      echo'
+      <script>
+      const q1a2 = document.getElementById("q1a2");
+      q1a2.checked = true;
+      </script>
+      ';
+      $q1id = 1;
+
+    }elseif(strpos($id_readed_books, ",".$id_book.":".$s_q1a3) !== false){
+      $ok1 = $s_q1a3;
+      echo'
+      <script>
+      const q1a3 = document.getElementById("q1a3");
+      q1a3.checked = true;
+      </script>
+      ';
+      $q1id = 1;
+    }
+
+
+
+if($q1id == 1){
+    if(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$s_q2a1) !== false) {
+      $ok2 = $s_q2a1;
+      echo'
+      <script>
+      const q2a1 = document.getElementById("q2a1");
+      q2a1.checked = true;
+      </script>
+      ';
+      $q2id = 2;
+
+    }elseif(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$s_q2a2) !== false) {
+      $ok2 = $s_q2a2;
+      echo'
+      <script>
+      const q2a2 = document.getElementById("q2a2");
+      q2a2.checked = true;
+      </script>
+      ';
+      $q2id = 2;
+
+    }elseif(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$s_q2a3) !== false) {
+      $ok2 = $s_q2a3;
+      echo'
+      <script>
+      const q2a3 = document.getElementById("q2a3");
+      q2a3.checked = true;
+      </script>
+      ';
+      $q2id = 2;
+
+    }
+
+
+    if($q2id == 2){
+      if(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$ok2.":".$s_q3a1.",") !== false) {
+        $ok3 = $s_q3a1;
+        echo'
+        <script>
+        const q3a1 = document.getElementById("q3a1");
+        q3a1.checked = true;
+        </script>
+        ';
+        $q3id = 3;
+  
+      }elseif(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$ok2.":".$s_q3a2.",") !== false) {
+        $ok3 = $s_q3a2;
+        echo'
+        <script>
+        const q3a2 = document.getElementById("q3a2");
+        q3a2.checked = true;
+        </script>
+        ';
+        $q3id = 3;
+  
+      }elseif(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$ok2.":".$s_q3a3.",") !== false) {
+        $ok3 = $s_q3a3;
+        echo'
+        <script>
+        const q3a3 = document.getElementById("q3a3");
+        q3a3.checked = true;
+        </script>
+        ';
+        $q3id = 3;
+  
+      }
+    }
+  }
+  }
+
+}
+}
+}
+
+
+
 if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'],$_GET['id'])) {
   if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass']) && !empty($_GET['id'])) {
     $password = $_GET['pass'];
@@ -146,7 +365,7 @@ if (mysqli_num_rows($result) > 0) {
 
 
         echo '<form method="POST" class="container">
-        <img src="' . $img . '" style="width: 118px; height: 179px" class="img-fluid img-thumbnail shadow" id="book-img" alt="Not Found" onerror="this.src=\'../img/A.png\'">
+        <img src="' . $img . '" style="width: 118px; height: 179px" class="img-fluid img-thumbnail shadow" id="book-img" alt="Not Found" onerror="this.src=\'../../img/A.png\'">
         <h4>' . $Name . '</h4>
         <h5>' . $writer . '</h5>
         <a href="' . $url . '">تحميل الكتاب</a>
@@ -241,10 +460,10 @@ if ($check === "ok") {
   </form>';
 
 } elseif ($check === "false") {
-echo '<form method="POST" class="container>
-    <p>لقد قرأت هذا الكتاب</p>
-    <input type="submit" name="aq" value="مشاهدة اجاباتك" class="btn btn-primary mt-2">
-  </form>';
+  echo '<form>
+  <p>لقد قرأت هذا الكتاب</p>
+  <input type="submit" name="aq" value="مشاهدة اجاباتك" class="btn btn-primary mt-2">
+</form>';
   $x=00;
 }
     }
@@ -648,7 +867,9 @@ if ($a == 1 && $b == 1 && $c == 1){
             // make sure all output is captured and stored in the output buffer
             ob_end_flush();
             // redirect to another page
-            header("Location: ../user.php?user=$titlecompleter&school_code=$code&pass=$password");
+            $see_book = sprintf("see_book.php?user=%s&school_code=%s&pass=%s&id=%s&check=true", $titlecompleter, $code, $password, $book_id);
+
+            header("Location: $see_book");
             exit; // always exit after calling header()
 
            }else {
