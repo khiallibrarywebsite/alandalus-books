@@ -1,54 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/styleme.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css"
+      integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"
+      rel="stylesheet"
+    />
+    <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
 
-  .label {
-    margin-top: 20px;
-    text-align: right;
-  }
-
-  .form-control,.div {
-    width: 80%;
-    margin-top: 10px;
-    padding: 10px;
-  }
-
-  input[type="submit"] {
-    margin-top: 20px;
-    width: 80%;
-  }
-
-  .question {
-    display: flex;
-    align-items: center;
-  }
-
-  .question label {
-    margin-right: 10px;
-  }
-
-  input[type="radio"] {
-    margin-right: 10px;
-  }
-  .label12 {
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-  text-align: right;
-  padding: 10px;
-  background-color: #E6E6E6;
-  width: 200px;
-  height: 40px;
-}
-</style>
 <script>
  window.onload = function() {
    const inputText1 = document.getElementById("new_q1a1");

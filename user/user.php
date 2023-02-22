@@ -1,5 +1,23 @@
 <html>
 <head>
+<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/styleme.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css"
+      integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"
+      rel="stylesheet"
+    />
+    <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
 <style>
   nav {
     display: flex;
@@ -117,7 +135,7 @@ if (mysqli_num_rows($result) > 0) {
         $book_name = $row["Name"];
         $book_author = $row["writer"];
         $book_img = $row["img"];
-        $see_book = sprintf("see_book/see_book.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
+        $see_book = sprintf("see_book/see_book.php?user=%s&school_code=%s&pass=%s&id=%s&check=false", $titlecompleter, $code, $password, $book_id);
        
         echo "<form>";
         echo "<img src=$book_img style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../img/A.png\"'>";

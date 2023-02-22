@@ -1,104 +1,25 @@
 <html>
     <head>
-    <style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/styleme.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
+   <link rel="icon" type="image/x-icon" href="https://softr-prod.imgix.net/applications/96c4ff09-6593-407c-a5af-810a1fa0ca2f/assets/b9e0692f-6ae8-4fba-a2eb-6f09ef2bb618.png?rnd=1649807422200" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css"
+      integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"
+      rel="stylesheet"
+    />
+    <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
 
-    body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-}
-
-  .images a {
-    flex: 1;
-    text-align: center;
-  }
-  .images img {
-    width: 100%;
-    height: auto;
-    border: 2px solid black;
-  }
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.images {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-}
-
-.images a img {
-  border: 2px solid black;
-  flex: 1;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  margin-top: 20px;
-}
-
-.buttons a button {
-  background-color: white;
-  border: 2px solid black;
-  padding: 10px 20px;
-  font-size: 18px;
-  flex: 1;
-  text-align: center;
-}
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-  }
-  .nav-left, .nav-center, .nav-right {
-    display: flex;
-    align-items: center;
-  }
-  .nav-left img {
-    height: 40px;
-    margin-right: 20px;
-  }
-  .nav-center p {
-    font-size: 20px;
-    margin: 0 20px;
-  }
-  @media (max-width: 767px) {
-    .nav-center {
-      display: none;
-    }
-  }
-    .images button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-}
-    .container .images a {
-  display: inline-block;
-}
-    .container {
-  display: flex;
-  justify-content: center;
-}
-
-.images a {
-  display: flex;
-  margin: 10px;
-  align-items: center;
-  justify-content: center;
-}
-
-.images img {
-  height: 100px;
-  width: 100px;
-  object-fit: cover;
-}
-    </style>
         <link rel="stylesheet" href="css/style.css" />
 <title>الصفحة الرئيسية</title>
     <meta charset="UTF-8">
