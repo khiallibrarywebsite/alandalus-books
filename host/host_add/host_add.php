@@ -425,7 +425,7 @@ if ($new_q1ak == $new_q1a3) {
             $stmt->bind_param("ss", $titlecompleter, $password);
             $stmt->execute();
             $result = $stmt->get_result();
-        
+        $xw=0;
             // Check if the query was successful, and only continue if it was
             if ($result && mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
@@ -433,8 +433,10 @@ if ($new_q1ak == $new_q1a3) {
               $book = $id_readed_books.$id_book.',';      
               $t_scoore = $row['scoore'];
               $sql = "UPDATE `users` SET `id_readed_added_books` = '$book'  `scoore` = `scoore` + 30 , `readedbooks` = `readedbooks` + 1  WHERE `username` = '$titlecompleter'";
+              $xw=12;
+              if($xw == 12){
               $host = '../host.php?user=' . urlencode($titlecompleter) . '&school_code=' . urlencode($code) . '&pass=' . urlencode($password) . '&true=true';
-              header("Location: $host");
+              header("Location: $host");}
             }}
         } else {
             echo "Error adding record: " . mysqli_error($conn);

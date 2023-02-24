@@ -26,14 +26,18 @@
 ob_start(); // start output buffering
 require_once '../../connect.php';
 $s=0;
-if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
-  if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
+if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'],$_GET['id'])) {
+  if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass']) && !empty($_GET['id'])) {
     $password = $_GET['pass'];
     $titlecompleter = $_GET['user'];
     $code=$_GET['school_code'];
+    $id = $_GET['id'];
+
+
+
 
     // Use parameterized queries to prevent SQL injection attacks
-    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ? AND `type` = user");
+    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ? AND `type` = 'user'");
     $stmt->bind_param("ss", $titlecompleter, $password);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -48,6 +52,18 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       $code = $row["school"];
       echo'<title>حساب الطاب '.$name.'</title>';
 
+      $stmt = $conn->prepare("SELECT id_readed_added_books FROM `users` WHERE `username` = ? AND `password` = ?  AND `school` = '$code'  " );
+      $stmt->bind_param("ss", $titlecompleter, $password);
+          $stmt->execute();
+          $result = $stmt->get_result();
+              // Check if the query was successful, and only continue if it was
+              if ($result && $result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $id_readed_books = $row['id_readed_added_books'];
+                if (strpos($id_readed_books, ",".$id.":") != false) {
+                  $s=1;
+                }
+              }
 
 } else {
 echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
@@ -76,7 +92,7 @@ if($s != 1){
     $table= 'user_'.$code;
 
 // Retrieve all books from the table
-$sql = "SELECT * FROM books where stage = '$stage' AND school = '$code' AND id=$id_book";
+$sql = "SELECT * FROM books where stage = '$stage' AND school = '$code' AND id = '$id'";
 $result = mysqli_query($conn, $sql);
 $go = sprintf("../user.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
 echo "<a href='$go'>رجوع</a>";
@@ -439,22 +455,28 @@ if ($a == 1 && $b == 1 && $c == 1){
       // Check if the query was successful, and only continue if it was
       if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-          $id_readed_books = $row['id_readed_added_books'];
-        $book = $id_readed_books.$id_book.':'.$sa_q1ak.':'.$sa_q2ak.':'.$sa_q3ak.',';
-        $sql = "UPDATE `users` SET `id_readed_added_books` = '$book'   `scoore` = `scoore` + '$scoore' , `readedbooks` = `readedbooks` + 1  WHERE `username` = '$titlecompleter' AND `password` = '$password' AND `stage` = '$stage' AND `school` = '$code'";
+          $id_readed_books =$row['id_readed_added_books'];
+
+          if (strpos($id_readed_books, ",".$id.":") === false) {
+          $scoore1 =  $row['scoore']+$scoore ;
+        $book = $id_readed_books.$id.':'.$sa_q1ak.':'.$sa_q2ak.':'.$sa_q3ak.',';
+        $sql = "UPDATE users SET id_readed_added_books = '$book', scoore = '$scoore1', readedbooks = readedbooks + 1 WHERE username = '$titlecompleter' AND password = '$password' AND stage = '$stage' AND school = '$code';";
 
         // execute the SQL query and handle errors
         if (mysqli_query($conn, $sql)) {
           $num_rows_affected = mysqli_affected_rows($conn);
           if ($num_rows_affected == 1) {
             // redirect to another page
-            $see_answers = 'see_answers.php?user=' . urlencode($titlecompleter) . '&school_code=' . urlencode($code) . '&pass=' . urlencode($password) . '&id=' . urlencode($id_book);
+            $see_answers = 'see_answers.php?user=' . urlencode($titlecompleter) . '&school_code=' . urlencode($code) . '&pass=' . urlencode($password) . '&id=' . urlencode($id);
             header("Location: $see_answers");
             exit();
           }
         }
+      }else{
+        echo'لقد تم الإرسال من قبل';
       }
     }
+  }
   
         
 

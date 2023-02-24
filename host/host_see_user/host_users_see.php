@@ -30,7 +30,7 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
     $code=$_GET['school_code'];
 
     // Use parameterized queries to prevent SQL injection attacks
-    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ?   AND type = 'host' ");
+    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ? ");
     $stmt->bind_param("ss", $titlecompleter, $password);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -51,10 +51,10 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       if ($stage == "1" ) {
         echo '<title>حساب مشرف المستوي الأول '.$name.'</title>';
       }
-       elseif ($titlecompleter == "2") {
+       elseif ($stage == "2") {
         echo '<title>حساب مشرف المستوي الثاني '.$name.'</title>'; 
       }
-      elseif ($titlecompleter == "3" ) {
+      elseif ($stage == "3" ) {
         echo '<title>حساب مشرف المستوي الثالث '.$name.'</title>';
 
 } else {

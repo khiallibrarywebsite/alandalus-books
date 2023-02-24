@@ -58,8 +58,21 @@
 
 <?php 
 require_once '../connect.php';
+$c=8;
 $s=0;
 if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
+  if(isset($_GET['true'])){
+    if($_GET['true'] == "true"){
+      echo '<script type="text/javascript">';
+      echo ' alert("تمت إضافة الكتاب بنجاح")';  //not showing an alert box.
+      echo '</script>';
+      $c=1;
+      if($c==1){
+      $host = 'host.php?user=' . urlencode($_GET['user']) . '&school_code=' . urlencode($_GET['school_code']) . '&pass=' . urlencode($_GET['pass']) ;
+      header("Location: $host");}
+    }
+
+  }
   if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
     $password = $_GET['pass'];
     $titlecompleter = $_GET['user'];

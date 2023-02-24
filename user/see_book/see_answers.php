@@ -22,14 +22,15 @@
     <?php 
 require_once '../../connect.php';
 $s=0;
-if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
-  if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
+if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'],$_GET['id'])) {
+  if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass']) && !empty($_GET['id'])) {
     $password = $_GET['pass'];
     $titlecompleter = $_GET['user'];
     $code=$_GET['school_code'];
+    $id = $_GET['id'];
 
     // Use parameterized queries to prevent SQL injection attacks
-    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ? AND `type` = user");
+    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ? AND `type` = 'user'");
     $stmt->bind_param("ss", $titlecompleter, $password);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -69,7 +70,7 @@ if($s != 1){
     require_once '../../connect.php';
 
 // Retrieve all books from the table
-$sql = "SELECT * FROM books where stage = '$stage' AND school = '$code' AND id=$id_book";
+$sql = "SELECT * FROM books where stage = '$stage' AND school = '$code' AND id=$id";
 $result = mysqli_query($conn, $sql);
 $go = sprintf("../user.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
 echo "<a href='$go'>رجوع</a>";
@@ -237,8 +238,9 @@ echo'
     $id_readed_books = $row['id_readed_added_books'];
     $scoore = $row['scoore'];
     echo "<p>مجموع نقاطك: " . ($scoore) . "</p>";
+    $q1id = 0;
 
-    if (strpos($id_readed_books, ",".$id_book.":".$s_q1a1) !== false) {
+    if (strpos($id_readed_books, ",".$id.":".$s_q1a1) !== false) {
       $ok1 = $s_q1a1;
       echo'
       <script>
@@ -248,7 +250,7 @@ echo'
       ';
       $q1id = 1;
 
-    }elseif(strpos($id_readed_books, ",".$id_book.":".$s_q1a2) !== false){
+    }elseif(strpos($id_readed_books, ",".$id.":".$s_q1a2) !== false){
       $ok1 = $s_q1a2;
       echo'
       <script>
@@ -258,7 +260,7 @@ echo'
       ';
       $q1id = 1;
 
-    }elseif(strpos($id_readed_books, ",".$id_book.":".$s_q1a3) !== false){
+    }elseif(strpos($id_readed_books, ",".$id.":".$s_q1a3) !== false){
       $ok1 = $s_q1a3;
       echo'
       <script>
@@ -272,7 +274,7 @@ echo'
 
 
 if($q1id == 1){
-    if(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$s_q2a1) !== false) {
+    if(strpos($id_readed_books, ",".$id.":".$ok1.":".$s_q2a1) !== false) {
       $ok2 = $s_q2a1;
       echo'
       <script>
@@ -282,7 +284,7 @@ if($q1id == 1){
       ';
       $q2id = 2;
 
-    }elseif(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$s_q2a2) !== false) {
+    }elseif(strpos($id_readed_books, ",".$id.":".$ok1.":".$s_q2a2) !== false) {
       $ok2 = $s_q2a2;
       echo'
       <script>
@@ -292,7 +294,7 @@ if($q1id == 1){
       ';
       $q2id = 2;
 
-    }elseif(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$s_q2a3) !== false) {
+    }elseif(strpos($id_readed_books, ",".$id.":".$ok1.":".$s_q2a3) !== false) {
       $ok2 = $s_q2a3;
       echo'
       <script>
@@ -306,7 +308,7 @@ if($q1id == 1){
 
 
     if($q2id == 2){
-      if(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$ok2.":".$s_q3a1.",") !== false) {
+      if(strpos($id_readed_books, ",".$id.":".$ok1.":".$ok2.":".$s_q3a1.",") !== false) {
         $ok3 = $s_q3a1;
         echo'
         <script>
@@ -316,7 +318,7 @@ if($q1id == 1){
         ';
         $q3id = 3;
   
-      }elseif(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$ok2.":".$s_q3a2.",") !== false) {
+      }elseif(strpos($id_readed_books, ",".$id.":".$ok1.":".$ok2.":".$s_q3a2.",") !== false) {
         $ok3 = $s_q3a2;
         echo'
         <script>
@@ -326,7 +328,7 @@ if($q1id == 1){
         ';
         $q3id = 3;
   
-      }elseif(strpos($id_readed_books, ",".$id_book.":".$ok1.":".$ok2.":".$s_q3a3.",") !== false) {
+      }elseif(strpos($id_readed_books, ",".$id.":".$ok1.":".$ok2.":".$s_q3a3.",") !== false) {
         $ok3 = $s_q3a3;
         echo'
         <script>

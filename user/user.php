@@ -66,7 +66,7 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
     $code=$_GET['school_code'];
 
     // Use parameterized queries to prevent SQL injection attacks
-    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ? AND `type` = user");
+    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ? AND `type` = 'user'");
     $stmt->bind_param("ss", $titlecompleter, $password);
     $stmt->execute();
     $result = $stmt->get_result();
