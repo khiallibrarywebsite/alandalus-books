@@ -47,69 +47,40 @@
 <?php
 require_once 'connect.php';
 
-
-$sql = "SELECT (
-  (SELECT COUNT(*) FROM egyand_1_books) +
-  (SELECT COUNT(*) FROM egyand_2_books) +
-  (SELECT COUNT(*) FROM egyand_3_books)
-) AS total_books1";
+$sql = "SELECT * FROM tables_index";
 $result = mysqli_query($conn, $sql);
-
+// Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $total_books1 = $row["total_books1"];
-} else {
-    $total_books1 = 0;
-}
+    while ($row = mysqli_fetch_assoc($result)) {
+      $id_table = $row["id"];
+      $ql = "SELECT COUNT(*) AS total_books FROM books WHERE school = '$id_table'"; 
+      $re = mysqli_query($conn, $ql);
+      if (mysqli_num_rows($re) > 0) {
+        $ro = mysqli_fetch_assoc($re);
+        $total_books = $ro["total_books"];
+        echo '
+        <div class="container">
+        <div class="images">
+        <a href="login.php">
+        <img src="img/img'.$id_table.'.jpg" alt="Image" style="width: 200%; height: auto;">
+        </a>
+        <a href="login.php"><button style="flex: 1; width: 100%;">' . $total_books . '</button><a>
+        </div></div>';
+      } else {
+      $total_books = 0;
+      echo '
+      <div class="container">
+      <div class="images">
+      <a href="login.php">
+      <img src="img/img'.$id_table.'.jpg" alt="Image" style="width: 200%; height: auto;">
+      </a>
+      <a href="login.php"><button style="flex: 1; width: 100%;">' . $total_books . '</button><a>
+      </div></div>';
+    }
 
-$sql = "SELECT (
-  (SELECT COUNT(*) FROM entand_1_books) +
-  (SELECT COUNT(*) FROM entand_2_books) +
-  (SELECT COUNT(*) FROM entand_3_books)
-) AS total_books2";
-$result = mysqli_query($conn, $sql);
+    }
+  }
 
-if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $total_books2 = $row["total_books2"];
-} else {
-    $total_books2 = 0;
-}
-
-$sql = "SELECT (
-  (SELECT COUNT(*) FROM ksaand_1_books) +
-  (SELECT COUNT(*) FROM ksaand_2_books) +
-  (SELECT COUNT(*) FROM ksaand_3_books)
-) AS total_books3";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $total_books3 = $row["total_books3"];
-} else {
-    $total_books3 = 0;
-}
-
-echo '
-<div class="container">
-<div class="images">
-<a href="login.php">
-<img src="img/imgegy.jpg" alt="Image" style="width: 200%; height: auto;">
-</a>
-
-  <a href="login.php"><button style="flex: 1; width: 100%;">' . $total_books1 . '</button><a>
-  
-  <a href="login.php">
-  <img src="img/imgen.jpg" alt="Image" style="width: 150%; height: auto;">
-</a>
-  <a href="login.php"><button style="flex: 1; width: 100%;">' . $total_books2 . '</button><a>
-  <a href="login.php">
-  <img src="img/imgksa.jpg" alt="Image" style="width: 150%; height: auto;">
-</a>
-  <a href="login.php"><button style="flex: 1; width: 100%;">' . $total_books3 . '</button><a>
-
-</div>
-</div>';
 
 mysqli_close($conn);
 ?>

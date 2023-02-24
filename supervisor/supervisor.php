@@ -131,7 +131,7 @@ if($s != 1){
 <div>
  <a href="supervisor_see_host/host_users_see.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-left: 15%; line-height: 100px;">عرض الطلاب</div></a>
 
- <a href="supervisor_add_suggestion/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-right: 15%; line-height: 100px;">إضافة كتاب</div></a>
+ <a href="supervisor_add_suggestion/supervisor_add_suggestion.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-right: 15%; line-height: 100px;">إضافة كتاب</div></a>
   
  <a href="host_edit/host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-right: 30%; line-height: 100px;">تعديل الكتب</div></a>
 

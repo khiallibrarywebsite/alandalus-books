@@ -1,11 +1,9 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/styleme.css" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
     <link
@@ -90,56 +88,61 @@
    <meta charset="UTF-8" />   
        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <?php
-    require_once '../../connect.php';
-    $s=0;
-    if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
-      if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
-        $password = $_GET['pass'];
-        $titlecompleter = $_GET['user'];
-        $code=$_GET['school_code'];
+    <?php 
+    ob_start(); // start output buffering
+
+require_once '../../connect.php';
+$s=0;
+if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
+  if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
+    $password = $_GET['pass'];
+    $titlecompleter = $_GET['user'];
+    $code=$_GET['school_code'];
+
     // Use parameterized queries to prevent SQL injection attacks
-        $stmt = $conn->prepare("SELECT * FROM `host_$code` WHERE `username` = ? AND `password` = ?");
-        $stmt->bind_param("ss", $titlecompleter, $password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    
-        // Check if the query was successful, and only continue if it was
-        if ($result && mysqli_num_rows($result) > 0) {
-          // Use the fetch_assoc() method only once to retrieve the name
-          $row = $result->fetch_assoc();
-          $name = $row['name'];
-          // Use elseif to reduce redundant code and improve readability
-          if (strpos($titlecompleter, "1") !== false) {
-            echo '<title>حساب مشرف المستوي الأول '.$name.'</title>';
-            $stage = 1;
-            $table_name = $code . "_" . $stage . "_books";
-          } elseif (strpos($titlecompleter, "2") !== false) {
-         echo '<title>حساب مشرف المستوي الثاني '.$name.'</title>'; 
-         $stage = 2;
-         $table_name = $code . "_" . $stage . "_books";
-       } elseif (strpos($titlecompleter, "3") !== false) {
+    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ?   AND type = 'host' ");
+    $stmt->bind_param("ss", $titlecompleter, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Check if the query was successful, and only continue if it was
+    if ($result && mysqli_num_rows($result) > 0) {
+      $row = $result->fetch_assoc();
+      $name = $row['name'];
+      $type = $row["type"];
+      $stage = $row["stage"];
+      $code = $row["school"];
+
+      if($type !== "host"){
+        $s=1;
+      }
+
+      // Use elseif to reduce redundant code and improve readability
+      if ($stage == "1" ) {
+        echo '<title>حساب مشرف المستوي الأول '.$name.'</title>';
+      }
+       elseif ($stage == "2") {
+        echo '<title>حساب مشرف المستوي الثاني '.$name.'</title>'; 
+      }
+      elseif ($stage == "3" ) {
         echo '<title>حساب مشرف المستوي الثالث '.$name.'</title>';
-        $stage = 3;
-        $table_name = $code . "_" . $stage . "_books";
-    } else {
-    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
-    $s = 1;
-    }
-    } else {
-    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
-    $s = 1;
-    }
-    } else {
-    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
-    $s = 1;
-    }
-    } else {
-    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
-    $s = 1;
-    }
 
-
+} else {
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+$s = 1;
+}
+} else {
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+$s = 1;
+}
+} else {
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+$s = 1;
+}
+} else {
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+$s = 1;
+}
 ?>
 
 </head>
@@ -152,7 +155,7 @@
     require_once '../../connect.php';
 
     // Retrieve all books from the table
-    $sql = "SELECT * FROM $table_name";
+    $sql = "SELECT * FROM books";
     $result = mysqli_query($conn, $sql);
     
     if (mysqli_num_rows($result) > 0) {
@@ -204,16 +207,16 @@
             echo '
             <a href="../host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">رجوع</a>
             <form method="POST" class="container">
-            <div class="div" style="background-color: #f7f7f7;">
+            <div class="div" style="background-color: #f7f7f7;>
             <input type="hidden" name="id" value="'.$id.'" />
             <label class="label">اسم الكتاب</label>
             <input type="text" name="new_Name" class="form-control"  />
           </div>
-          <div class="div" style="background-color: #f7f7f7;">
+          <div class="div" style="background-color: #f7f7f7;>
             <label class="label">اسم المؤلف</label>
             <input type="text" name="new_writer" class="form-control"  />
             </div>
-            <div class="div" style="background-color: #f7f7f7;">
+            <div class="div" style="background-color: #f7f7f7;>
             <label class="label">رابط الكتاب</label>
             <input type="text" name="new_url" class="form-control"  placeholder="https://drive.google.com/file/d/1B8m0jvypiNelJuG-W5V_QmVx5fX8tAGI/view?usp=share_link"/>
             <p>قم برفع الكتاب علي <a href="https://drive.google.com/">جوجل درايف</a> وبعدها قم بعمل مشاركة للكتاب وجعل صلاحية الدخول لكل من يحمل الرابط <a href="'.$go_link.'" target="_blank">معرفة المزيد</a></p>
@@ -224,8 +227,7 @@
             <p>بعد الحصول علي رابط الكتاب قم  <a href="'.$go_link.'" target="_blank">باخذ الرقم الأخير</a> في الرابط وضعه هنا</p>
            
             </div>
-            <div class="div" style="background-color: #f7f7f7;">
-
+            <div class="div" style="background-color: #f7f7f7;>
             <label class="label">سؤال الأول</label>
             <input type="text" name="new_q1" class="form-control" />
             <br>
@@ -288,7 +290,6 @@
             </div>
             <br>
             </div>
-
             <input type="submit" name="add" value="إضافة" class="btn btn-primary mt-2">
             
           </form>
@@ -301,6 +302,7 @@
 if (isset($_POST['add'])) {
     // Check if all form fields are set
     $requiredFields = [
+
       'new_q1ak',
       'new_q2ak',
       'new_q3ak',
@@ -414,17 +416,33 @@ if ($new_q1ak == $new_q1a3) {
 
 
     if ($finish == 1) {
-        $sql = "INSERT INTO $table_name (id, Name, writer, img, url, q1, q1ak, q1a2, q1a1, q2, q2ak, q2a2, q2a1, q3, q3ak, q3a2, q3a1)
-        VALUES ('$id', '$new_Name', '$new_writer', '$new_img', '$new_url', '$new_q1', '$q1ak', '$q1a2', '$q1a1', '$new_q2', '$q2ak', '$q2a2', '$q2a1', '$new_q3', '$q3ak', '$q3a2', '$q3a1')";
+        $sql = "INSERT INTO books (id, Name, writer, img, url, q1, q1ak, q1a2, q1a1, q2, q2ak, q2a2, q2a1, q3, q3ak, q3a2, q3a1, school, stage)
+        VALUES ('$id', '$new_Name', '$new_writer', '$new_img', '$new_url', '$new_q1', '$q1ak', '$q1a2', '$q1a1', '$new_q2', '$q2ak', '$q2a2', '$q2a1', '$new_q3', '$q3ak', '$q3a2', '$q3a1', '$code', '$stage')";
       
         if (mysqli_query($conn, $sql)) {
             echo "Record added successfully";
+            $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ?");
+            $stmt->bind_param("ss", $titlecompleter, $password);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        
+            // Check if the query was successful, and only continue if it was
+            if ($result && mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_assoc($result)) {
+              $id_readed_added_books = $row['id_readed_added_books'];
+              $book = $id_readed_books.$id_book.',';      
+              $t_scoore = $row['scoore'];
+              $sql = "UPDATE `users` SET `id_readed_added_books` = '$book'  `scoore` = `scoore` + 30 , `readedbooks` = `readedbooks` + 1  WHERE `username` = '$titlecompleter'";
+              $host = '../host.php?user=' . urlencode($titlecompleter) . '&school_code=' . urlencode($code) . '&pass=' . urlencode($password) . '&true=true';
+              header("Location: $host");
+            }}
         } else {
             echo "Error adding record: " . mysqli_error($conn);
         }
     
         mysqli_close($conn);
     }
+    ob_end_flush(); // flush the output buffer
 
 }
   

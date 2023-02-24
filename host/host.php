@@ -66,27 +66,33 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
     $code=$_GET['school_code'];
 
     // Use parameterized queries to prevent SQL injection attacks
-    $stmt = $conn->prepare("SELECT * FROM `host_$code` WHERE `username` = ? AND `password` = ?");
+    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ?   AND type = 'host' ");
     $stmt->bind_param("ss", $titlecompleter, $password);
     $stmt->execute();
     $result = $stmt->get_result();
 
     // Check if the query was successful, and only continue if it was
     if ($result && mysqli_num_rows($result) > 0) {
-      // Use the fetch_assoc() method only once to retrieve the name
       $row = $result->fetch_assoc();
       $name = $row['name'];
+      $type = $row["type"];
+      $stage = $row["stage"];
+      $code = $row["school"];
+
+      if($type !== "host"){
+        $s=1;
+      }
 
       // Use elseif to reduce redundant code and improve readability
-      if (strpos($titlecompleter, "1") !== false) {
+      if ($stage == "1" ) {
         echo '<title>حساب مشرف المستوي الأول '.$name.'</title>';
-        $stage = 1;
-      } elseif (strpos($titlecompleter, "2") !== false) {
-     echo '<title>حساب مشرف المستوي الثاني '.$name.'</title>'; 
-     $stage = 2;
-   } elseif (strpos($titlecompleter, "3") !== false) {
-    echo '<title>حساب مشرف المستوي الثالث '.$name.'</title>';
-    $stage = 3;
+      }
+       elseif ($stage == "2") {
+        echo '<title>حساب مشرف المستوي الثاني '.$name.'</title>'; 
+      }
+      elseif ($stage == "3" ) {
+        echo '<title>حساب مشرف المستوي الثالث '.$name.'</title>';
+        
 } else {
 echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
 $s = 1;
@@ -128,7 +134,7 @@ if($s != 1){
     <p> اهلا بك استاذ</p>
     <p>'.$name.'</p> 
     </center>
-    }
+    
 
   </div>
   <div class="nav-right">

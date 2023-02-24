@@ -54,27 +54,18 @@
       }
       $password = mysqli_real_escape_string($conn, $_POST['password']);
       $username = mysqli_real_escape_string($conn, $_POST['username']);
-      if(strpos($username, ".") !== false){
-        $parts = explode(".", $username);
-        $code = end($parts);
-        $query = "SELECT * FROM host_$code WHERE username='$username' AND password='$password'";
+
+        $query = "SELECT * FROM users WHERE username='$username' AND password='$password' ";
         $result = mysqli_query($conn, $query);
         if (mysqli_num_rows($result) > 0) {
-          header("Location: host/host.php?user={$username}&school_code={$code}&pass={$password}");
-        }else{
-          $query = "SELECT * FROM user_$code WHERE username='$username' AND password='$password'";
-          $result = mysqli_query($conn, $query);
-          if (mysqli_num_rows($result) > 0) {
-            header("Location: user/user.php?user={$username}&school_code={$code}&pass={$password}");
-          }else{
-            $query = "SELECT * FROM supervisor_$code WHERE username='$username' AND password='$password'";
-            $result = mysqli_query($conn, $query);
-            if (mysqli_num_rows($result) > 0) {
-              header("Location: Moderator/moderator.php?user={$username}&school_code={$code}&pass={$password}");
-            }
+          while ($row = mysqli_fetch_assoc($result)) {
+            $type = $row["type"];
+            $school = $row["school"];
+
+          header("Location: $type/$type.php?user={$username}&school_code={$school}&pass={$password}");
           }
-          
-        }
+        }  
+
   
       }else{
         echo"<p>الرجاء ادخال كلمة سر و اسم مستخدم صحيحين</p>";
@@ -83,7 +74,7 @@
 
 
 
-    }
+    
     ?>
 </center>
 </body>

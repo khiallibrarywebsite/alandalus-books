@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/styleme.css" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
     <link
@@ -25,19 +24,16 @@
 
 <?php 
 ob_start(); // start output buffering
-
 require_once '../../connect.php';
 $s=0;
-
-if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'],$_GET['id'])) {
-  if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass']) && !empty($_GET['id'])) {
+if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
+  if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
     $password = $_GET['pass'];
     $titlecompleter = $_GET['user'];
     $code=$_GET['school_code'];
-    $id_book = $_GET['id'];
 
     // Use parameterized queries to prevent SQL injection attacks
-    $stmt = $conn->prepare("SELECT * FROM `user_$code` WHERE `username` = ? AND `password` = ?");
+    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ? AND `type` = user");
     $stmt->bind_param("ss", $titlecompleter, $password);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -47,28 +43,16 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'],$_GET['id'])) {
       // Use the fetch_assoc() method only once to retrieve the name
       $row = $result->fetch_assoc();
       $name = $row['name'];
-      $stage = $row['stage'];
-echo'<title>حساب الطاب '.$name.'</title>';
+      $type = $row["type"];
+      $stage = $row["stage"];
+      $code = $row["school"];
+      echo'<title>حساب الطاب '.$name.'</title>';
+
+
 } else {
-  echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
-  $s = 1;
-  }
-
-$stmt = $conn->prepare("SELECT id_readed_books FROM `user_$code` WHERE `username` = ? AND `password` = ?");
-$stmt->bind_param("ss", $titlecompleter, $password);
-$stmt->execute();
-$result = $stmt->get_result();
-    // Check if the query was successful, and only continue if it was
-    if ($result && $result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-      $id_readed_books = $row['id_readed_books'];
-      if (strpos($id_readed_books, ",".$id_book.":") === false) {
-        $check = "ok";
-      } else {
-        $s = 1;
-      }
-    }
-
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+$s = 1;
+}
 } else {
 echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
 $s = 1;
@@ -82,17 +66,17 @@ $s = 1;
 ?>
 
 
+
 </head>
 <body>
   <center>
 <?php
 if($s != 1){
     require_once '../../connect.php';
-    $table_name= $code.'_'.$stage.'_books';
     $table= 'user_'.$code;
 
 // Retrieve all books from the table
-$sql = "SELECT * FROM $table_name WHERE id=$id_book";
+$sql = "SELECT * FROM books where stage = '$stage' AND school = '$code' AND id=$id_book";
 $result = mysqli_query($conn, $sql);
 $go = sprintf("../user.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
 echo "<a href='$go'>رجوع</a>";
@@ -447,7 +431,7 @@ if ($a == 1 && $b == 1 && $c == 1){
       }
     }
     if ($x==2){
-      $stmt = $conn->prepare("SELECT * FROM `user_$code` WHERE `username` = ? AND `password` = ?");
+      $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ? AND `stage` = '$stage' AND `school` = '$code'");
       $stmt->bind_param("ss", $titlecompleter, $password);
       $stmt->execute();
       $result = $stmt->get_result();
@@ -455,9 +439,9 @@ if ($a == 1 && $b == 1 && $c == 1){
       // Check if the query was successful, and only continue if it was
       if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-          $id_readed_books = $row['id_readed_books'];
+          $id_readed_books = $row['id_readed_added_books'];
         $book = $id_readed_books.$id_book.':'.$sa_q1ak.':'.$sa_q2ak.':'.$sa_q3ak.',';
-        $sql = "UPDATE `$table` SET `id_readed_books` = '$book' WHERE `username` = '$titlecompleter'";
+        $sql = "UPDATE `users` SET `id_readed_added_books` = '$book'   `scoore` = `scoore` + '$scoore' , `readedbooks` = `readedbooks` + 1  WHERE `username` = '$titlecompleter' AND `password` = '$password' AND `stage` = '$stage' AND `school` = '$code'";
 
         // execute the SQL query and handle errors
         if (mysqli_query($conn, $sql)) {

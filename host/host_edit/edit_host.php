@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/styleme.css" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
     <link
@@ -18,62 +17,67 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"
       rel="stylesheet"
     />
+    
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
 
 
    <meta charset="UTF-8" />   
        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <?php
-    require_once '../../connect.php';
-    $s=0;
-    if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'],$_GET['id'])) {
-      if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])&& !empty($_GET['id'])) {
-        $password = $_GET['pass'];
-        $titlecompleter = $_GET['user'];
-        $code=$_GET['school_code'];
-    $id=$_GET['id'];        
-    // Use parameterized queries to prevent SQL injection attacks
-        $stmt = $conn->prepare("SELECT * FROM `host_$code` WHERE `username` = ? AND `password` = ?");
-        $stmt->bind_param("ss", $titlecompleter, $password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    
-        // Check if the query was successful, and only continue if it was
-        if ($result && mysqli_num_rows($result) > 0) {
-          // Use the fetch_assoc() method only once to retrieve the name
-          $row = $result->fetch_assoc();
-          $name = $row['name'];
-          // Use elseif to reduce redundant code and improve readability
-          if (strpos($titlecompleter, "1") !== false) {
-            echo '<title>حساب مشرف المستوي الأول '.$name.'</title>';
-            $stage = 1;
-            $table_name = $code . "_" . $stage . "_books";
-          } elseif (strpos($titlecompleter, "2") !== false) {
-         echo '<title>حساب مشرف المستوي الثاني '.$name.'</title>'; 
-         $stage = 2;
-         $table_name = $code . "_" . $stage . "_books";
-       } elseif (strpos($titlecompleter, "3") !== false) {
-        echo '<title>حساب مشرف المستوي الثالث '.$name.'</title>';
-        $stage = 3;
-        $table_name = $code . "_" . $stage . "_books";
-    } else {
-    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
-    $s = 1;
-    }
-    } else {
-    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
-    $s = 1;
-    }
-    } else {
-    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
-    $s = 1;
-    }
-    } else {
-    echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
-    $s = 1;
-    }
+    <?php 
+require_once '../../connect.php';
+$s=0;
+if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'],$_GET['id']) ){
+  if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass']) && !empty($_GET['id'])) {
+    $password = $_GET['pass'];
+    $titlecompleter = $_GET['user'];
+    $code=$_GET['school_code'];
+    $id=$_GET['id'];
 
+    // Use parameterized queries to prevent SQL injection attacks
+    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ?   AND type = 'host' ");
+    $stmt->bind_param("ss", $titlecompleter, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Check if the query was successful, and only continue if it was
+    if ($result && mysqli_num_rows($result) > 0) {
+      $row = $result->fetch_assoc();
+      $name = $row['name'];
+      $type = $row["type"];
+      $stage = $row["stage"];
+      $code = $row["school"];
+
+      if($type !== "host"){
+        $s=1;
+      }
+
+      // Use elseif to reduce redundant code and improve readability
+      if ($stage == "1" ) {
+        echo '<title>حساب مشرف المستوي الأول '.$name.'</title>';
+      }
+       elseif ($stage == "2") {
+        echo '<title>حساب مشرف المستوي الثاني '.$name.'</title>'; 
+      }
+      elseif ($stage == "3" ) {
+        echo '<title>حساب مشرف المستوي الثالث '.$name.'</title>';
+
+} else {
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+$s = 1;
+}
+} else {
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+$s = 1;
+}
+} else {
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+$s = 1;
+}
+} else {
+echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
+$s = 1;
+}
 
 ?>
 
@@ -85,7 +89,7 @@
   if($s != 1){
     
     require_once '../../connect.php';
-    $sql = "SELECT * FROM $table_name WHERE id=$id";
+    $sql = "SELECT * FROM books WHERE id='$id'  AND stage='$stage' AND school='$code'";
     $result = mysqli_query($conn, $sql);
     
     // Generate a form for each book
@@ -296,7 +300,7 @@ if ( mysqli_real_escape_string($conn, $_POST['new_q2ak']) != $q2ak) {
 
 
 
-$sql = "UPDATE $table_name SET Name='$new_Name', writer='$new_writer', img='$new_img', url='$new_url', q1='$new_q1', q1a1='$new_q1a1', q1a2='$new_q1a2', q2='$new_q2', q2a1='$new_q2a1', q2a2='$new_q2a2', q3='$new_q3', q3a1='$new_q3a1', q3a2='$new_q3a2', q1ak='$new_q1ak', q2ak='$new_q2ak', q3ak='$new_q3ak' WHERE id=$id";
+$sql = "UPDATE books SET Name='$new_Name', writer='$new_writer', img='$new_img', url='$new_url', q1='$new_q1', q1a1='$new_q1a1', q1a2='$new_q1a2', q2='$new_q2', q2a1='$new_q2a1', q2a2='$new_q2a2', q3='$new_q3', q3a1='$new_q3a1', q3a2='$new_q3a2', q1ak='$new_q1ak', q2ak='$new_q2ak', q3ak='$new_q3ak' WHERE id='$id' AND stage='$stage' AND school='$code'";
 if (mysqli_query($conn, $sql)) {
   echo "Record updated successfully";
 } else {

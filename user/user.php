@@ -66,7 +66,7 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
     $code=$_GET['school_code'];
 
     // Use parameterized queries to prevent SQL injection attacks
-    $stmt = $conn->prepare("SELECT * FROM `user_$code` WHERE `username` = ? AND `password` = ?");
+    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ? AND `type` = user");
     $stmt->bind_param("ss", $titlecompleter, $password);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -76,7 +76,11 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       // Use the fetch_assoc() method only once to retrieve the name
       $row = $result->fetch_assoc();
       $name = $row['name'];
-      $stage = $row['stage'];
+      $type = $row["type"];
+      $stage = $row["stage"];
+      $code = $row["school"];
+      echo'<title>حساب الطاب '.$name.'</title>';
+
 
 } else {
 echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
@@ -124,9 +128,8 @@ if($s != 1){
       <a href="../login.php"><button>login out</button></a>
 
 </nav>';
-$table_name= $code.'_'.$stage.'_books';
 // Retrieve all books from the table
-$sql = "SELECT * FROM $table_name";
+$sql = "SELECT * FROM books where stage = '$stage' and school = '$code'";
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
@@ -137,14 +140,14 @@ if (mysqli_num_rows($result) > 0) {
         $book_img = $row["img"];
         $see_answers = sprintf("see_book/see_answers.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
         $see_book = sprintf("see_book/see_book.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
-        $stmt = $conn->prepare("SELECT id_readed_books FROM `user_$code` WHERE `username` = ? AND `password` = ?");
+        $stmt = $conn->prepare("SELECT id_readed_added_books FROM `users` WHERE `username` = ? AND `password` = ? AND `stage` = '$stage' AND `school` = '$code'");
         $stmt->bind_param("ss", $titlecompleter, $password);
         $stmt->execute();
         $result = $stmt->get_result();
             // Check if the query was successful, and only continue if it was
             if ($result && $result->num_rows > 0) {
               $row = $result->fetch_assoc();
-              $id_readed_books = $row['id_readed_books'];
+              $id_readed_books = $row['id_readed_added_books'];
               if (strpos($id_readed_books, ",".$book_id.":") === false) {
                 echo "<form>";
                 echo "<img src=$book_img style='width:118px; height: 179px' class='img-fluid img-thumbnail shadow' id='book-img' alt='Not Found' onerror='this.src=\"../img/A.png\"'>";
