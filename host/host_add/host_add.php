@@ -427,17 +427,41 @@ if ($new_q1ak == $new_q1a3) {
             $result = $stmt->get_result();
         $xw=0;
             // Check if the query was successful, and only continue if it was
-            if ($result && mysqli_num_rows($result) > 0) {
-              while ($row = mysqli_fetch_assoc($result)) {
-              $id_readed_added_books = $row['id_readed_added_books'];
-              $book = $id_readed_books.$id_book.',';      
-              $t_scoore = $row['scoore'];
-              $sql = "UPDATE `users` SET `id_readed_added_books` = '$book'  `scoore` = `scoore` + 30 , `readedbooks` = `readedbooks` + 1  WHERE `username` = '$titlecompleter'";
-              $xw=12;
-              if($xw == 12){
-              $host = '../host.php?user=' . urlencode($titlecompleter) . '&school_code=' . urlencode($code) . '&pass=' . urlencode($password) . '&true=true';
-              header("Location: $host");}
-            }}
+
+            // Assuming that the SQL query result is stored in a variable called $result
+            if ($result && $result->num_rows > 0) {
+              // Loop through each row
+              while ($row = $result->fetch_assoc()) {
+                // Extract the id_readed_added_books and scoore columns from the users table
+                $id_readed_added_books = $row["id_readed_added_books"];
+                $scoore = $row["scoore"];
+            
+                // Update the id_readed_added_books column in the users table
+                $new_id_readed_added_books = $id_readed_added_books . $id. ",";
+                $update_id_readed_added_books_query = "UPDATE users SET id_readed_added_books='$new_id_readed_added_books' WHERE `username`='$titlecompleter'";
+                $conn->query($update_id_readed_added_books_query);
+            
+                // Update the scoore column in the users table
+                $new_scoore = $scoore + 30;
+                $update_scoore_query = "UPDATE users SET scoore='$new_scoore' WHERE `username`='$titlecompleter'";
+                $conn->query($update_scoore_query);
+            
+                // Update the readedbooks column in the users table
+                $update_readedbooks_query = "UPDATE users SET readedbooks=readedbooks+1 WHERE `username`='$titlecompleter'";
+                $conn->query($update_readedbooks_query);
+                $xw = 12;
+              }
+            
+              // Check if $xw is equal to 12
+              if ($xw == 12) {
+                // Construct the redirect URL
+                $redirect_url = "../host.php?user=$titlecompleter&school_code=$code&pass=$password";
+            
+                // Redirect the user to the URL
+                header("Location: $redirect_url");
+                exit();
+              }
+            }
         } else {
             echo "Error adding record: " . mysqli_error($conn);
         }
