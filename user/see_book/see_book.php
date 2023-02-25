@@ -20,10 +20,7 @@
       rel="stylesheet"
     />
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
-    Here's the updated CSS code that makes the label and question appear under each other and changes the text color of the input radio to black:
 
-php
-Copy code
 <style>
   /* Style the book form */
 form.container {
@@ -34,9 +31,7 @@ form.container {
 }
 
 /* Style the book cover image */
-img.img-thumbnail {
-  margin-right: 20px;
-}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -45,9 +40,7 @@ img.img-thumbnail {
   margin-top: 30px;
 }
 
-.container img {
-  margin-right: 30px;
-}
+
 
 .question {
   display: block;
@@ -57,6 +50,7 @@ img.img-thumbnail {
   margin-bottom: 10px;
   padding: 20px;
   border-radius: 10px;
+  width: 100%;
 }
 
 .label {
@@ -92,18 +86,24 @@ img.img-thumbnail {
 h4, h5 {
   margin: 0;
   padding: 0;
+  width: 100%;
+
 }
 
 h4 {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 5px;
+  width: 100%;
+
 }
 
 h5 {
   font-size: 18px;
   font-weight: normal;
   margin-bottom: 10px;
+  width: 100%;
+
 }
 
 /* Style the link to download the book */
@@ -120,6 +120,8 @@ a {
 div {
   margin: 10px 0;
   padding: 10px;
+  width: 100%;
+
 }
 
 /* Style the label for each question */
@@ -326,17 +328,18 @@ if (mysqli_num_rows($result) > 0) {
 
 
   echo '<form method="POST" class="container">
-          <p>يجب حل الأسئلة للحصول على النقاط</p>
+          <p  style=" width: 100%;" >يجب حل الأسئلة للحصول على النقاط</p>
           <br><br><br><br>
-          <p>--------------------------------------------------</p>
+          <p style=" width: 100%;">--------------------------------------------------</p>
           <br><br><br><br>
-          <h2>الأسئلة</h2>
+          <h2 style=" width: 100%;">الأسئلة</h2>
           <BR></BR>
 
           <br><br>
-        <div  style="background-color: #3E6BE6; display: block;">
-        <label class="label"   name="new_q1">:السؤال الأول</label>
-        <label for="new_q1">'.$q1.'</label>
+
+        <div class="div" style="background-color: #3E6BE6; display: block; ">
+        <label    name="new_q1">:السؤال الأول</label>
+        <label    class="label" for="new_q1">'.$q1.'</label>
         </div>
 
         <div class="div" style="background-color: #f7f7f7;">
@@ -363,9 +366,9 @@ if (mysqli_num_rows($result) > 0) {
       <BR></BR>
       <BR></BR>
 
-      <div  style="background-color: #3E6BE6; display: block;">
-      <label class="label"  name="new_q2">:السؤال الثاني</label>
-      <label for="new_q2">'.$q2.'</label>
+      <div   class="div" style="background-color: #3E6BE6; display: block;">
+      <label   name="new_q2">:السؤال الثاني</label>
+      <label   class="label"  for="new_q2">'.$q2.'</label>
       </div>
 
       <div class="div" style="background-color: #f7f7f7;">
@@ -392,9 +395,9 @@ if (mysqli_num_rows($result) > 0) {
 
     </div>
     <br><br>
-    <div  style="background-color: #3E6BE6; display: block;">
-    <label class="label"   name="new_q3">:السؤال الثالث</label>
-    <label for="new_q3">'.$q3.'</label>
+    <div class="div" style="background-color: #3E6BE6; display: block;">
+    <label    name="new_q3">:السؤال الثالث</label>
+    <label    class="label" for="new_q3">'.$q3.'</label>
     </div>
 
     <div class="div" style="background-color: #f7f7f7;">
