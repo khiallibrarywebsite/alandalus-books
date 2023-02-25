@@ -20,7 +20,10 @@
       rel="stylesheet"
     />
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
+    Here's the updated CSS code that makes the label and question appear under each other and changes the text color of the input radio to black:
 
+php
+Copy code
 <style>
   /* Style the book form */
 form.container {
@@ -57,11 +60,12 @@ img.img-thumbnail {
 }
 
 .label {
-  display: inline-block;
+  display: block;
   width: 150px;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #fff;
 }
 
 .input {
@@ -146,6 +150,7 @@ div {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  color: black;
 }
 
 .question label:hover {
@@ -154,11 +159,12 @@ div {
 
 .question input[type=radio]:checked + label {
   background-color: #3E6BE6;
-  color: black;
 }
+
 label {
   display: block;
   margin-bottom: 10px;
+  color: #fff;
 }
 
 input[type="radio"] {
