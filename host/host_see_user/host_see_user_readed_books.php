@@ -20,6 +20,148 @@
       rel="stylesheet"
     />
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
+    <style>
+      /* Center all content */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Style all links */
+a {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Style the page title */
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* Style the center content */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0 15px;
+}
+
+/* Style the form */
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the form labels */
+label {
+  margin-bottom: 5px;
+}
+
+/* Style the form input fields */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+/* Style the form submit button */
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style the error message */
+.error {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Style the success message */
+.success {
+  color: green;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Hide the form */
+.hidden {
+  display: none;
+}
+
+/* Style the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Style the table headers */
+th {
+  text-align: left;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Style the table cells */
+td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ced4da;
+}
+
+/* Style the book image */
+.book-img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Style the book title */
+.book-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style the book author */
+.book-author {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Style the book description */
+.book-description {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+    </style>
     <?php 
 require_once '../../connect.php';
 $s=0;
@@ -51,10 +193,10 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       if ($stage == "1" ) {
         echo '<title>حساب مشرف المستوي الأول '.$name.'</title>';
       }
-       elseif ($titlecompleter == "2") {
+       elseif ($stage == "2") {
         echo '<title>حساب مشرف المستوي الثاني '.$name.'</title>'; 
       }
-      elseif ($titlecompleter == "3" ) {
+      elseif ($stage == "3" ) {
         echo '<title>حساب مشرف المستوي الثالث '.$name.'</title>';
 
 } else {

@@ -19,38 +19,95 @@
     />
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
 <style>
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-  }
-  .nav-left, .nav-center, .nav-right {
-    display: flex;
-    align-items: center;
-  }
-  .nav-left img {
-    height: 40px;
-    margin-right: 20px;
-  }
-  .nav-center p {
-    font-size: 20px;
-    margin: 0 20px;
-  }
-  @media (max-width: 767px) {
-    .nav-center {
-      display: none;
-    }
-  }
-    .square {
-      width: 100px;
-      height: 100px;
-      background-color: lightblue;
-      float: left;
-      margin-right: 20px;
-      text-align: center;
-      line-height: 100px;
-    }
+/* Define styles for the navigation bar */
+nav {
+  background-color: #000ff0;
+  color: #fff;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+
+}
+
+/* Styles for the logo */
+nav img {
+  height: 40px;
+}
+
+/* Styles for the center content */
+.nav-center {
+  text-align: center;
+}
+
+.nav-center p {
+  margin:  0 20px;
+  font-size: 18px;
+  font-size: 20px;
+
+}
+
+/* Styles for the right content */
+.nav-right {
+  margin-left: auto;
+}
+
+.nav-right a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Styles for the login button */
+.nav-right button {
+  background-color: #fff;
+  color: #000ff0;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+button {
+  font-size: 18px;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+form {
+  display: inline-block;
+  text-align: center;
+  margin: 20px;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+h4, h5 {
+  margin: 0;
+  padding: 5px;
+}
+
+a {
+  font-size: 18px;
+  color: #000;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #000;
+  padding: 10px 20px;
+  display: inline-block;
+  margin: 10px 0;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #fff;
+  background-color: #000;
+}
 </style>
     <meta charset="UTF-8" />   
        <meta http-equiv="X-UA-Compatible" content="IE=edge" />

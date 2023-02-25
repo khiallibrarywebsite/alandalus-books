@@ -3,8 +3,8 @@
 <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- <link rel="stylesheet" href="../css/style.css" /> -->
     <link rel="stylesheet" href="../css/styleme.css" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
     <link
@@ -19,38 +19,84 @@
     />
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
 <style>
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-  }
-  .nav-left, .nav-center, .nav-right {
-    display: flex;
-    align-items: center;
-  }
-  .nav-left img {
-    height: 40px;
-    margin-right: 20px;
-  }
-  .nav-center p {
-    font-size: 20px;
-    margin: 0 20px;
-  }
-  @media (max-width: 767px) {
-    .nav-center {
-      display: none;
-    }
-  }
-    .square {
-      width: 100px;
-      height: 100px;
-      background-color: lightblue;
-      float: left;
-      margin-right: 20px;
-      text-align: center;
-      line-height: 100px;
-    }
+/* Define styles for the navigation bar */
+nav {
+  background-color: #000ff0;
+  color: #fff;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+
+}
+
+/* Styles for the logo */
+nav img {
+  height: 40px;
+}
+
+/* Styles for the center content */
+.nav-center {
+  text-align: center;
+}
+
+.nav-center p {
+  margin:  0 20px;
+  font-size: 18px;
+  font-size: 20px;
+
+}
+
+/* Styles for the right content */
+.nav-right {
+  margin-left: auto;
+}
+
+.nav-right a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Styles for the login button */
+.nav-right button {
+  background-color: #fff;
+  color: #000ff0;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+
+
+/* Styles for the squares */
+.square {
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Style for the "عرض الطلاب" square */
+.square:nth-of-type(1) {
+  background-color: #3c8dbc;
+}
+
+/* Style for the "إضافة كتاب" square */
+.square:nth-of-type(2) {
+  background-color: #00a65a;
+}
+
+/* Style for the "تعديل الكتب" square */
+.square:nth-of-type(3) {
+  background-color: #f39c12;
+}
+
+
 </style>
     <meta charset="UTF-8" />   
        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -156,13 +202,25 @@ if($s != 1){
       <a href="../login.php"><button>login out</button></a>
 
 </nav>
-
+<style>
+    .square {
+        display: inline-block;
+    }
+</style>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+<BR></BR>
+<BR></BR>
 <div>
- <a href="host_see_user/host_users_see.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-left: 15%; line-height: 100px;">عرض الطلاب</div></a>
+<div class="square" style="width: 100px; height: 100px; background-color: lightblue; text-align: center; margin-left: 15px; line-height: 100px;">
+<a href="host_see_user/host_users_see.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> عرض الطلاب</a></div>
 
- <a href="host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-right: 15%; line-height: 100px;">إضافة كتاب</div></a>
+<div class="square" style="width: 100px; height: 100px; background-color: lightblue; text-align: center; margin-left: 15px; line-height: 100px;">
+<a href="host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> إضافة كتاب</a></div>
   
- <a href="host_edit/host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> <div class="square" style= "width: 100px; height: 100px; background-color: lightblue; float: center; text-align: center; margin-right: 30%; line-height: 100px;">تعديل الكتب</div></a>
+ <div class="square" style="width: 100px; height: 100px; background-color: lightblue; text-align: center; margin-left: 15px; line-height: 100px;">
+ <a href="host_edit/host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">تعديل الكتب</a></div>
 
   </div>
   

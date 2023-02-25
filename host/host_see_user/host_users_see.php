@@ -20,6 +20,45 @@
       rel="stylesheet"
     />
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
+    <style>/* Set default font to Tajawal */
+* {
+  font-family: 'Tajawal', sans-serif;
+  list-style-type: none;
+}
+
+/* Style for the book image */
+#book-img {
+  width: 118px;
+  height: 179px;
+}
+
+/* Style for the book form */
+form {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+/* Style for the back button */
+a {
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+a:hover {
+  background-color: #0069d9;
+}
+</style>
     <?php 
 require_once '../../connect.php';
 $s=0;

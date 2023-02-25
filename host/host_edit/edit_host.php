@@ -19,7 +19,92 @@
     />
     
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
+<style>
+  /* Set font family for all elements */
+* {
+  font-family: 'Tajawal', sans-serif;
+  list-style-type: none;
+}
 
+/* Style the page title */
+h1 {
+  font-size: 28px;
+  margin: 20px 0;
+}
+
+/* Center align elements */
+.center {
+  text-align: center;
+}
+
+/* Style the book container */
+.book {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Style the book image */
+.book img {
+  max-width: 100%;
+}
+
+/* Style the book title and writer */
+.book h2 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.book h3 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+/* Style the quiz container */
+.quiz {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Style the quiz questions */
+.quiz h4 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* Style the quiz answers */
+.quiz ul {
+  margin: 10px 0;
+}
+
+.quiz ul li {
+  margin: 5px 0;
+}
+
+.quiz ul li label {
+  margin-left: 10px;
+}
+
+.quiz input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Style the submit button */
+.submit {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit:hover {
+  background-color: #0069d9;
+}
+</style>
 
    <meta charset="UTF-8" />   
        <meta http-equiv="X-UA-Compatible" content="IE=edge" />

@@ -20,6 +20,102 @@
       rel="stylesheet"
     />
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
+<style>
+* {
+  font-family: 'Tajawal', sans-serif;
+  list-style-type: none;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-thumbnail {
+  padding: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
+}
+
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+body {
+  direction: rtl;
+}
+
+h4 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+/* CSS reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body styles */
+body {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* Image styles */
+.img-fluid {
+  height: auto;
+  max-width: 100%;
+}
+
+.img-thumbnail {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 10px;
+}
+
+/* Form styles */
+form {
+  margin: 20px;
+  padding: 20px;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+  
+  .img-thumbnail {
+    margin: 5px;
+    padding: 5px;
+  }
+  
+  form {
+    margin: 10px;
+    padding: 10px;
+  }
+}
+</style>
 
     <?php 
 require_once '../../connect.php';

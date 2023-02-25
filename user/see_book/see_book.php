@@ -21,7 +21,150 @@
     />
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
 
+<style>
+  /* Style the book form */
+form.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 30px;
+}
 
+/* Style the book cover image */
+img.img-thumbnail {
+  margin-right: 20px;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.container img {
+  margin-right: 30px;
+}
+
+.question {
+  display: block;
+}
+
+.div {
+  margin-bottom: 10px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.label {
+  display: inline-block;
+  width: 150px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.input {
+  display: inline-block;
+  width: 300px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+}
+
+.btn {
+  background-color: #3E6BE6;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+/* Style the book title and author name */
+h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+h5 {
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+/* Style the link to download the book */
+a {
+  display: block;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #3E6BE6;
+}
+
+/* Style the question div */
+div {
+  margin: 10px 0;
+  padding: 10px;
+}
+
+/* Style the label for each question */
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Style each answer choice */
+.question {
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.question input[type=radio] {
+  display: none;
+}
+
+.question label {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.question label:hover {
+  background-color: #3E6BE6;
+}
+
+.question input[type=radio]:checked + label {
+  background-color: #3E6BE6;
+  color: black;
+}
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="radio"] {
+  color: black;
+}
+</style>
 <?php 
 ob_start(); // start output buffering
 require_once '../../connect.php';
@@ -172,6 +315,7 @@ if (mysqli_num_rows($result) > 0) {
         <h4>' . $Name . '</h4>
         <h5>' . $writer . '</h5>
         <a href="' . $url . '">تحميل الكتاب</a>
+        <BR></BR>
       </form>';
 
 
@@ -181,24 +325,26 @@ if (mysqli_num_rows($result) > 0) {
           <p>--------------------------------------------------</p>
           <br><br><br><br>
           <h2>الأسئلة</h2>
+          <BR></BR>
+
           <br><br>
-        <div  style="background-color: #3E6BE6;">
+        <div  style="background-color: #3E6BE6; display: block;">
         <label class="label"   name="new_q1">:السؤال الأول</label>
         <label for="new_q1">'.$q1.'</label>
         </div>
 
         <div class="div" style="background-color: #f7f7f7;">
-        <div class="question">
+        <div class="question" style="display: block;">
           <input type="radio" id="q1a1" name="q1ak" value="'.$s_q1a1.'">
           <label for="q1a1">'.$s_q1a1.'</label>
         </div>
       
-        <div class="question">
+        <div class="question" style="display: block;">
           <input type="radio" id="q1a2" name="q1ak" value="'.$s_q1a2.'">
           <label for="q1a2">'.$s_q1a2.'</label>
         </div>
       
-        <div class="question">
+        <div class="question" style="display: block;">
           <input type="radio" id="q1a3" name="q1ak" value="'.$s_q1a3.'" >
           <label for="q1a3">'.$s_q1a3.'</label>
   
@@ -208,49 +354,55 @@ if (mysqli_num_rows($result) > 0) {
         <h4 id="h1" style="display:none;">الإجابة الصحيحة : '.$q1ak.'</h4>
       </div>
       <br><br>
-      <div  style="background-color: #3E6BE6;">
+      <BR></BR>
+      <BR></BR>
+
+      <div  style="background-color: #3E6BE6; display: block;">
       <label class="label"  name="new_q2">:السؤال الثاني</label>
       <label for="new_q2">'.$q2.'</label>
       </div>
 
       <div class="div" style="background-color: #f7f7f7;">
-      <div class="question">
+      <div class="question" style="display: block;">
         <input type="radio" id="q2a1" name="q2ak" value="'.$s_q2a1.'">
         <label for="q2a1">'.$s_q2a1.'</label>
       </div>
     
-      <div class="question">
+      <div class="question" style="display: block;">
         <input type="radio" id="q2a2" name="q2ak" value="'.$s_q2a2.'">
         <label for="q2a2">'.$s_q2a2.'</label>
       </div>
     
-      <div class="question">
+      <div class="question" style="display: block;">
         <input type="radio" id="q2a3" name="q2ak" value="'.$s_q2a3.'" >
         <label for="q2a3">'.$s_q2a3.'</label>
       </div>
       <img id="x2" src="../../img/x.png" style="display:none; weight: 50px; height: 50px;">
       <img id="t2" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
       <h4 id="h2" style="display:none;">الإجابة الصحيحة : '.$q2ak.'</h4>
+      <BR></BR>
+      <BR></BR>
+      <BR></BR>
 
     </div>
     <br><br>
-    <div  style="background-color: #3E6BE6;">
+    <div  style="background-color: #3E6BE6; display: block;">
     <label class="label"   name="new_q3">:السؤال الثالث</label>
     <label for="new_q3">'.$q3.'</label>
     </div>
 
     <div class="div" style="background-color: #f7f7f7;">
-    <div class="question">
+    <div class="question" style="display: block;">
       <input type="radio" id="q3a1" name="q3ak" value="'.$s_q3a1.'">
       <label for="q3a1">'.$s_q3a1.'</label>
     </div>
   
-    <div class="question">
+    <div class="question" style="display: block;">
       <input type="radio" id="q3a2" name="q3ak" value="'.$s_q3a2.'">
       <label for="q3a2">'.$s_q3a2.'</label>
     </div>
   
-    <div class="question">
+    <div class="question" style="display: block;">
       <input type="radio" id="q3a3" name="q3ak" value="'.$s_q3a3.'" >
       <label for="q3a3">'.$s_q3a3.'</label>
 
@@ -259,6 +411,9 @@ if (mysqli_num_rows($result) > 0) {
     <img id="t3" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
     <h4 id="h3" style="display:none;">الإجابة الصحيحة : '.$q3ak.'</h4>
   </div>
+  <BR></BR>
+  <BR></BR>
+
   <input type="submit" name="post" value="ارسال" class="btn btn-primary mt-2">
   </form>';
 
