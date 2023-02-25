@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../../css/styleme.css" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css"
       integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe"
@@ -15,9 +15,42 @@
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"
       rel="stylesheet"
-    />
+    /> -->
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
 
+<style>
+.label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.div {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.question {
+  margin: 10px 0;
+}
+
+.question label {
+  margin-left: 10px;
+}
+
+#x1,
+#t1 {
+  width: 50px;
+  height: 50px;
+  display: none;
+}
+
+#h1 {
+  display: none;
+  margin: 10px 0;
+}
+
+
+</style>
 
     <?php 
 require_once '../../connect.php';
@@ -195,7 +228,6 @@ echo'
 <img id="x2" src="../../img/x.png" style="display:none; weight: 50px; height: 50px;">
 <img id="t2" src="../../img/t.png" style="display:none; weight: 50px; height: 50px;">
 <h4 id="h2" style="display:none;">الإجابة الصحيحة : '.$q2ak.'</h4>
-
 </div>
 <br><br>
 <div  style="background-color: #3E6BE6;">
