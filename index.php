@@ -125,6 +125,18 @@ center {
   const container = document.querySelector("#container");
   container.classList.add("animate__animated", "animate__fadeInUp");
 </script>
+<script>
+  function animateBackground() {
+    var body = document.getElementById("my-body");
+    if (body.style.backgroundColor === "white") {
+      body.style.backgroundColor = "lightblue";
+    } else {
+      body.style.backgroundColor = "white";
+    }
+  }
+  
+  setInterval(animateBackground, 2000);
+</script>
 
         <link rel="stylesheet" href="css/style.css" />
 <title>الصفحة الرئيسية</title>
@@ -132,7 +144,7 @@ center {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body id="my-body">
     <nav>
   <div class="nav-left">
     <a href="#">
