@@ -7,8 +7,20 @@
     <link rel="stylesheet" href="css/styleme.css" />
 
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+<script>
+  const nav = document.querySelector('nav');
+let color = 0;
 
+function animateNav() {
+  color = (color + 1) % 255;
+  nav.style.backgroundColor = `rgb(${color}, ${255 - color}, ${255})`;
+  window.requestAnimationFrame(animateNav);
+}
+
+animateNav();
+</script>
 <style>
   /* Change font size and color of navbar links */
 
@@ -109,7 +121,10 @@ center {
   margin-top: 10px;
 }
 </style>
-
+<script>
+  const container = document.querySelector("#container");
+  container.classList.add("animate__animated", "animate__fadeInUp");
+</script>
 
         <link rel="stylesheet" href="css/style.css" />
 <title>الصفحة الرئيسية</title>
@@ -141,7 +156,9 @@ require_once 'connect.php';
 $sql = "SELECT * FROM tables_index";
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
+echo '<div>';
 if (mysqli_num_rows($result) > 0) {
+  
     while ($row = mysqli_fetch_assoc($result)) {
       $id_table = $row["id"];
       $ql = "SELECT COUNT(*) AS total_books FROM books WHERE school = '$id_table'"; 
@@ -150,8 +167,8 @@ if (mysqli_num_rows($result) > 0) {
         $ro = mysqli_fetch_assoc($re);
         $total_books = $ro["total_books"];
         echo '
-        <div class="container">
-        <div class="images">
+        <div id="container"  class="animate__animated animate__fadeInUp">
+        <div class="images"  class="animate__animated animate__fadeInUp">
         <a href="login.php">
         <img src="img/img'.$id_table.'.jpg" alt="Image" style="width: 200%; height: auto;">
         </a>
@@ -160,7 +177,7 @@ if (mysqli_num_rows($result) > 0) {
       } else {
       $total_books = 0;
       echo '
-      <div class="container">
+      <div id="container" class="animate__animated animate__fadeInUp">
       <div class="images">
       <a href="login.php">
       <img src="img/img'.$id_table.'.jpg" alt="Image" style="width: 200%; height: auto;">

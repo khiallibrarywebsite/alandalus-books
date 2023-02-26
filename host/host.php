@@ -60,12 +60,14 @@ nav img {
 
 /* Styles for the login button */
 .nav-right button {
-  background-color: #fff;
-  color: #000ff0;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+  background-color: #3c8dbc;
+			border-radius: 5px;
+			color: #fff;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			cursor: pointer;
+			transition: transform 0.5s ease-in-out;
 }
 
 
@@ -98,6 +100,30 @@ nav img {
 
 
 </style>
+<script>
+		// Get all the square elements
+		const squares = document.querySelectorAll('.square');
+
+		// Add event listeners to each square element
+		squares.forEach(square => {
+			square.addEventListener('mouseover', () => {
+				// Change the background color of the square
+				square.style.backgroundColor = '#00a65a';
+
+				// Rotate the square by 180 degrees
+				square.style.transform = 'rotate(180deg)';
+			});
+
+			square.addEventListener('mouseout', () => {
+				// Change the background color of the square
+				square.style.backgroundColor = '#3c8dbc';
+
+				// Reset the rotation of the square
+				square.style.transform = 'rotate(0deg)';
+			});
+		});
+	</script>
+
     <meta charset="UTF-8" />   
        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -227,5 +253,6 @@ if($s != 1){
   </center>
 
   ';}  ?>
+
  </body>
 </html>
