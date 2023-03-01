@@ -84,7 +84,74 @@
    });
  };
 </script>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  color: #FFF;
+  background-color: #000ff0;
+}
 
+form {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #000ff0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+form:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #F2F2F2;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+  color: #000ff0;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2196F3;
+  color: #FFF;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0a73cc;
+}
+
+</style>
    <meta charset="UTF-8" />   
        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -207,27 +274,26 @@ $s = 1;
             echo '
             <a href="../host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">رجوع</a>
             <form method="POST" class="container">
-            <div class="div" style="background-color: #f7f7f7;>
+            
             <input type="hidden" name="id" value="'.$id.'" />
             <label class="label">اسم الكتاب</label>
             <input type="text" name="new_Name" class="form-control"  />
-          </div>
-          <div class="div" style="background-color: #f7f7f7;>
+          
+         
             <label class="label">اسم المؤلف</label>
             <input type="text" name="new_writer" class="form-control"  />
-            </div>
-            <div class="div" style="background-color: #f7f7f7;>
+            
+            
             <label class="label">رابط الكتاب</label>
             <input type="text" name="new_url" class="form-control"  placeholder="https://drive.google.com/file/d/1B8m0jvypiNelJuG-W5V_QmVx5fX8tAGI/view?usp=share_link"/>
             <p>قم برفع الكتاب علي <a href="https://drive.google.com/">جوجل درايف</a> وبعدها قم بعمل مشاركة للكتاب وجعل صلاحية الدخول لكل من يحمل الرابط <a href="'.$go_link.'" target="_blank">معرفة المزيد</a></p>
-            </div>
-            <div class="div" style="background-color: #f7f7f7;">
+ 
+
             <label class="label">id الكتاب</label>
             <input type="text" name="new_img" class="form-control"   placeholder="1B8m0jvypiNelJuG-W5V_QmVx5fX8tAGI"/>
             <p>بعد الحصول علي رابط الكتاب قم  <a href="'.$go_link.'" target="_blank">باخذ الرقم الأخير</a> في الرابط وضعه هنا</p>
            
-            </div>
-            <div class="div" style="background-color: #f7f7f7;>
+            
             <label class="label">سؤال الأول</label>
             <input type="text" name="new_q1" class="form-control" />
             <br>
@@ -246,9 +312,8 @@ $s = 1;
               <label for="q1a3"><input type="text" name="new_q1a3" id="new_q1a3"></label>
             </div>
             <br>
-          </div>
         
-          <div class="div" style="background-color: #f7f7f7;">
+          
             <label class="label">سؤال الثاني</label>
             <input type="text" name="new_q2" class="form-control" />
             <br>
@@ -268,9 +333,8 @@ $s = 1;
                 <label for="q2a3" ><input type="text" name="new_q2a3" id="new_q2a3"></label>
               </div>
               <br>
-          </div>
+         
         
-          <div class="div" style="background-color: #f7f7f7;">
             <label class="label">سؤال الثالث</label>
             <input type="text" name="new_q3" class="form-control" />
             <br>
@@ -289,7 +353,7 @@ $s = 1;
             <label for="q3a3"><input type="text" name="new_q3a3"  id="new_q3a3"></label>
             </div>
             <br>
-            </div>
+            
             <input type="submit" name="add" value="إضافة" class="btn btn-primary mt-2">
             
           </form>
