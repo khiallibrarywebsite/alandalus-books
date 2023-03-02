@@ -87,15 +87,64 @@
 <style>
   body {
   font-family: Arial, sans-serif;
-  color: #FFF;
+  color:  #D8D8D8;
+  background-color:  #D8D8D8;
+}
+nav {
   background-color: #000ff0;
+  color: #fff;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+
 }
 
+/* Styles for the logo */
+nav img {
+  height: 40px;
+}
+
+/* Styles for the center content */
+.nav-center {
+  text-align: center;
+}
+
+.nav-center p {
+  margin:  0 20px;
+  font-size: 18px;
+  font-size: 20px;
+
+}
+
+/* Styles for the right content */
+.nav-right {
+  margin-left: auto;
+}
+
+.nav-right a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Styles for the login button */
+.nav-right button {
+  background-color: #3c8dbc;
+			border-radius: 5px;
+			color: #fff;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			cursor: pointer;
+			transition: transform 0.5s ease-in-out;
+}
 form {
-  max-width: 600px;
+  max-width: 80%;
   margin: 50px auto;
+  align-items: center;
   padding: 20px;
-  background-color: #000ff0;
+  background-color: #FFF;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
@@ -110,11 +159,55 @@ label {
   display: block;
   margin-bottom: 10px;
   font-size: 18px;
+  color: #000ff0;
+}
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
 }
 
-input[type="text"],
+
+.text {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  margin-left: 50px;
+  background-color: #F2F2F2;
+  cursor: pointer;
+  color: black;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.text:hover {
+  background-color: #3E6BE6;
+}
+
+
+
+.label {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.label:hover {
+  text-decoration: underline;
+}
+
+.radio-input:checked + #text {
+  background-color: #3E6BE6;
+}
+
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+#text {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -124,19 +217,15 @@ input[type="password"] {
   transition: all 0.3s ease;
 }
 
-input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+#text:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
   color: #000ff0;
 }
 
-input[type="radio"] {
-  margin-right: 5px;
-}
-
-button[type="submit"] {
+input[type="submit"] {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -147,9 +236,10 @@ button[type="submit"] {
   transition: all 0.3s ease;
 }
 
-button[type="submit"]:hover {
-  background-color: #0a73cc;
+input[type="submit"]:hover {
+  background-color: #16dbb0;
 }
+
 
 </style>
    <meta charset="UTF-8" />   
@@ -218,7 +308,29 @@ $s = 1;
 <center>
 <?php
   if($s != 1){
+    echo'
+    <center>
+           <nav>
+      <div class="nav-left">
+        <a href="#">
+          <img src="../img/img.png" alt="Logo">
+        </a>
+      </div>
+      <div class="nav-center">
     
+    <center>
+        <p> اهلا بك استاذ</p>
+        <p>'.$name.'</p> 
+        </center>
+        
+    
+      </div>
+      <div class="nav-right">
+        <a href="index.php">من نحن</a>
+      </div>
+          <a href="../login.php"><button>login out</button></a>
+    
+    </nav>';
     require_once '../../connect.php';
 
     // Retrieve all books from the table
@@ -294,64 +406,75 @@ $s = 1;
             <p>بعد الحصول علي رابط الكتاب قم  <a href="'.$go_link.'" target="_blank">باخذ الرقم الأخير</a> في الرابط وضعه هنا</p>
            
             
+            
             <label class="label">سؤال الأول</label>
             <input type="text" name="new_q1" class="form-control" />
             <br>
-            <div class="question">
+            <div class="container">            <div class="row">
             <input type="radio" id="q1a1" name="new_q1ak" value = "q1a1">
-              <label for="q1a1"><input type="text" name="new_q1a1"  id="new_q1a1"></label>
+              <label for="q1a1"><input type="text" class= "text"  name="new_q1a1"  id="new_q1a1"></label>
             </div>
+</div>
 <br>
-            <div class="question">
+            <div class="container">            <div class="row">
             <input type="radio" id="q1a2" name="new_q1ak" value = "q1a2">
-              <label for="q1a2"><input type="text" name="new_q1a2" id="new_q1a2"></label>
+              <label for="q1a2"><input type="text" class= "text"  name="new_q1a2" id="new_q1a2"></label>
             </div>
+</div>
             <br>
-            <div class="question">
+            <div class="container">            <div class="row">
             <input type="radio" id="q1a3" name="new_q1ak" value = "q1a3">
-              <label for="q1a3"><input type="text" name="new_q1a3" id="new_q1a3"></label>
+              <label for="q1a3"><input type="text" class= "text"  name="new_q1a3" id="new_q1a3"></label>
             </div>
+</div>
+            
             <br>
         
           
             <label class="label">سؤال الثاني</label>
             <input type="text" name="new_q2" class="form-control" />
             <br>
-            <div class="question">
+            <div class="container">            <div class="row">
             <input type="radio" id="q2a1" name="new_q2ak" value = "q2a1">
-              <label for="q2a1"><input type="text" name="new_q2a1"  id="new_q2a1"></label>
+              <label for="q2a1"><input type="text" class= "text"  name="new_q2a1"  id="new_q2a1"></label>
               
             </div>
+</div>
             <br>
-            <div class="question">
+            <div class="container">            <div class="row">
             <input type="radio" id="q2a2" name="new_q2ak" value = "q2a2">
-              <label for="q2a2"><input type="text" name="new_q2a2"  id="new_q2a2"></label>
-              </div>
+              <label for="q2a2"><input type="text" class= "text"  name="new_q2a2"  id="new_q2a2"></label>
+            </div>
+</div>
               <br>
-              <div class="question">
+              <div class="container">            <div class="row">
               <input type="radio" id="q2a3" name="new_q2ak" value = "q2a3">
-                <label for="q2a3" ><input type="text" name="new_q2a3" id="new_q2a3"></label>
-              </div>
+                <label for="q2a3" ><input type="text" class= "text"  name="new_q2a3" id="new_q2a3"></label>
+            </div>
+</div>
               <br>
          
         
             <label class="label">سؤال الثالث</label>
             <input type="text" name="new_q3" class="form-control" />
             <br>
-            <div class="question">
+            <div class="container">            <div class="row">
             <input type="radio" id="q3a1" name="new_q3ak" value = "q3a1">
-              <label for="q3a1"><input type="text" name="new_q3a1"  id="new_q3a1"></label>
+              <label for="q3a1"><input type="text" class= "text"  name="new_q3a1"  id="new_q3a1"></label>
             </div>
+</div>
             <br>
-            <div class="question">
+            <div class="container">            <div class="row">
             <input type="radio" id="q3a2" name="new_q3ak" value = "q3a2">
-              <label for="q3a2"><input type="text" name="new_q3a2"  id="new_q3a2"></label>
-              </div>
-              <br>
-            <div class="question">
-            <input type="radio" id="q3a3" name="new_q3ak" value = "q3a3">
-            <label for="q3a3"><input type="text" name="new_q3a3"  id="new_q3a3"></label>
+              <label for="q3a2"><input type="text" class= "text"  name="new_q3a2"  id="new_q3a2"></label>
             </div>
+</div>
+              <br>
+            <div class="container">            <div class="row">
+            <input type="radio" id="q3a3" name="new_q3ak" value = "q3a3">
+            <label for="q3a3"><input type="text" class= "text"  name="new_q3a3"  id="new_q3a3"></label>
+            </div>
+</div>
             <br>
             
             <input type="submit" name="add" value="إضافة" class="btn btn-primary mt-2">
