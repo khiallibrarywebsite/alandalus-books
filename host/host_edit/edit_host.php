@@ -4,8 +4,9 @@
 <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+     <link rel="stylesheet" href="../../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../../css/styleme.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
     <link
       rel="stylesheet"
@@ -25,85 +26,114 @@
   font-family: 'Tajawal', sans-serif;
   list-style-type: none;
 }
-
-/* Style the page title */
-h1 {
-  font-size: 28px;
-  margin: 20px 0;
+body {
+  font-family: Arial, sans-serif;
+  color:  #D8D8D8;
+  background-color:  #D8D8D8;
 }
-
-/* Center align elements */
-.center {
-  text-align: center;
-}
-
-/* Style the book container */
-.book {
-  border: 1px solid #ccc;
+form {
+  max-width: 80%;
+  margin: 50px auto;
+  align-items: center;
   padding: 20px;
-  margin-bottom: 20px;
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
 }
 
-/* Style the book image */
-.book img {
-  max-width: 100%;
+form:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
 
-/* Style the book title and writer */
-.book h2 {
-  font-size: 24px;
-  margin: 10px 0;
-}
-
-.book h3 {
-  font-size: 20px;
-  margin: 10px 0;
-}
-
-/* Style the quiz container */
-.quiz {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-/* Style the quiz questions */
-.quiz h4 {
+label {
+  display: block;
+  margin-bottom: 10px;
   font-size: 18px;
-  margin: 10px 0;
+  color: #000ff0;
+}
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
 }
 
-/* Style the quiz answers */
-.quiz ul {
-  margin: 10px 0;
-}
 
-.quiz ul li {
-  margin: 5px 0;
-}
-
-.quiz ul li label {
-  margin-left: 10px;
-}
-
-.quiz input[type="radio"] {
-  margin-right: 5px;
-}
-
-/* Style the submit button */
-.submit {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
+.text {
+  width: 30%;
+  padding: 10px;
+  margin-top: 20px;
   border: none;
+  border-radius: 5px;
+  display: block;
+  margin-left: 50px;
+  background-color: #F2F2F2;
   cursor: pointer;
-  font-size: 16px;
+  color: black;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.submit:hover {
-  background-color: #0069d9;
+.text:hover {
+  background-color: #3E6BE6;
 }
+
+
+
+.label {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.label:hover {
+  text-decoration: underline;
+}
+
+.radio-input:checked + .text {
+  background-color: #3E6BE6;
+}
+
+
+input[type="email"],
+input[type="password"]
+ {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #F2F2F2;
+  transition: all 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+  color: #000ff0;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2196F3;
+  color: #FFF;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #16dbb0;
+}
+
+
+
 </style>
 
    <meta charset="UTF-8" />   
@@ -221,94 +251,81 @@ $s = 1;
             echo '
             <a href="host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">رجوع</a>
             <form method="POST" class="container">
-            <div class="div" style="background-color: #f7f7f7;">
             <input type="hidden" name="id" value="'.$id.'" />
             <label class="label">اسم الكتاب</label>
             <input type="text" name="new_Name" class="form-control" value="'.$Name.'"  />
-          </div>
-          <div class="div" style="background-color: #f7f7f7;">
             <label class="label">اسم المؤلف</label>
             <input type="text" name="new_writer" class="form-control" value="'.$writer.'" />
-            </div>
-            <div class="div" style="background-color: #f7f7f7;">
             <label class="label">رابط الصورة</label>
             <input type="text" name="new_img" class="form-control" value="'.$img.'" />
-            </div>
-            <div class="div" style="background-color: #f7f7f7;">
             <label class="label">رابط الكتاب</label>
             <input type="text" name="new_url" class="form-control" value="'.$url.'" />
-            </div>
 
-            <div class="div" style="background-color: #f7f7f7;">
             <label class="label">سؤال الأول</label>
             <input type="text" name="new_q1" class="form-control" value="'.$q1.'" />
           
-            <div class="question">
+            <div class ="container"><div class="row">
               <input type="radio" id="q1a1" name="new_q1ak" value="'.$q1a1.'">
-              <label for="q1a1">'.$q1a1.'</label>
-            </div>
+              <label for="q1a1" class= "text">'.$q1a1.'</label>
+            </div></div>
           
-            <div class="question">
+            <div class ="container"><div class="row">
               <input type="radio" id="q1a2" name="new_q1ak" value="'.$q1a2.'">
-              <label for="q1a2">'.$q1a2.'</label>
-            </div>
+              <label for="q1a2" class= "text">'.$q1a2.'</label>
+            </div></div>
           
-            <div class="question">
+            <div class ="container"><div class="row">
               <input type="radio" id="q1a3" name="new_q1ak" value="'.$q1ak.'" >
-              <label for="q1a3">'.$q1ak.'</label>
+              <label for="q1a3" class= "text">'.$q1ak.'</label></div></div>
               <script>
               const new_q1a3t = document.getElementById("q1a3");
               new_q1a3t.checked = true;
             </script>
               
-            </div>
-          </div>
+
           
-            <div class="div" style="background-color: #f7f7f7;">
             <label class="label">سؤال الثاني</label>
             <input type="text" name="new_q2" class="form-control" value="'.$q2.'" />
-            <div class="question">
+            <div class ="container"><div class="row">
               <input type="radio" id="q2a1" name="new_q2ak" value="'.$q2a1.'">
-              <label for="q2a1">'.$q2a1.'</label>
-            </div>
+              <label for="q2a1" class= "text">'.$q2a1.'</label>
+            </div></div>
           
-            <div class="question">
+            <div class ="container"><div class="row">
               <input type="radio" id="q2a2" name="new_q2ak" value="'.$q2a2.'">
-              <label for="q2a2">'.$q2a2.'</label>
-            </div>
+              <label for="q2a2" class= "text">'.$q2a2.'</label>
+            </div></div>
           
-            <div class="question">
+            <div class ="container"><div class="row">
               <input type="radio" id="q2a3" name="new_q2ak" value="'.$q2ak.'" >
-              <label  for="q2a3" >'.$q2ak.'</label>
+              <label  for="q2a3"  class= "text">'.$q2ak.'</label></div></div>
               <script>
               const new_q2a3t = document.getElementById("q2a3");
               new_q2a3t.checked = true;
             </script>
-            </div>
-            </div>
 
-            <div class="div" style="background-color: #f7f7f7;">
+
+
             <label class="label">سؤال الثالث</label>
             <input type="text" name="new_q3" class="form-control" value="'.$q3.'" />
-            <div class="question">
+            <div class ="container"><div class="row">
               <input type="radio" id="q3a1" name="new_q3ak" value="'.$q3a1.'">
-              <label for="q3a1">'.$q3a1.'</label>
-            </div>
+              <label for="q3a1" class= "text">'.$q3a1.'</label>
+            </div></div>
           
-            <div class="question">
+            <div class ="container"><div class="row">
               <input type="radio" id="q3a2" name="new_q3ak" value="'.$q3a2.'">
-              <label for="q3a2">'.$q3a2.'</label>
-            </div>
+              <label for="q3a2" class= "text">'.$q3a2.'</label>
+            </div></div>
           
-            <div class="question">
+            <div class ="container"><div class="row">
               <input type="radio" id="q3a3" name="new_q3ak" value="'.$q3ak.'" >
-              <label for="q3a3" >'.$q3ak.'</label>
+              <label for="q3a3"  class= "text">'.$q3ak.'</label></div></div>
               <script>
               const new_q3a3t = document.getElementById("q3a3");
               new_q3a3t.checked = true;
             </script>
-            </div>
-            </div>
+
             
             <input type="submit" name="edit" value="تعديل" class="btn btn-primary mt-2">
             

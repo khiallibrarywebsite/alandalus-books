@@ -201,13 +201,13 @@ label {
   text-decoration: underline;
 }
 
-.radio-input:checked + #text {
+.radio-input:checked + .text {
   background-color: #3E6BE6;
 }
 
 input[type="email"],
 input[type="password"],
-#text {
+.text {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -219,7 +219,7 @@ input[type="password"],
 
 input[type="email"]:focus,
 input[type="password"]:focus,
-#text:focus {
+.text:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
   color: #000ff0;
@@ -326,9 +326,9 @@ $s = 1;
     
       </div>
       <div class="nav-right">
-        <a href="index.php">من نحن</a>
+        <a href="../host.php">الصفحة الرئيسية </a>
       </div>
-          <a href="../login.php"><button>login out</button></a>
+          <a href="../../login.php"><button>login out</button></a>
     
     </nav>';
     require_once '../../connect.php';
@@ -412,19 +412,19 @@ $s = 1;
             <br>
             <div class="container">            <div class="row">
             <input type="radio" id="q1a1" name="new_q1ak" value = "q1a1">
-              <label for="q1a1"><input type="text" class= "text"  name="new_q1a1"  id="new_q1a1"></label>
+              <label for="q1a1"><input type="text" class= "text" placeholder="الإجابة الأولي " name="new_q1a1"  id="new_q1a1"></label>
             </div>
 </div>
 <br>
             <div class="container">            <div class="row">
             <input type="radio" id="q1a2" name="new_q1ak" value = "q1a2">
-              <label for="q1a2"><input type="text" class= "text"  name="new_q1a2" id="new_q1a2"></label>
+              <label for="q1a2"><input type="text" class= "text"  placeholder="الإجابة الثانية "name="new_q1a2" id="new_q1a2"></label>
             </div>
 </div>
             <br>
             <div class="container">            <div class="row">
             <input type="radio" id="q1a3" name="new_q1ak" value = "q1a3">
-              <label for="q1a3"><input type="text" class= "text"  name="new_q1a3" id="new_q1a3"></label>
+              <label for="q1a3" ><input type="text" class= "text" placeholder="الإجابة الثالثة " name="new_q1a3" id="new_q1a3"></label>
             </div>
 </div>
             
@@ -436,20 +436,20 @@ $s = 1;
             <br>
             <div class="container">            <div class="row">
             <input type="radio" id="q2a1" name="new_q2ak" value = "q2a1">
-              <label for="q2a1"><input type="text" class= "text"  name="new_q2a1"  id="new_q2a1"></label>
+              <label for="q2a1"><input type="text" class= "text" placeholder="الإجابة الأولي " name="new_q2a1"  id="new_q2a1"></label>
               
             </div>
 </div>
             <br>
             <div class="container">            <div class="row">
             <input type="radio" id="q2a2" name="new_q2ak" value = "q2a2">
-              <label for="q2a2"><input type="text" class= "text"  name="new_q2a2"  id="new_q2a2"></label>
+              <label for="q2a2"><input type="text" class= "text" placeholder="الإجابة الثانية " name="new_q2a2"  id="new_q2a2"></label>
             </div>
 </div>
               <br>
               <div class="container">            <div class="row">
               <input type="radio" id="q2a3" name="new_q2ak" value = "q2a3">
-                <label for="q2a3" ><input type="text" class= "text"  name="new_q2a3" id="new_q2a3"></label>
+                <label for="q2a3" ><input type="text" class= "text" placeholder="الإجابة الثالثة " name="new_q2a3" id="new_q2a3"></label>
             </div>
 </div>
               <br>
@@ -460,19 +460,19 @@ $s = 1;
             <br>
             <div class="container">            <div class="row">
             <input type="radio" id="q3a1" name="new_q3ak" value = "q3a1">
-              <label for="q3a1"><input type="text" class= "text"  name="new_q3a1"  id="new_q3a1"></label>
+              <label for="q3a1"><input type="text" class= "text" placeholder="الإجابة الأولي " name="new_q3a1"  id="new_q3a1"></label>
             </div>
 </div>
             <br>
             <div class="container">            <div class="row">
             <input type="radio" id="q3a2" name="new_q3ak" value = "q3a2">
-              <label for="q3a2"><input type="text" class= "text"  name="new_q3a2"  id="new_q3a2"></label>
+              <label for="q3a2"><input type="text" class= "text" placeholder="الإجابة الثانية " name="new_q3a2"  id="new_q3a2"></label>
             </div>
 </div>
               <br>
             <div class="container">            <div class="row">
             <input type="radio" id="q3a3" name="new_q3ak" value = "q3a3">
-            <label for="q3a3"><input type="text" class= "text"  name="new_q3a3"  id="new_q3a3"></label>
+            <label for="q3a3"><input type="text" class= "text" placeholder="الإجابة الثالثة " name="new_q3a3"  id="new_q3a3"></label>
             </div>
 </div>
             <br>
@@ -641,6 +641,7 @@ if ($new_q1ak == $new_q1a3) {
             
               // Check if $xw is equal to 12
               if ($xw == 12) {
+                $finish == 0;
                 // Construct the redirect URL
                 $redirect_url = "../host.php?user=$titlecompleter&school_code=$code&pass=$password";
             

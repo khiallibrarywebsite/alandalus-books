@@ -6,6 +6,8 @@
 
     <!-- <link rel="stylesheet" href="../css/style.css" /> -->
     <link rel="stylesheet" href="../css/styleme.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
     <link
       rel="stylesheet"
@@ -69,34 +71,11 @@ nav img {
 			cursor: pointer;
 			transition: transform 0.5s ease-in-out;
 }
-
-
-
-
-/* Styles for the squares */
-.square {
-  border-radius: 5px;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-}
-
-/* Style for the "عرض الطلاب" square */
-.square:nth-of-type(1) {
-  background-color: #3c8dbc;
-}
-
-/* Style for the "إضافة كتاب" square */
-.square:nth-of-type(2) {
-  background-color: #00a65a;
-}
-
-/* Style for the "تعديل الكتب" square */
-.square:nth-of-type(3) {
-  background-color: #f39c12;
-}
+  
+.col-1 col-sm-12 col-md-6 col-lg-4 col-xl-3 {
+    margin: 20px 0;
+    cursor: pointer;
+  } 
 
 
 </style>
@@ -228,6 +207,7 @@ if($s != 1){
       <a href="../login.php"><button>login out</button></a>
 
 </nav>
+
 <style>
     .square {
         display: inline-block;
