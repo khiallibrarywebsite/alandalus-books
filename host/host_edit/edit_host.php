@@ -31,6 +31,55 @@ body {
   color:  #D8D8D8;
   background-color:  #D8D8D8;
 }
+nav {
+  background-color: #000ff0;
+  color: #fff;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+
+}
+
+/* Styles for the logo */
+nav img {
+  height: 40px;
+}
+
+/* Styles for the center content */
+.nav-center {
+  text-align: center;
+}
+
+.nav-center p {
+  margin:  0 20px;
+  font-size: 18px;
+  font-size: 20px;
+
+}
+
+/* Styles for the right content */
+.nav-right {
+  margin-left: auto;
+}
+
+.nav-right a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Styles for the login button */
+.nav-right button {
+  background-color: #3c8dbc;
+			border-radius: 5px;
+			color: #fff;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			cursor: pointer;
+			transition: transform 0.5s ease-in-out;
+}
 form {
   max-width: 80%;
   margin: 50px auto;
@@ -64,7 +113,7 @@ label {
 }
 
 
-.text {
+.text1 {
   width: 30%;
   padding: 10px;
   margin-top: 20px;
@@ -78,7 +127,7 @@ label {
   transition: background-color 0.3s ease-in-out;
 }
 
-.text:hover {
+.text1:hover {
   background-color: #3E6BE6;
 }
 
@@ -93,7 +142,7 @@ label {
   text-decoration: underline;
 }
 
-.radio-input:checked + .text {
+.radio-input:checked + .text1 {
   background-color: #3E6BE6;
 }
 
@@ -199,10 +248,34 @@ $s = 1;
 </head>
 
 <body>
+    <center>
+
 <center>
 <?php
   if($s != 1){
+    echo'
+    <center>
+           <nav>
+      <div class="nav-left">
+        <a href="#">
+          <img src="../../img/img.png" alt="Logo">
+        </a>
+      </div>
+      <div class="nav-center">
     
+    <center>
+        <p> اهلا بك استاذ</p>
+        <p>'.$name.'</p> 
+        </center>
+        
+    
+      </div>
+      <div class="nav-right">
+        <a href="../host.php">الصفحة الرئيسية </a>
+      </div>
+          <a href="../../login.php"><button>login out</button></a>
+    
+    </nav>';
     require_once '../../connect.php';
     $sql = "SELECT * FROM books WHERE id='$id'  AND stage='$stage' AND school='$code'";
     $result = mysqli_query($conn, $sql);

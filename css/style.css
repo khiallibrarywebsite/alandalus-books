@@ -267,3 +267,25 @@ input[type="submit"]:hover {
   background-color: #f39c12;
 }
 
+.form-text1 {
+  width: 30%;
+  padding: 10px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  margin-left: 50px;
+  background-color: #F2F2F2;
+  cursor: pointer;
+  color: black;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.form-text1:hover {
+  background-color: #3E6BE6;
+}
+
+
+.form-radio-input:checked + .text1 {
+  background-color: #3E6BE6;
+}

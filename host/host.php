@@ -6,7 +6,7 @@
 
     <!-- <link rel="stylesheet" href="../css/style.css" /> -->
     <link rel="stylesheet" href="../css/styleme.css" />
-    <link rel="stylesheet" href="../../css/style.css" />
+
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
     <link
@@ -20,65 +20,7 @@
       rel="stylesheet"
     />
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
-<style>
-/* Define styles for the navigation bar */
-nav {
-  background-color: #000ff0;
-  color: #fff;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
 
-}
-
-/* Styles for the logo */
-nav img {
-  height: 40px;
-}
-
-/* Styles for the center content */
-.nav-center {
-  text-align: center;
-}
-
-.nav-center p {
-  margin:  0 20px;
-  font-size: 18px;
-  font-size: 20px;
-
-}
-
-/* Styles for the right content */
-.nav-right {
-  margin-left: auto;
-}
-
-.nav-right a {
-  color: #fff;
-  text-decoration: none;
-}
-
-/* Styles for the login button */
-.nav-right button {
-  background-color: #3c8dbc;
-			border-radius: 5px;
-			color: #fff;
-			font-size: 18px;
-			font-weight: bold;
-			text-align: center;
-			cursor: pointer;
-			transition: transform 0.5s ease-in-out;
-}
-  
-.col-1 col-sm-12 col-md-6 col-lg-4 col-xl-3 {
-    margin: 20px 0;
-    cursor: pointer;
-  } 
-
-
-</style>
 <script>
 		// Get all the square elements
 		const squares = document.querySelectorAll('.square');
@@ -185,29 +127,29 @@ $conn->close();
 if($s != 1){
 
   echo'
-<center>
-       <nav>
+
+       <nav class="nav">
   <div class="nav-left">
     <a href="#">
-      <img src="../img/img.png" alt="Logo">
+      <img src="../img/img.png" alt="Logo" class="nav-img">
     </a>
   </div>
   <div class="nav-center">
 
 <center>
-    <p> اهلا بك استاذ</p>
-    <p>'.$name.'</p> 
+    <p class="nav-center-p"> اهلا بك استاذ</p>
+    <p class="nav-center-p">'.$name.'</p> 
     </center>
     
 
   </div>
   <div class="nav-right">
-    <a href="index.php">من نحن</a>
+    <a href="index.php" class="nav-right-a">من نحن</a>
   </div>
-      <a href="../login.php"><button>login out</button></a>
+      <a href="../login.php"><button class="nav-button">login out</button></a>
 
 </nav>
-
+<center>
 <style>
     .square {
         display: inline-block;
@@ -233,6 +175,6 @@ if($s != 1){
   </center>
 
   ';}  ?>
-
+    <link rel="stylesheet" href="../css/style.css" />
  </body>
 </html>

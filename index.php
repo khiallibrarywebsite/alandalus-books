@@ -4,7 +4,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      <!-- <link rel="stylesheet" href="bootstrap/css/bootstrap.css"/> -->
-     <link rel="stylesheet" href="css/style.css"/>
 
     <style>*{font-family: 'Tajawal' , sans-serif; list-style-type: none;} </style>
     <title>الصفحة الرئيسية</title>
@@ -13,13 +12,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
-
     <body id="my-body">
 
     <nav class="nav">
   <div class="nav-left">
     <a href="#">
-      <img src="img/logo.png" alt="Logo" calss = "nav-img">
+      <img src="img/logo.png" alt="Logo" class = "nav-img">
     </a>
   </div>
   <div class="nav-center">
@@ -58,8 +56,8 @@ if (mysqli_num_rows($result) > 0) {
         echo '
         <div class="card">
         <div id="container"  class="col-1 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-        <a href="login.php">
-        <img calss="card-img" src="img/img'.$id_table.'.jpg" alt="Image" >
+        <a href="login.php"  class="card-img">
+        <img  src="img/img'.$id_table.'.jpg" alt="Image" class="card-img">
         </a>
         
         <a href="login.php"><button  class="card-button">عدد الكتب' . $total_books . '</button><a>
@@ -69,8 +67,8 @@ if (mysqli_num_rows($result) > 0) {
       echo '
       <div class="card">
       <div id="container" class="col-1 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <a href="login.php">
-      <img  calss="card-img" src="img/img'.$id_table.'.jpg" alt="Image" >
+      <a href="login.php" class="card-img">
+      <img  src="img/img'.$id_table.'.jpg" alt="Image" calss="card-img " >
       </a><div class= "acrd-body">
       <a href="login.php"><button class="card-button">عدد الكتب' . $total_books . '</button><a>
       </div></div>';
@@ -86,5 +84,6 @@ if (mysqli_num_rows($result) > 0) {
 
 
 </center>
+<link rel="stylesheet" href="css/style.css"/>
 </body>
 </html>
