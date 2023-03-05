@@ -121,7 +121,6 @@ $s = 1;
         <a href="../login.php"><button class="nav-button">login out</button></a>
   
   </nav>
-<center>
 ';
     require_once '../../connect.php';
     $sql = "SELECT * FROM books WHERE id='$id'  AND stage='$stage' AND school='$code'";
@@ -172,6 +171,7 @@ $s = 1;
 
             <a href="host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">رجوع</a>
             <form class="form">
+            <center>
             <input type="hidden" name="id" value="'.$id.'" />
             <label class="form-label">اسم الكتاب</label>
             <input type="text" name="new_Name" class="form-control" value="'.$Name.'"  />
@@ -249,7 +249,7 @@ $s = 1;
 
             
             <input type="submit" name="edit" value="تعديل" class="btn btn-primary mt-2">
-            
+            </center>
           </form>
           ';
 }
@@ -341,7 +341,6 @@ mysqli_close($conn);
 
 
 
-</center>
 <link rel="stylesheet" href="../../css/style.css" />
 </body>
 </html>

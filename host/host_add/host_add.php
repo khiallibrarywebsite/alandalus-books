@@ -178,7 +178,7 @@ $s = 1;
         <a href="../login.php"><button class="nav-button">login out</button></a>
   
   </nav>
-  <center>
+
 ';
 
     require_once '../../connect.php';
@@ -235,8 +235,8 @@ $s = 1;
             $go_link = sprintf("host_how_add.php?user=%s&school_code=%s&pass=%s", $titlecompleter, $code, $password);
             echo '
             <a href="../host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">رجوع</a>
-            <form method="POST" class="form">
-            
+            <form method="POST" class="form" >
+            <center>
             <input type="hidden" name="id" value="'.$id.'" />
             <label class="form-label">اسم الكتاب</label>
             <input type="text" name="new_Name" class="form-control"  />
@@ -328,7 +328,7 @@ $s = 1;
             <br>
             
             <input type="submit" name="add" value="إضافة" class="btn btn-primary mt-2">
-            
+            </center>
           </form>
           ';
 }
