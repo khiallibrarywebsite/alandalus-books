@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      <link rel="stylesheet" href="../../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../../css/styleme.css" />
-    <link rel="stylesheet" href="../../css/style.css" />
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9483470310411729" crossorigin="anonymous"></script>
     <link
       rel="stylesheet"
@@ -31,158 +31,6 @@ body {
   color:  #D8D8D8;
   background-color:  #D8D8D8;
 }
-nav {
-  background-color: #000ff0;
-  color: #fff;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-
-}
-
-/* Styles for the logo */
-nav img {
-  height: 40px;
-}
-
-/* Styles for the center content */
-.nav-center {
-  text-align: center;
-}
-
-.nav-center p {
-  margin:  0 20px;
-  font-size: 18px;
-  font-size: 20px;
-
-}
-
-/* Styles for the right content */
-.nav-right {
-  margin-left: auto;
-}
-
-.nav-right a {
-  color: #fff;
-  text-decoration: none;
-}
-
-/* Styles for the login button */
-.nav-right button {
-  background-color: #3c8dbc;
-			border-radius: 5px;
-			color: #fff;
-			font-size: 18px;
-			font-weight: bold;
-			text-align: center;
-			cursor: pointer;
-			transition: transform 0.5s ease-in-out;
-}
-form {
-  max-width: 80%;
-  margin: 50px auto;
-  align-items: center;
-  padding: 20px;
-  background-color: #FFF;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
-}
-
-form:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-}
-
-label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #000ff0;
-}
-.row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-}
-
-
-.text1 {
-  width: 30%;
-  padding: 10px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 5px;
-  display: block;
-  margin-left: 50px;
-  background-color: #F2F2F2;
-  cursor: pointer;
-  color: black;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.text1:hover {
-  background-color: #3E6BE6;
-}
-
-
-
-.label {
-  margin-right: 5px;
-  cursor: pointer;
-}
-
-.label:hover {
-  text-decoration: underline;
-}
-
-.radio-input:checked + .text1 {
-  background-color: #3E6BE6;
-}
-
-
-input[type="email"],
-input[type="password"]
- {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #F2F2F2;
-  transition: all 0.3s ease;
-}
-
-input[type="email"]:focus,
-input[type="password"]:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
-  color: #000ff0;
-}
-
-input[type="submit"] {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #2196F3;
-  color: #FFF;
-  font-size: 18px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-input[type="submit"]:hover {
-  background-color: #16dbb0;
-}
-
-
-
 </style>
 
    <meta charset="UTF-8" />   
@@ -248,34 +96,33 @@ $s = 1;
 </head>
 
 <body>
-    <center>
 
-<center>
 <?php
   if($s != 1){
     echo'
-    <center>
-           <nav>
-      <div class="nav-left">
-        <a href="#">
-          <img src="../../img/img.png" alt="Logo">
-        </a>
-      </div>
-      <div class="nav-center">
-    
-    <center>
-        <p> اهلا بك استاذ</p>
-        <p>'.$name.'</p> 
-        </center>
-        
-    
-      </div>
-      <div class="nav-right">
-        <a href="../host.php">الصفحة الرئيسية </a>
-      </div>
-          <a href="../../login.php"><button>login out</button></a>
-    
-    </nav>';
+    <nav class="nav">
+    <div class="nav-left">
+      <a href="#">
+        <img src="../img/img.png" alt="Logo" class="nav-img">
+      </a>
+    </div>
+    <div class="nav-center">
+  
+  <center>
+      <p class="nav-center-p"> اهلا بك استاذ</p>
+      <p class="nav-center-p">'.$name.'</p> 
+      </center>
+      
+  
+    </div>
+    <div class="nav-right">
+      <a href="index.php" class="nav-right-a">من نحن</a>
+    </div>
+        <a href="../login.php"><button class="nav-button">login out</button></a>
+  
+  </nav>
+<center>
+';
     require_once '../../connect.php';
     $sql = "SELECT * FROM books WHERE id='$id'  AND stage='$stage' AND school='$code'";
     $result = mysqli_query($conn, $sql);
@@ -322,34 +169,35 @@ $s = 1;
             $new_q3a2= 0;
 
             echo '
+
             <a href="host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">رجوع</a>
-            <form method="POST" class="container">
+            <form class="form">
             <input type="hidden" name="id" value="'.$id.'" />
-            <label class="label">اسم الكتاب</label>
+            <label class="form-label">اسم الكتاب</label>
             <input type="text" name="new_Name" class="form-control" value="'.$Name.'"  />
-            <label class="label">اسم المؤلف</label>
+            <label class="form-label">اسم المؤلف</label>
             <input type="text" name="new_writer" class="form-control" value="'.$writer.'" />
-            <label class="label">رابط الصورة</label>
+            <label class="form-label">رابط الصورة</label>
             <input type="text" name="new_img" class="form-control" value="'.$img.'" />
-            <label class="label">رابط الكتاب</label>
+            <label class="form-label">رابط الكتاب</label>
             <input type="text" name="new_url" class="form-control" value="'.$url.'" />
 
-            <label class="label">سؤال الأول</label>
+            <label class="form-label">سؤال الأول</label>
             <input type="text" name="new_q1" class="form-control" value="'.$q1.'" />
           
-            <div class ="container"><div class="row">
-              <input type="radio" id="q1a1" name="new_q1ak" value="'.$q1a1.'">
-              <label for="q1a1" class= "text">'.$q1a1.'</label>
+            <div class ="container"><div class="form-row">
+              <input type="radio" id="q1a1" name="new_q1ak" value="'.$q1a1.'" class ="form-radio-input">
+              <label for="q1a1" class= "form-text1">'.$q1a1.'</label>
             </div></div>
           
-            <div class ="container"><div class="row">
-              <input type="radio" id="q1a2" name="new_q1ak" value="'.$q1a2.'">
-              <label for="q1a2" class= "text">'.$q1a2.'</label>
+            <div class ="container"><div class="form-row">
+              <input type="radio" id="q1a2" name="new_q1ak" value="'.$q1a2.'"  class ="form-radio-input">
+              <label for="q1a2" class= "form-text1">'.$q1a2.'</label>
             </div></div>
           
-            <div class ="container"><div class="row">
-              <input type="radio" id="q1a3" name="new_q1ak" value="'.$q1ak.'" >
-              <label for="q1a3" class= "text">'.$q1ak.'</label></div></div>
+            <div class ="container"><div class="form-row">
+              <input type="radio" id="q1a3" name="new_q1ak" value="'.$q1ak.'"  class ="form-radio-input">
+              <label for="q1a3" class= "form-text1">'.$q1ak.'</label></div></div>
               <script>
               const new_q1a3t = document.getElementById("q1a3");
               new_q1a3t.checked = true;
@@ -357,21 +205,21 @@ $s = 1;
               
 
           
-            <label class="label">سؤال الثاني</label>
+            <label class="form-label">سؤال الثاني</label>
             <input type="text" name="new_q2" class="form-control" value="'.$q2.'" />
-            <div class ="container"><div class="row">
-              <input type="radio" id="q2a1" name="new_q2ak" value="'.$q2a1.'">
-              <label for="q2a1" class= "text">'.$q2a1.'</label>
+            <div class ="container"><div class="form-row">
+              <input type="radio" id="q2a1" name="new_q2ak" value="'.$q2a1.'" class ="form-radio-input">
+              <label for="q2a1" class= "form-text1">'.$q2a1.'</label>
             </div></div>
           
-            <div class ="container"><div class="row">
-              <input type="radio" id="q2a2" name="new_q2ak" value="'.$q2a2.'">
-              <label for="q2a2" class= "text">'.$q2a2.'</label>
+            <div class ="container"><div class="form-row">
+              <input type="radio" id="q2a2" name="new_q2ak" value="'.$q2a2.'" class ="form-radio-input">
+              <label for="q2a2" class= "form-text1">'.$q2a2.'</label>
             </div></div>
           
-            <div class ="container"><div class="row">
-              <input type="radio" id="q2a3" name="new_q2ak" value="'.$q2ak.'" >
-              <label  for="q2a3"  class= "text">'.$q2ak.'</label></div></div>
+            <div class ="container"><div class="form-row">
+              <input type="radio" id="q2a3" name="new_q2ak" value="'.$q2ak.'"  class ="form-radio-input">
+              <label  for="q2a3"  class= "form-text1">'.$q2ak.'</label></div></div>
               <script>
               const new_q2a3t = document.getElementById("q2a3");
               new_q2a3t.checked = true;
@@ -379,21 +227,21 @@ $s = 1;
 
 
 
-            <label class="label">سؤال الثالث</label>
+            <label class="form-label">سؤال الثالث</label>
             <input type="text" name="new_q3" class="form-control" value="'.$q3.'" />
-            <div class ="container"><div class="row">
-              <input type="radio" id="q3a1" name="new_q3ak" value="'.$q3a1.'">
-              <label for="q3a1" class= "text">'.$q3a1.'</label>
+            <div class ="container"><div class="form-row">
+              <input type="radio" id="q3a1" name="new_q3ak" value="'.$q3a1.'" class ="form-radio-input">
+              <label for="q3a1" class= "form-text1">'.$q3a1.'</label>
             </div></div>
           
-            <div class ="container"><div class="row">
-              <input type="radio" id="q3a2" name="new_q3ak" value="'.$q3a2.'">
-              <label for="q3a2" class= "text">'.$q3a2.'</label>
+            <div class ="container"><div class="form-row">
+              <input type="radio" id="q3a2" name="new_q3ak" value="'.$q3a2.'" class ="form-radio-input">
+              <label for="q3a2" class= "form-text1">'.$q3a2.'</label>
             </div></div>
           
-            <div class ="container"><div class="row">
-              <input type="radio" id="q3a3" name="new_q3ak" value="'.$q3ak.'" >
-              <label for="q3a3"  class= "text">'.$q3ak.'</label></div></div>
+            <div class ="container"><div class="form-row">
+              <input type="radio" id="q3a3" name="new_q3ak" value="'.$q3ak.'"  class ="form-radio-input">
+              <label for="q3a3"  class= "form-text1">'.$q3ak.'</label></div></div>
               <script>
               const new_q3a3t = document.getElementById("q3a3");
               new_q3a3t.checked = true;
@@ -493,7 +341,7 @@ mysqli_close($conn);
 
 
 
- 
 </center>
+<link rel="stylesheet" href="../../css/style.css" />
 </body>
 </html>
