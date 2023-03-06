@@ -209,7 +209,7 @@ if($s != 1){
               $host_name = $row["name"];
               $num=$num+1;
               echo'
-            <a href="'.$edit_link.'"><i class="book"></i><span>'.$num.'-'.$host_name.'</span></a>
+            <a href="#"><i class="book"></i><span>'.$num.'-'.$host_name.'</span></a>
             ';
              }}
              echo'
@@ -226,10 +226,59 @@ if($s != 1){
 
 </section>
 
+<section class="courses">
+
+   <h1 class="heading">المكتبة</h1>
+   <h2 class="tutor">ليس الطلاب فقط من يمكنهم القرءاة يمكنك ذلك أيضا</h2>
+   <br><br><br>
+
+   <div class="box-container">
+   ';
+
+
+   $sql = "SELECT * FROM books";
+   $result = mysqli_query($conn, $sql);
+   // Generate a form for each book
+   if (mysqli_num_rows($result) > 0) {
+    $num=0;
+       while ($row = mysqli_fetch_assoc($result)) {
+        $edit_link = sprintf("host_edit/edit_host.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
+        $name = $row["Name"];
+        $publisher = $row["book-publisher"];
+        $date = $row["date"];
+        $img = $row["img"];
+        $writer = $row["writer"];
+        $url = $row["url"];
+        echo'
+        <div class="box">
+        <div class="tutor">
+           <img src="'.$img.'" alt="">
+           <div class="info">
+              <h3>'.$publisher.'</h3>
+              <span>'.$date.'</span>
+           </div>
+        </div>
+        <div class="thumb">
+        <img src="'.$img.'" alt="">
+                   <span>'.$writer.'</span>
+        </div>
+        <h3 class="title">'.$name.'</h3>
+        <a href="'.$url.'" class="inline-btn">قرائة الكتاب</a>
+     </div>      ';
+       }}
+       echo'
+ 
+   </div>
+
+
+</section>
+
+
 
   ';
   }  ?>
     <link rel="stylesheet" href="../desgin/css/style.css" />
+    <script src="../desgin/js/script.js"></script>
  </body>
 </html>
 

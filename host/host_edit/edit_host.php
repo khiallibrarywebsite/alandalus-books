@@ -170,7 +170,7 @@ $s = 1;
             echo '
 
             <a href="host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">رجوع</a>
-            <form class="form">
+            <form method="POST"  class="form">
             <center>
             <input type="hidden" name="id" value="'.$id.'" />
             <label class="form-label">اسم الكتاب</label>

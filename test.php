@@ -74,5 +74,12 @@ button[type="submit"]:hover {
 <body>
 <button name = ziad >z</button>
 <button name = ziad >x</button>
+<?php
+// Get the current date and time
+$current_date = date('Y-m-d H:i:s');
+
+// Display the current date and time
+echo "The current date and time is: " . $current_date;
+?>
 </body>
 </html>
