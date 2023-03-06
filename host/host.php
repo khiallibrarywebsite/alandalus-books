@@ -277,6 +277,11 @@ if($s != 1){
 
   ';
   }  ?>
+  <footer class="footer">
+
+&copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
+
+</footer>
     <link rel="stylesheet" href="../desgin/css/style.css" />
     <script src="../desgin/js/script.js"></script>
  </body>
