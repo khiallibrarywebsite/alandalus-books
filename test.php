@@ -72,54 +72,7 @@ button[type="submit"]:hover {
 </style>
 </head>
 <body>
-<form>
-  <h1>Sign Up</h1>
-  <p>Please fill in this form to create an account.</p>
-  <label for="name"><b>Name</b></label>
-  <input type="text" placeholder="Enter your name" name="name" required>
-  
-  <label for="email"><b>Email</b></label>
-  <input type="email" placeholder="Enter your email" name="email" required>
-
-  <label><b>Gender</b></label>
-  <div class="radio-container">
-    <label>
-      <input type="radio" name="gender" value="male">
-      <span>Male</span>
-    </label>
-    <label>
-      <input type="radio" name="gender" value="female">
-      <span>Female</span>
-    </label>
-  </div>
-
-  <label for="psw"><b>Password</b></label>
-  <input type="password" placeholder="Enter your password" name="psw" required>
-  
-  <label for="psw-repeat"><b>Repeat Password</b></label>
-  <input type="password" placeholder="Repeat your password" name="psw-repeat" required>
-  
-  <button type="submit" id="submit-btn">Submit</button>
-</form>
-
-	<script>
-const form = document.querySelector('form');
-const submitBtn = document.getElementById('submit-btn');
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  // Your form submission code goes here
-  alert('Form submitted successfully!');
-});
-
-submitBtn.addEventListener('mouseover', () => {
-  submitBtn.style.backgroundColor = '#0a73cc';
-});
-
-submitBtn.addEventListener('mouseout', () => {
-  submitBtn.style.backgroundColor = '#2196F3';
-});
-
-  </script>
+<button name = ziad >z</button>
+<button name = ziad >x</button>
 </body>
 </html>
