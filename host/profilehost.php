@@ -190,7 +190,7 @@ if($s != 1){
 </section>
 <footer class="footer">
 
-   &copy; copyright @ 2022 by <span>alandalus</span> | all rights reserved!
+   &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
 
