@@ -1,8 +1,9 @@
 <?php
 
    $db_name = 'mysql:host=localhost;dbname=course_db';
-   $user_name = 'root';
-   $user_password = '';
+   $user_name = 'ziad';
+   $user_password = 'tfUzC7/R!Fv(b]vM';
+
 
    $conn = new PDO($db_name, $user_name, $user_password);
 

@@ -4,16 +4,12 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>الصفح الرئيسية - صفحة المشرف</title>
+   <title>profile</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
-
-
- 
-
-<?php 
+   <?php 
 require_once '../connect.php';
 $c=8;
 $s=0;
@@ -138,7 +134,6 @@ if($s != 1){
       <p class="role">معلم</p>
       <a href="profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
    </div>
-   
    <nav class="navbar">
       <a href="host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-home"></i><span>الصفحة الرئيسية</span></a>
       <a href="../about.php"><i class="fas fa-question"></i><span>من نحن</span></a>
@@ -150,150 +145,59 @@ if($s != 1){
 
 </div>
 
-<section class="home-grid">
+<section class="user-profile">
 
-   <h1 class="heading">اقتراحات سريعة</h1>
+   <h1 class="heading">حسابك</h1>
 
-   <div class="box-container">
+   <div class="info">
 
-      <div class="box">
-         <h3 class="title">احصائيات</h3>
-         <p class="likes"> عدد الكتب المضافة : <span>'.$readedbooks.'</span></p>
-         <p class="likes">عدد النقاط : <span>'.$scoore.'</span></p>
+      <div class="user">
+         <img src="../img/img.png" alt="">
+         <h3>'.$name.'</h3>
+         <p>معلم</p>
+         <a href="update.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">تعديل الحساب</a>
       </div>
 
-      <div class="box">
-         <h3 class="title"> الكتب التي تم تحميلها حديثا</h3>
-         <div class="flex">
-         ';
-
-         // Connect to database
-         require_once '../connect.php';
-         
-         
-         // Retrieve all books from the table
-         $sql = "SELECT * FROM books wHERE school = '$code' AND stage = '$stage';";
-         $result = mysqli_query($conn, $sql);
-         // Generate a form for each book
-         if (mysqli_num_rows($result) > 0) {
-             while ($row = mysqli_fetch_assoc($result)) {
-              $book_id = $row["id"];
-              $edit_link = sprintf("host_edit/edit_host.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
-              $book_name = $row["Name"];
-              $book_author = $row["writer"];
-              $book_img = $row["img"];
-              echo'
-            <a href="'.$edit_link.'"><i class="book"></i><span>'.$book_name.'</span></a>
-            ';
-             }}
-             echo'
+      <div class="box-container">
+   
+         <div class="box">
+            <div class="flex">
+               <i class="fas fa-book"></i>
+               <div>
+                  <span>'.$readedbooks.'</span>
+                  <p>عدد الكتب المضافة </p>
+               </div>
+            </div>
          </div>
-      </div>
-             
-
-      <div class="box">
-         <h3 class="title">انشط الأساتذة</h3>
-         <div class="flex">
-         ';
-
-
-         $sql = "SELECT * FROM users WHERE type = 'host' ORDER BY scoore DESC LIMIT 6";
-         $result = mysqli_query($conn, $sql);
-         // Generate a form for each book
-         if (mysqli_num_rows($result) > 0) {
-          $num=0;
-             while ($row = mysqli_fetch_assoc($result)) {
-              $edit_link = sprintf("host_edit/edit_host.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
-              $host_name = $row["name"];
-              $num=$num+1;
-              echo'
-            <a href="#"><i class="book"></i><span style="width : 100%">'.$num.'-'.$host_name.'</span></a>
-            ';
-             }}
-             echo'
+   
+         <div class="box">
+            <div class="flex">
+               <i class="fas fa-star"></i>
+               <div>
+                  <span>'.$scoore.'</span>
+                  <p>عدد النقاط</p>
+               </div>
+            </div>
          </div>
-      </div>
+   
 
-      <div class="box">
-         <h3 class="title">قم برفع الكتب</h3>
-         <p class="tutor">يمكنك رفع الكتب ليقرئها الطلاب في جميع فروع مدارس الأندلس</p>
-         <a href="host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">ارفع الكتب الان</a>
-      </div>
 
+
+   
+      </div>
    </div>
 
 </section>
+<footer class="footer">
 
-<section class="courses">
-
-   <h1 class="heading">المكتبة</h1>
-   <h2 class="tutor">ليس الطلاب فقط من يمكنهم القرءاة يمكنك ذلك أيضا</h2>
-   <br><br><br>
-
-   <div class="box-container">
-   ';
-
-
-   $sql = "SELECT * FROM books";
-   $result = mysqli_query($conn, $sql);
-   // Generate a form for each book
-   if (mysqli_num_rows($result) > 0) {
-    $num=0;
-       while ($row = mysqli_fetch_assoc($result)) {
-        $edit_link = sprintf("host_edit/edit_host.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
-        $name = $row["Name"];
-        $publisher = $row["book-publisher"];
-        $date = $row["date"];
-        $img = $row["img"];
-        $writer = $row["writer"];
-        $url = $row["url"];
-        echo'
-        <div class="box">
-        <div class="tutor">
-           <img src="'.$img.'" alt="">
-           <div class="info">
-              <h3>'.$publisher.'</h3>
-              <span>'.$date.'</span>
-           </div>
-        </div>
-        <div class="thumb">
-        <img src="'.$img.'" alt="">
-                   <span>'.$writer.'</span>
-        </div>
-        <h3 class="title">'.$name.'</h3>
-        <a href="'.$url.'" class="inline-btn">قرائة الكتاب</a>
-     </div>      ';
-       }}
-       echo'
- 
-   </div>
-
-
-</section>
-
-
-
-  ';
-  }  ?>
-  <footer class="footer">
-
-&copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
+   &copy; copyright @ 2022 by <span>alandalus</span> | all rights reserved!
 
 </footer>
-    <link rel="stylesheet" href="../desgin/css/style.css" />
-    <script src="../desgin/js/script.js"></script>
- </body>
+
+';
+}
+?>
+<link rel="stylesheet" href="../desgin/css/style.css">
+<script src="../desgin/js/script.js"></script>
+</body>
 </html>
-
-<!-- <div>
-<div class="square" style="width: 100px; height: 100px; background-color: lightblue; text-align: center; margin-left: 15px; line-height: 100px;">
-<a href="host_see_user/host_users_see.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> عرض الطلاب</a></div>
-
-<div class="square" style="width: 100px; height: 100px; background-color: lightblue; text-align: center; margin-left: 15px; line-height: 100px;">
-<a href="host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"> إضافة كتاب</a></div>
-  
- <div class="square" style="width: 100px; height: 100px; background-color: lightblue; text-align: center; margin-left: 15px; line-height: 100px;">
- <a href="host_edit/host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">تعديل الكتب</a></div>
-
-  </div> -->
-  
