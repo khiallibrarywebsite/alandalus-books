@@ -99,7 +99,7 @@ if($s != 1){
    
   <section class="flex">
 
-     <a href="host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">Educa.</a>
+  <a href="host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
         <h2>مدارس الأندلس الأهلية</h2>

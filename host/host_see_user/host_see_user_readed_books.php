@@ -102,7 +102,7 @@ if($s != 1){
    
   <section class="flex">
 
-     <a href="../host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">Educa.</a>
+  <a href="../host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
         <h2>مدارس الأندلس الأهلية</h2>
@@ -232,9 +232,6 @@ if (mysqli_num_rows($result) > 0) {
         if (strpos($id_readed_books, ",".$book_id.":") !== false) {
           echo'
           <div class="box">
-          <div class="tutor">
-             <img src="'.$book_img.'" alt="">
-          </div>
           <div class="thumb">
           <img src="'.$book_img.'" alt="">
                      <span>'.$book_author.'</span>
