@@ -158,7 +158,7 @@ if($s != 1){
 
    <div class="box offer">
       <h3>قم برفع كتب</h3>
-      <p>قم برفع الكتب الن ليقرئها طلاب من جميع الأنحاء</p>
+      <p>قم برفع الكتب الان ليقرئها طلاب من جميع الأنحاء</p>
       <a href="../host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالرفع</a>
    </div>
 ';
@@ -168,7 +168,7 @@ require_once '../../connect.php';
 
 
 // Retrieve all books from the table
-$sql = "SELECT * FROM `users` WHERE type = 'user' ORDER BY `readedbooks` ASC";
+$sql = "SELECT * FROM `users` WHERE type = 'user' ORDER BY `scoore` ASC";
 // `stage` = '$stage' AND school = '$code'   AND 
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
@@ -188,8 +188,8 @@ if (mysqli_num_rows($result) > 0) {
               <span>طالب</span>
            </div>
         </div>
-        <p>عدد النقاط  : <span>'.$scoore.'</span></p>
-        <p>عدد الكتب المقروئة  :'.$readedbooks.' <span>1208</span></p>
+        <p> عدد النقاط: <span>'.$scoore.'</span></p>
+        <p> عدد الكتب المقروئة: <span>'.$readedbooks.'</span></p>
         <a href="'.$go_to.'" class="inline-btn">عرض الكتب التي تمت قرائتها</a>
      </div>
         ';
@@ -198,7 +198,7 @@ if (mysqli_num_rows($result) > 0) {
 
     </section>';
 } else {
-    echo "No books found in the table.";
+    echo "لا يوجد طلبه";
 }
 
 
