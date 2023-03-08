@@ -143,7 +143,7 @@ if($s != 1){
       <a href="host_edit/host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fa-solid fa-book"></i><span>الكتب المضافة</span></a>
       <a href="host_see_user/host_users_see.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-male"></i><span>الطلاب</span></a>
       <a href="host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-plus"></i><span>إضافة كتاب</span></a>
-      <a href="../contact.php"><i class="fas fa-headset"></i><span>راسلنا</span></a>
+      <a href="contact.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-headset"></i><span>راسلنا</span></a>
    </nav>
 
 </div>
@@ -169,13 +169,13 @@ if($s != 1){
    <form action="" method="post" enctype="multipart/form-data">
       <h3>تعديل الحساب</h3>
       <p>تعديل الإسم</p>
-      <input type="text" name="name" placeholder="'.$name.'" class="box" value="'.$name.'">
+      <input type="text" name="name" placeholder="'.$name.'" class="box" required value="'.$name.'">
       <p>تعديل اسم المستخدم</p>
-      <input type="text" name="username" placeholder="'.$username.'" class="box"  value="'.$username.'">
+      <input type="text" name="username" placeholder="'.$username.'" class="box" required   value="'.$username.'">
       <p>كلمة السر السابقة</p>
-      <input type="password" name="old_pass" placeholder="اكتب كلمة السر السابقة" class="box">
+      <input type="password" name="old_pass" placeholder="اكتب كلمة السر السابقة" required  class="box">
       <p>كلمة سر جديدة</p>
-      <input type="password" name="new_pass" placeholder="اكتب كلمة سر جديدة" class="box">
+      <input type="password" name="new_pass" placeholder="اكتب كلمة سر جديدة" required  class="box">
       <input type="submit" value="تحديث" name="update" class="btn">
       </form>
       </section>
@@ -194,6 +194,7 @@ if($s != 1){
               if (!isset($_POST[$field])) {
                   echo "Please fill out all form fields and select the correct answers for the questions";
                   return;
+                  break; 
               } else {
                   // Get variables using mysqli_real_escape_string to prevent SQL injection
                   $new_name = mysqli_real_escape_string($conn, $_POST['name']);
@@ -204,7 +205,8 @@ if($s != 1){
                   // Check if the old password is correct
                   if($password1 != $old_pass){
 
-                    echo "<h3 chass='headers'>الرجاء كتابة كلمة السر القديمة الصحيحة</h3>";                  
+                    echo "<h3 chass='headers'>الرجاء كتابة كلمة السر القديمة الصحيحة</h3>";
+                    break;                  
                 } else {
                     $sql = "SELECT * FROM users";
                     $result = mysqli_query($conn, $sql);
@@ -225,6 +227,7 @@ if($s != 1){
                                 // Check if the new username is different from the current one
                                 if ($username1 != $titlecompleter) {
                                     echo "<h3 chass='headers'>الرجاء كتابة اسم مستخدم اخر</h3>";
+                                    break; 
                                 } else {
                                     
                                     // Check if we've reached the end of the user list
@@ -239,6 +242,7 @@ if($s != 1){
                                             exit();
                                         } else {
                                             echo "يرجي المحاولة مرة اخري" . mysqli_error($conn);
+                                            break; 
                                         }
                                     }
                                 }
@@ -257,6 +261,7 @@ if($s != 1){
                                     } else {
                 
                                         echo "يرجي المحاولة مرة اخري" . mysqli_error($conn);
+                                        break; 
                             } 
                                 }
 

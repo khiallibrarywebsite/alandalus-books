@@ -18,18 +18,17 @@ require_once '../connect.php';
 $c=8;
 $s=0;
 if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
-  if(isset($_GET['true'])){
-    if($_GET['true'] == "true"){
-      echo '<script type="text/javascript">';
-      echo ' alert("تمت إضافة الكتاب بنجاح")';  //not showing an alert box.
-      echo '</script>';
-      $c=1;
-      if($c==1){
-      $host = 'host.php?user=' . urlencode($_GET['user']) . '&school_code=' . urlencode($_GET['school_code']) . '&pass=' . urlencode($_GET['pass']) ;
-      header("Location: $host");}
+
+    if(isset($_GET['true'])){
+        if($_GET['true'] == "true"){
+          echo '<script type="text/javascript">';
+          echo ' alert("تمت التعديل الكتاب بنجاح")';  //not showing an alert box.
+          echo '</script>';
+          
+    
+      }
     }
 
-  }
   if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'])) {
     $password = $_GET['pass'];
     $titlecompleter = $_GET['user'];
@@ -145,7 +144,7 @@ if($s != 1){
       <a href="host_edit/host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fa-solid fa-book"></i><span>الكتب المضافة</span></a>
       <a href="host_see_user/host_users_see.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-male"></i><span>الطلاب</span></a>
       <a href="host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-plus"></i><span>إضافة كتاب</span></a>
-      <a href="../contact.php"><i class="fas fa-headset"></i><span>راسلنا</span></a>
+      <a href="contact.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-headset"></i><span>راسلنا</span></a>
    </nav>
 
 </div>
@@ -158,16 +157,54 @@ if($s != 1){
       </div>
 
       <form action="" method="post">
-         <h3>get in touch</h3>
-         <input type="text" placeholder="enter your name" name="name" required maxlength="50" class="box">
-         <input type="email" placeholder="enter your email" name="email" required maxlength="50" class="box">
-         <input type="number" placeholder="enter your number" name="number" required maxlength="50" class="box">
-         <textarea name="msg" class="box" placeholder="enter your message" required maxlength="1000" cols="30" rows="10"></textarea>
-         <input type="submit" value="send message" class="inline-btn" name="submit">
+         <h3>اكتب رسالتك</h3>
+         <input type="text" placeholder="اكتب اسمك" name="name" required class="box">
+         <input type="email" placeholder="اكتب الإميل" name="email" required class="box">
+         <textarea name="msg" class="box" placeholder="اكتب رسالتك ( مشكله في الموقع - فكره لتحسين الموقع - طلب ) وسوف يتم ارسالها الي فريق مختص" required cols="30" rows="10"></textarea>
+         <input type="submit" value="ارسال الرسالة" class="inline-btn" name="send">
       </form>
 
-   </div>
+   </div>';
 
+   if (isset($_POST['send'])) {
+    require_once '../connect.php';
+    // Check if all form fields are set
+    $requiredFields = [
+
+      'name',
+      'email',
+      'msg'
+    ];
+  foreach ($requiredFields as $field) {
+      if (!isset($_POST[$field])) {
+          echo "قم باكمال جميع المتطلبات";
+          return;
+      } else {
+          // Get variables using mysqli_real_escape_string to prevent SQL injection
+          $name1 = mysqli_real_escape_string($conn, $_POST['name']);
+          $email = mysqli_real_escape_string($conn, $_POST['email']);
+          $msg = mysqli_real_escape_string($conn, $_POST['msg']);
+
+          $current_date = date('Y-m-d H:i:s');
+          $sql = "INSERT INTO contact (`name`, `date`, `message`, `type`, `email`)
+          VALUES ('$name1' ,'$current_date' ,'$msg' ,'host' ,'$email')";
+
+
+            if (mysqli_query($conn, $sql)) {
+
+                echo "<h3 chass='headers'>تم التعديل بنجاح</h3>";
+                $redirect_url = "contact.php?user=$titlecompleter&school_code=$code&pass=$password&true=true";
+                            
+                // Redirect the user to the URL
+                header("Location: $redirect_url");
+                exit();
+            }else{
+                echo "حدث خطا أثناء الإرسال";
+            }
+      }
+    }
+}
+          echo'
    <div class="box-container">
 
       <div class="box">
