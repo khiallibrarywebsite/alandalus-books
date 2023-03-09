@@ -314,7 +314,7 @@ echo'
 }
 ?>
 
-<link rel="stylesheet" href="desgin/css/style.css" />
-    <script src="desgin/js/script.js"></script>
+<link rel="stylesheet" href="css/stylecss.css" />
+<script src="js/js.js"></script>
 </body>
 </html>

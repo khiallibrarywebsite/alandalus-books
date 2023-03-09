@@ -48,12 +48,12 @@ ob_start();
 
 .form .form-text {
   width: 100%;
-  padding: 10px;
+  padding: 13px;
   margin-bottom: 20px;
   border: none;
   border-radius: 5px;
   display: block;
-  margin-left: 50px;
+  margin-left: 50px;  margin-top: 50px;
   background-color: #F2F2F2;
   cursor: pointer;
   color: black;
@@ -61,7 +61,7 @@ ob_start();
 }
 .form .form-text2 {
   width: 80%;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 20px;
   border: none;
   border-radius: 5px;
@@ -76,10 +76,6 @@ ob_start();
 .form .form-text:hover {
   background-color: #3E6BE6;
 }
-.form .form-text2:hover {
-  background-color: #3E6BE6;
-}
-
 
 .form .label {
   margin-right: 5px;
@@ -92,6 +88,10 @@ ob_start();
 
 .form .radio-input:checked + .form-text {
   background-color: #3E6BE6;
+}
+.form input[type="radio"] {
+  margin-left: 50px;
+  margin-top: 50px;
 }
 
 .form input[type="email"],
@@ -672,7 +672,7 @@ ob_end_flush(); // flush the output buffer
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-<link rel="stylesheet" href="../../desgin/css/style.css">
-<script src="../../desgin/js/script.js"></script>
+<link rel="stylesheet" href="../../css/stylecss.css" />
+<script src="../../js/js.js"></script>
 </body>
 </html>

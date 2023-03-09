@@ -48,12 +48,12 @@ ob_start();
 
 .form .form-text1 {
   width: 30%;
-  padding: 10px;
+  padding: 13px;
   margin-bottom: 20px;
   border: none;
   border-radius: 5px;
   display: block;
-  margin-left: 50px;
+  margin-left: 50px;  margin-top: 50px;
   background-color: #F2F2F2;
   cursor: pointer;
   color: black;
@@ -61,7 +61,7 @@ ob_start();
 }
 .form .form-text2 {
   width: 80%;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 20px;
   border: none;
   border-radius: 5px;
@@ -76,9 +76,7 @@ ob_start();
 .form .form-text1:hover {
   background-color: #3E6BE6;
 }
-.form .form-text2:hover {
-  background-color: #3E6BE6;
-}
+
 
 
 .form .label {
@@ -93,6 +91,7 @@ ob_start();
 
 .form input[type="radio"] {
   margin-left: 50px;
+  margin-top: 50px;
 }
 
 
@@ -388,22 +387,20 @@ if (mysqli_num_rows($result) > 0) {
         $new_q3a2= 0;
 
         echo '
-
-        <a href="host_edit.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">رجوع</a>
         <form method="POST"  class="form">
         <center>
         <input type="hidden" name="id" value="'.$id.'" />
         <label class="form-label">اسم الكتاب</label>
-        <input type="text" name="new_Name" class="form-control" value="'.$Name.'"  />
+        <input type="text" name="new_Name" class="form-text2" value="'.$Name.'"  />
         <label class="form-label">اسم المؤلف</label>
-        <input type="text" name="new_writer" class="form-control" value="'.$writer.'" />
+        <input type="text" name="new_writer" class="form-text2" value="'.$writer.'" />
         <label class="form-label">رابط الصورة</label>
-        <input type="text" name="new_img" class="form-control" value="'.$img.'" />
+        <input type="text" name="new_img" class="form-text2" value="'.$img.'" />
         <label class="form-label">رابط الكتاب</label>
-        <input type="text" name="new_url" class="form-control" value="'.$url.'" />
+        <input type="text" name="new_url" class="form-text2" value="'.$url.'" />
 
         <label class="form-label">سؤال الأول</label>
-        <input type="text" name="new_q1" class="form-control" value="'.$q1.'" />
+        <input type="text" name="new_q1" class="form-text2" value="'.$q1.'" />
       
         <div class ="container"><div class="form-row">
           <input type="radio" id="q1a1" name="new_q1ak" value="'.$q1a1.'" class ="form-radio-input">
@@ -426,7 +423,7 @@ if (mysqli_num_rows($result) > 0) {
 
       
         <label class="form-label">سؤال الثاني</label>
-        <input type="text" name="new_q2" class="form-control" value="'.$q2.'" />
+        <input type="text" name="new_q2" class="form-text2" value="'.$q2.'" />
         <div class ="container"><div class="form-row">
           <input type="radio" id="q2a1" name="new_q2ak" value="'.$q2a1.'" class ="form-radio-input">
           <label for="q2a1" class= "form-text1">'.$q2a1.'</label>
@@ -448,7 +445,7 @@ if (mysqli_num_rows($result) > 0) {
 
 
         <label class="form-label">سؤال الثالث</label>
-        <input type="text" name="new_q3" class="form-control" value="'.$q3.'" />
+        <input type="text" name="new_q3" class="form-text2" value="'.$q3.'" />
         <div class ="container"><div class="form-row">
           <input type="radio" id="q3a1" name="new_q3ak" value="'.$q3a1.'" class ="form-radio-input">
           <label for="q3a1" class= "form-text1">'.$q3a1.'</label>
@@ -561,7 +558,7 @@ ob_end_flush(); // flush the output buffer
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-<link rel="stylesheet" href="../../desgin/css/style.css">
-<script src="../../desgin/js/script.js"></script>
+<link rel="stylesheet" href="../../css/stylecss.css" />
+<script src="../../js/js.js"></script>
 </body>
 </html>

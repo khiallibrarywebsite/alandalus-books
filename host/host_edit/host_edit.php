@@ -91,7 +91,6 @@ $s = 1;
 
 <?php
 if($s != 1){
-
   echo'
 
   <header class="header">
@@ -146,8 +145,13 @@ if($s != 1){
       <a href="../contact.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-headset"></i><span>راسلنا</span></a>
    </nav>
 
-</div>        <section class="courses">
-<div class="box-container">';
+</div>        <center><section class="courses">
+<div class="box-container">
+   <div class="box offer" style="padding: 70px;">
+      <h3 class="title">قم برفع كتب</h3>
+      <p  class="title">يمكنك رفع الكتب ليقرئها الطلاب في جميع فروع مدارس الأندلس</p>
+      <a href="../host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالرفع</a>
+   </div>';
 
 // Retrieve all books from the table
 $sql = "SELECT * FROM books wHERE school = '$code' AND stage = '$stage';";
@@ -177,7 +181,7 @@ if (mysqli_num_rows($result) > 0) {
   
     }
     echo "</div>
-    </section>";
+    </section></center>";
 }
 // Handle form submission
 if (isset($_POST["delete"])) {
@@ -210,7 +214,7 @@ $conn->close();
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-<link rel="stylesheet" href="../../desgin/css/style.css">
-<script src="../../desgin/js/script.js"></script>
+<link rel="stylesheet" href="../../css/stylecss.css" />
+<script src="../../js/js.js"></script>
 </body>
 </html>

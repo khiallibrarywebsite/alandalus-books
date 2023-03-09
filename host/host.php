@@ -145,7 +145,7 @@ if($s != 1){
    </nav>
 
 </div>
-
+<center>
 <section class="home-grid">
 
    <h1 class="heading">اقتراحات سريعة</h1>
@@ -266,7 +266,7 @@ if($s != 1){
 
 
 </section>
-
+</center>
 
 
   ';
@@ -276,8 +276,8 @@ if($s != 1){
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-    <link rel="stylesheet" href="../desgin/css/style.css" />
-    <script src="../desgin/js/script.js"></script>
+    <link rel="stylesheet" href="../css/stylecss.css" />
+    <script src="../js/js.js"></script>
  </body>
 </html>
 

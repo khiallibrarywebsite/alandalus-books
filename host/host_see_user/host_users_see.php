@@ -145,7 +145,6 @@ if($s != 1){
    </nav>
 
 </div>
-
 <section class="teachers">
 
 <h1 class="heading">الطلاب</h1>
@@ -164,7 +163,7 @@ require_once '../../connect.php';
 
 
 // Retrieve all books from the table
-$sql = "SELECT * FROM `users` WHERE type = 'user' ORDER BY `scoore` ASC";
+$sql = "SELECT * FROM `users` WHERE type = 'user' ORDER BY `scoore` DESC";
 // `stage` = '$stage' AND school = '$code'   AND 
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
@@ -205,8 +204,8 @@ if (mysqli_num_rows($result) > 0) {
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-    <link rel="stylesheet" href="../../desgin/css/style.css" />
-    <script src="../../desgin/js/script.js"></script>
+<link rel="stylesheet" href="../../css/stylecss.css" />
+<script src="../../js/js.js"></script>
  </body>
 
 </html>

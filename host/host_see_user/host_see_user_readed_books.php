@@ -159,7 +159,7 @@ if (mysqli_num_rows($result) > 0) {
         $scoore = $row["scoore"];
         $readedbooks = $row["readedbooks"];
         $number=0;
-        echo'
+        echo'<center>
         <section class="user-profile">
         
            <h1 class="heading">حساب الطالب '.$name_user.'</h1>
@@ -203,7 +203,7 @@ if (mysqli_num_rows($result) > 0) {
         
         </section>
         <section class="courses">
-        <div class="box-container">
+        <div class="box-container"></center>
         ';
     }
 
@@ -260,7 +260,7 @@ mysqli_stmt_close($stmt);
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-<link rel="stylesheet" href="../../desgin/css/style.css">
-<script src="../../desgin/js/script.js"></script>
+<link rel="stylesheet" href="../../css/stylecss.css" />
+<script src="../../js/js.js"></script>
 </body>
 </html>

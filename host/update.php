@@ -162,7 +162,7 @@ if($s != 1){
         $name = $row['name'];
         $password1 = $row['password'];
         $username = $row['username'];
-         echo'
+         echo'<center>
          <section class="form-container">
 
    <form action="" method="post" enctype="multipart/form-data">
@@ -274,16 +274,14 @@ if($s != 1){
           }
           }
         
-echo'<footer class="footer">
+echo'</center><footer class="footer">
 
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>';
 }
 ?>
-<link rel="stylesheet" href="../desgin/css/style.css">
-<script src="../desgin/js/script.js"></script>
+    <link rel="stylesheet" href="../css/stylecss.css" />
+<script src="../js/js.js"></script>
 </body>
 </html>
-
-            
