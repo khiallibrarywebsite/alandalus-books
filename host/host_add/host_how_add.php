@@ -12,7 +12,22 @@
    border-right: var(--border);
    z-index: 1200;
    overflow-y: auto; /* add this line */
-}</style>
+}.footer {
+   /* existing styles */
+   opacity: 0;
+   animation: fade-in 0.5s ease forwards;
+ }
+ 
+ @keyframes fade-in {
+    to {
+     opacity: 1;
+     transform: translateY(20px);
+   }
+   from {
+     opacity: 0;
+     transform: translateY(0);
+   }
+ }</style>
     <?php 
 require_once '../../connect.php';
 $s=0;

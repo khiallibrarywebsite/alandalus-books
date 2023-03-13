@@ -21,7 +21,22 @@ ob_start();
    border-right: var(--border);
    z-index: 1200;
    overflow-y: auto; /* add this line */
-}
+}.footer {
+   /* existing styles */
+   opacity: 0;
+   animation: fade-in 0.5s ease forwards;
+ }
+ 
+ @keyframes fade-in {
+    to {
+     opacity: 1;
+     transform: translateY(20px);
+   }
+   from {
+     opacity: 0;
+     transform: translateY(0);
+   }
+ }
   .form {
   max-width: 80%;
   margin: 50px auto;

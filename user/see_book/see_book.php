@@ -185,7 +185,22 @@ label {
 input[type="radio"] {
   color: black;
 }
-</style>
+.footer {
+   /* existing styles */
+   opacity: 0;
+   animation: fade-in 0.5s ease forwards;
+ }
+ 
+ @keyframes fade-in {
+    to {
+     opacity: 1;
+     transform: translateY(20px);
+   }
+   from {
+     opacity: 0;
+     transform: translateY(0);
+   }
+ }</style>
 
 
    <?php 
