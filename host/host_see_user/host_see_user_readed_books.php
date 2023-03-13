@@ -154,7 +154,7 @@ $result = mysqli_query($conn, $sql);
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_assoc($result)) {
-        $id_readed_books = $row["id_readed_added_books"];
+        $id_readed_books1 = $row["id_readed_added_books"];
         $name_user = $row["name"];
         $scoore = $row["scoore"];
         $readedbooks = $row["readedbooks"];
@@ -202,8 +202,7 @@ if (mysqli_num_rows($result) > 0) {
            </div>
         
         </section>
-        <section class="courses">
-        <div class="box-container"></center>
+
         ';
     }
 
@@ -212,7 +211,8 @@ if (mysqli_num_rows($result) > 0) {
     echo "<center>حدث خطا لا يمكن تحميل البيانات</center>";
 
 }
-
+echo'        <section class="courses">
+<div class="box-container"> ';
 
 $sql = "SELECT * FROM books";
 $result = mysqli_query($conn, $sql);
@@ -224,29 +224,45 @@ if (mysqli_num_rows($result) > 0) {
         $book_author = $row["writer"];
         $book_img = $row["img"];
         $book_url = $row["url"];
-        // Check if the book ID is already in the list of read books
-        if (strpos($id_readed_books, ",".$book_id.":") !== false) {
-          echo'
-          <div class="box">
-          <div class="thumb">
-          <img src="'.$book_img.'" alt="">
-                     <span>'.$book_author.'</span>
-          </div>
-          <h3 class="title">'.$book_name.'</h3>
-          <a href="'.$book_url.'" class="inline-btn">قرائة الكتاب</a>
-       </div>  ';
-            $number=$number+1;
-        }
-        
-    }
+
+        // Attempt to decode the JSON string
+        $id_readed = json_decode($id_readed_books1, true);
+
+        // Check if decoding was successful and we have an array of objects
+        if (is_array($id_readed) && count($id_readed) > 0 && isset($id_readed[0]['id'])) { 
+            // Loop through each element of the array
+
+            $idFound = false; // Flag variable to keep track of whether the ID is found or not
+
+            foreach ($id_readed as $element) {
+                // Check if the 'id' column of this element contains the $id value
+                if ($element['id'] === $book_id) {
+                    $idFound = true;
+                    break; // Stop searching after the first match is found
+                }
+            }
+            
+            if ($idFound) {
+               echo'
+               <div class="box">
+               <div class="thumb">
+               <img src="'.$book_img.'" alt="">
+                          <span>'.$book_author.'</span>
+               </div>
+               <h3 class="title">'.$book_name.'</h3>
+               <a href="'.$book_url.'" class="inline-btn">قرائة الكتاب</a>
+            </div>  '; // Set $f to 1 if the ID is found
+            }
+        } else {
+         echo "<center><h1 class= 'headers'>الطالب لم يقرأ اي كتاب</h1></center>";
+         break;
+}
+    }   
+    } else {
+      echo "حدث خطا لا يمكن تحميل البيانات";
+  }
     echo "</div>
     </section>";
-} else {
-    echo "حدث خطا لا يمكن تحميل البيانات";
-}
-if ($number == 0) {
-    echo "<center><h1 class= 'headers'>الطالب لم يقرأ اي كتاب</h1></center>";
-}
 
 
 

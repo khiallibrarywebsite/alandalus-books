@@ -102,7 +102,7 @@ if($s != 1){
       <img src="../img/img.png" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">طالب</p>
-      <a href="profileuser.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
+      <a href="profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
    </div>
 
    <nav class="navbar">
@@ -129,7 +129,7 @@ if($s != 1){
       </div>
 
       <div class="box">
-         <h3 class="title">الكتب المقروئة حديثا</h3>
+         <h3 class="title">الكتب المرفوعة حديثا</h3>
          <div class="flex">
          ';
 
@@ -138,13 +138,13 @@ if($s != 1){
          
          
          // Retrieve all books from the table
-         $sql = "SELECT * FROM books  ORDER BY `date` DESC LIMIT 3;";
+         $sql = "SELECT * FROM books WHERE stage = '$stage' ORDER BY `date` DESC LIMIT 3;";
          $result = mysqli_query($conn, $sql);
          // Generate a form for each book
          if (mysqli_num_rows($result) > 0) {
              while ($row = mysqli_fetch_assoc($result)) {
               $book_id = $row["id"];
-              $see_link = sprintf("see_book/see_readed_again.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
+              $see_link = sprintf("see_book/see_book.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
               $book_name = $row["Name"];
               $book_author = $row["writer"];
               $book_img = $row["img"];
@@ -199,13 +199,12 @@ if($s != 1){
    ';
 
 
-   $sql = "SELECT * FROM books ORDER BY `date` DESC LIMIT 6;";
+   $sql = "SELECT * FROM books where stage = '$stage' ORDER BY `date` DESC LIMIT 6;";
    $result = mysqli_query($conn, $sql);
    // Generate a form for each book
    if (mysqli_num_rows($result) > 0) {
     $num=0;
        while ($row = mysqli_fetch_assoc($result)) {
-        $edit_link = sprintf("host_edit/edit_host.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
         $name = $row["Name"];
         $publisher = $row["book-publisher"];
         $date = $row["date"];

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
 
 :root{
-   --main-color:#535bcb;
+   --main-color:#0021f6;
    --red:#e74c3c;
    --orange:#f39c12;
    --light-color:#888;
@@ -46,7 +46,24 @@ body{
    background-color: var(--light-bg);
    padding-left: 30rem;
 }
-
+@keyframes bookAnimation {
+   0% {
+     opacity: 0;
+     transform: translateY(-20px);
+   }
+   100% {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+ 
+ /* Styles for the box element */
+ .box {
+   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+   animation-name: bookAnimation;
+   animation-duration: 0.5s;
+   animation-fill-mode: backwards;
+ }
 body.dark{
    --light-color:#aaa;
    --light-bg:#333;
@@ -243,92 +260,54 @@ section{
    display: none;
 }
 
-.side-bar{
+.side-bar {
    position: fixed;
-   top: 0; left: 0;
-   width: 30rem;
+   top: 0;
+   left: 0;
    background-color: var(--white);
    height: 100vh;
    border-right: var(--border);
    z-index: 1200;
-}
-
-.side-bar #close-btn{
+ }
+ 
+ /* Default width */
+ .side-bar {
+   width: 30rem;
+ }
+ 
+ /* Media query for smaller screens */
+ @media (max-width: 768px) {
+   .side-bar {
+     width: 100%;
+     left: -100%;
+     transition: left 0.3s ease-in-out;
+   }
+   .side-bar.active {
+     left: 0;
+   }
+ }
+ 
+ /* Media query for larger screens */
+ @media (min-width: 768px) {
+   .side-bar {
+     width: 30rem;
+     left: 0;
+     transition: none;
+   }
+   .side-bar.active {
+     left: -30rem;
+   }
+ }
+ 
+ /* Other styles */
+ .side-bar #close-btn {
    text-align: right;
    padding: 2rem;
    display: none;
-}
-
-.side-bar #close-btn i{
-   text-align: right;
-   font-size: 2.5rem;
-   background:var(--red);
-   border-radius: .5rem;
-   color:var(--white);
-   cursor: pointer;
-   height: 4.5rem;
-   width: 4.5rem;
-   line-height: 4.5rem;
-   text-align: center;
-}
-
-.side-bar #close-btn i:hover{
-   background-color: #C0C0C0;
-}
-
-.side-bar .profile{
-   padding:3rem 2rem;
-   text-align: center;
-}
-
-.side-bar .profile .image{
-   height: 10rem;
-   width: 10rem;
-   border-radius: 50%;
-   object-fit: contain;
-   margin-bottom: 1rem;
-}
-
-.side-bar .profile .name{
-   font-size: 2rem;
-   color:var(--black);
-   overflow: hidden;
-   text-overflow: ellipsis;
-   white-space: nowrap;
-}
-
-.side-bar .profile .role{
-   font-size: 1.8rem;
-   color: var(--light-color);
-}
-
-.side-bar .navbar a{
-   display: block;
-   padding: 2rem;
-   font-size: 2rem;
-}
-
-.side-bar .navbar a i{
-   margin-right: 1.5rem;
-   color:var(--main-color);
-   transition: .2s linear;
-}
-
-.side-bar .navbar a span{
-   color:var(--light-color);
-}
-
-.side-bar .navbar a:hover{
-   background-color: #C0C0C0;
-}
-
-.side-bar .navbar a:hover i{
-   margin-right: 2.5rem;
-}
-
-.side-bar.active{
-   left: -30rem;
-}
+ }
+ 
+ /* ... other styles ... */
+ 
 
 .home-grid .box-container{
    display: grid;
@@ -1272,11 +1251,19 @@ section{
    width: 100%;
    margin: 1rem 0;
 }
+body {
+   min-height: 100vh;
+   margin: 0;
+   padding: 0;
+ }
+ 
+ .content {
+   /* other styles ... */
+   margin-bottom: 10rem; /* adjust as needed based on footer height */
+ }
+ 
 
-
-
-
-
+ 
 
 .footer{
    background-color: var(--white);
@@ -1374,3 +1361,6 @@ section{
    }
 
 }
+
+
+

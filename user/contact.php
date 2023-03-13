@@ -8,7 +8,54 @@
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-
+<style>.side-bar {
+   position: fixed;
+   top: 0;
+   left: 0;
+   background-color: var(--white);
+   height: 100vh;
+   border-right: var(--border);
+   z-index: 1200;
+ }
+ 
+ /* Default width */
+ .side-bar {
+   width: 30rem;
+ }
+ 
+ /* Media query for smaller screens */
+ @media (max-width: 768px) {
+   .side-bar {
+     width: 100%;
+     left: -100%;
+     transition: left 0.3s ease-in-out;
+   }
+   .side-bar.active {
+     left: 0;
+   }
+ }
+ 
+ /* Media query for larger screens */
+ @media (min-width: 768px) {
+   .side-bar {
+     width: 30rem;
+     left: 0;
+     transition: none;
+   }
+   .side-bar.active {
+     left: -30rem;
+   }
+ }
+ 
+ /* Other styles */
+ .side-bar #close-btn {
+   text-align: right;
+   padding: 2rem;
+   display: none;
+ }
+ 
+ /* ... other styles ... */
+ </style>
 
    <?php 
 require_once '../connect.php';
@@ -81,7 +128,7 @@ if($s != 1){
         <img src="../img/img.png" class="image" alt="">
         <h3 class="name">'.$name.'</h3>
         <p class="role">طالب</p>
-        <a href="profileuser.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
+        <a href="profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
         <div class="flex-btn">
            <a href="../login.php" class="option-btn">تسجيل خروج</a>
         </div>

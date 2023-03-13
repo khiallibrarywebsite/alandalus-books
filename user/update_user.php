@@ -90,7 +90,7 @@ if($s != 1){
         <img src="../img/img.png" class="image" alt="">
         <h3 class="name">'.$name.'</h3>
         <p class="role">طالب</p>
-        <a href="profileuser.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
+        <a href="profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
         <div class="flex-btn">
            <a href="../login.php" class="option-btn">تسجيل خروج</a>
         </div>
@@ -150,6 +150,8 @@ if ($result && mysqli_num_rows($result) > 0) {
 <input type="password" name="old_pass" placeholder="اكتب كلمة السر السابقة" required  class="box">
 <p>كلمة سر جديدة</p>
 <input type="password" name="new_pass" placeholder="اكتب كلمة سر جديدة" required  class="box">
+<p>إعادة كلمة السر جديدة</p>
+<input type="password" name="re_new_pass" placeholder="قم بإعادة كتابة كلمة السر جديدة" required  class="box">
 <input type="submit" value="تحديث" name="update" class="btn">
 </form>
 </section>
@@ -162,7 +164,8 @@ if ($result && mysqli_num_rows($result) > 0) {
         'name',
         'username',
         'old_pass',
-        'new_pass'
+        'new_pass',
+        're_new_pass'
       ];
     foreach ($requiredFields as $field) {
         if (!isset($_POST[$field])) {
@@ -173,8 +176,10 @@ if ($result && mysqli_num_rows($result) > 0) {
             // Get variables using mysqli_real_escape_string to prevent SQL injection
             $new_name = mysqli_real_escape_string($conn, $_POST['name']);
             $new_pass = mysqli_real_escape_string($conn, $_POST['new_pass']);
+            $re_new_pass = mysqli_real_escape_string($conn, $_POST['re_new_pass']);
             $old_pass = mysqli_real_escape_string($conn, $_POST['old_pass']);
             $username = mysqli_real_escape_string($conn, $_POST['username']);
+            if($re_new_pass == $new_pass){
     
             // Check if the old password is correct
             if($password1 != $old_pass){
@@ -245,6 +250,11 @@ if ($result && mysqli_num_rows($result) > 0) {
         }
       }
   }
+}else{
+  echo "<h3 chass='headers'>كلمة السر الجديدة غير متطابقة مع الإعادة</h3>";
+  break;
+
+}
         }
     }
     }

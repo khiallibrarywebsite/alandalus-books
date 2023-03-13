@@ -102,7 +102,7 @@ if($s != 1){
       <img src="../../img/img.png" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">طالب</p>
-      <a href="../profileuser.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
+      <a href="../profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
    </div>
 
    <nav class="navbar">
@@ -122,9 +122,9 @@ if($s != 1){
 <div class="box-container">
 
    <div class="box offer">
-   <h3>قم بقرائة الكتب</h3>
-   <p>يمكنك قرائة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
-      <a href="../see_book/library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقرائة</a>
+   <h3>قم بقراءة الكتب</h3>
+   <p>يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
+      <a href="../see_book/library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة</a>
    </div>
 ';
 
@@ -133,7 +133,7 @@ require_once '../../connect.php';
 
 
 // Retrieve all books from the table
-$sql = "SELECT * FROM `users` WHERE type = 'host' ORDER BY `scoore` DESC ";
+$sql = "SELECT * FROM `users` WHERE stage = '$stage' AND type = 'host' ORDER BY `scoore` DESC;";
 // `stage` = '$stage' AND school = '$code'   AND 
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
@@ -143,7 +143,7 @@ if (mysqli_num_rows($result) > 0) {
         $scoore = $row["scoore"];
         $readedbooks = $row["readedbooks"];
         $username1 = $row["username"];
-        $go_to = sprintf("../see_book/see_book.php?user=%s&school_code=%s&pass=%s&user_name=%s", $titlecompleter, $code, $password, $username1);
+        $go_to = sprintf("host_book.php?user=%s&school_code=%s&pass=%s&user_name=%s", $titlecompleter, $code, $password, $username1);
         echo'
         <div class="box">
         <div class="tutor">
@@ -153,9 +153,11 @@ if (mysqli_num_rows($result) > 0) {
               <span>طالب</span>
            </div>
         </div>
-        <p> عدد النقاط: <span>'.$scoore.'</span></p>
-        <p> عدد الكتب التي تم رفعها: <span>'.$readedbooks.'</span></p>
+        <center>
+        <p> عدد الكتب التي تم رفعها: <span>'.$readedbooks.'</span></p></center>
+        <br><br>
         <a href="'.$go_to.'" class="inline-btn">عرض الكتب التي تم رفعها</a>
+        
      </div>
         ';
     }

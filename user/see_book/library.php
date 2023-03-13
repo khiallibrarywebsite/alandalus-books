@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<?php
+ob_start();
+?>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +11,10 @@
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+<style>/* Keyframes for the animation */
 
+
+</style>
 
    <?php 
 require_once '../../connect.php';
@@ -101,7 +107,7 @@ if($s != 1){
       <img src="../../img/img.png" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">طالب</p>
-      <a href="../profileuser.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
+      <a href="../profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
    </div>
 
    <nav class="navbar">
@@ -116,76 +122,83 @@ if($s != 1){
 </div>        <center><section class="courses">
 <div class="box-container">
    <div class="box offer" style="padding: 70px;">
-   <h3 class="title">قم بقرائة الكتب</h3>
-   <p class="title">يمكنك قرائة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
-   <a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقرائة الآن</a>
+   <h3 class="title">قم قراءة الكتب</h3>
+   <p class="title">يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
+   <a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة الآن</a>
 </div>';
-
 // Retrieve all books from the table
-$sql = "SELECT * FROM books wHERE school = '$code' AND stage = '$stage';";
+$sql = "SELECT * FROM books where stage = '$stage'";
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $book_id = $row["id"];
-        $edit_link = sprintf("edit_host.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
         $book_name = $row["Name"];
         $book_author = $row["writer"];
         $book_img = $row["img"];
         $book_url = $row["url"];
-        echo' 
+        echo '
         <div class="box">
-        <form method="post" class="box">
-        <div class="thumb">
-        <img src="'.$book_img.'" alt="">
-                   <span>'.$book_author.'</span>
-        </div>
-        <h3 class="title">'.$book_name.'</h3>
-        <input type="hidden" name="book_id" value="'.$book_id.'">
-        <input type="submit" name="read" value="قرائة الكتاب" class ="inline-btn"></form>
-     </div>  ';
+            <div class="thumb">
+                <img src="'.$book_img.'" alt="">
+                <span>'.$book_author.'</span>
+            </div>
+            <h3 class="title">'.$book_name.'</h3>
+            <form method="post" class="box">
+                <input type="hidden" name="book_id" value="'.$book_id.'">
+                <input type="submit" name="read" value="قرائة الكتاب" class ="inline-btn">
+            </form>
+        </div>';
 
-  }
-  echo "</div>
-  </section></center>";
+    }
+    echo "</div>
+          </section></center>";
 }
 // Handle form submission
 if (isset($_POST["read"])) {
-// prepare the SQL query
-$stmt = $conn->prepare("SELECT id_readed_added_books FROM `users` WHERE `username` = ? AND `password` = ?  AND `school` = '$code'  " );
-$stmt->bind_param("ss", $titlecompleter, $password);
-    $stmt->execute();
-    $result = $stmt->get_result();
-        // Check if the query was successful, and only continue if it was
-        if ($result && $result->num_rows > 0) {
-          $row = $result->fetch_assoc();
-          $id_readed_books = $row['id_readed_added_books'];
-          if (strpos($id_readed_books, ",".$book_id.":") != false) {
-            echo'
-            <form method="post">
-            <input type="hidden" name="data" value="s">';
-            $redirect_url = "see_book.php?user=$titlecompleter&school_code=$code&pass=$password";
-             header("Location: $redirect_url"); 
-            echo'
-            </form>';
-            exit();
-          }else{
-            echo'
-            <!-- Create a hidden form with input fields for the data -->
-            <form id="myForm" method="post" action="see_book.php">
-              <input type="hidden" name="user" value="<?php echo $titlecompleter; ?>">
-              <input type="hidden" name="school_code" value="'.$code.'">
-              <input type="hidden" name="pass" value="'.$password.'">
-            </form>
+    $book_id = $_POST["book_id"];
+    $redirect_url = "see_book.php?user=$titlecompleter&school_code=$code&pass=$password&id=$book_id";
+    header("Location: $redirect_url");
+    exit();
+
+
+          // if (strpos($id_readed_books, ",".$book_id.":") != false) {
+          //   echo'
+          //   <!-- Create a hidden form with input fields for the data -->
+          //   <form id="myForm" method="post" action="see_book.php">
+          //     <input type="hidden" name="user" value="'.$titlecompleter.'">
+          //     <input type="hidden" name="school_code" value="'.$code.'">
+          //     <input type="hidden" name="pass" value="'.$password.'">
+          //     <input type="hidden" name="id" value="'.$book_id.'">
+          //     <input type="hidden" name="s" value="t">
+          //     </form>
             
-            <script>
-              // Submit the form using JavaScript after setting the values of the input fields
-              document.getElementById("myForm").submit();
-            </script>';
-          }
+          //   <script>
+          //     // Submit the form using JavaScript after setting the values of the input fields
+          //     document.getElementById("myForm").submit();
+          //   </script>';
+          //   exit();
+          // }else{
+          //   echo'
+          //   <!-- Create a hidden form with input fields for the data -->
+          //   <form id="myForm" method="post" action="see_book.php">
+          //     <input type="hidden" name="user" value="'.$titlecompleter.'">
+          //     <input type="hidden" name="school_code" value="'.$code.'">
+          //     <input type="hidden" name="pass" value="'.$password.'">
+          //     <input type="hidden" name="id" value="'.$book_id.'">
+          //     <input type="hidden" name="s" value="f">
+          //   </form>
+            
+          //   <script>
+          //     // Submit the form using JavaScript after setting the values of the input fields
+          //     document.getElementById("myForm").submit();
+          //   </script>';
+          //   exit();
+          // }
         }
 }
-}
+
+ob_end_flush(); 
 ?>
 <footer class="footer">
 

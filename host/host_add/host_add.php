@@ -86,7 +86,7 @@ ob_start();
   text-decoration: underline;
 }
 
-.form .radio-input:checked + .form-text {
+.form  input[type="radio"]:checked + .form-text {
   background-color: #3E6BE6;
 }
 .form input[type="radio"] {
@@ -629,7 +629,6 @@ if ($finish == 1) {
             // Extract the id_readed_added_books and scoore columns from the users table
             $id_readed_added_books = $row["id_readed_added_books"];
             $scoore = $row["scoore"];
-        
             // Update the id_readed_added_books column in the users table
             $new_id_readed_added_books = $id_readed_added_books . $id. ",";
             $update_id_readed_added_books_query = "UPDATE users SET id_readed_added_books='$new_id_readed_added_books' WHERE `username`='$titlecompleter'";

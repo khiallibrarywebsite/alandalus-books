@@ -199,7 +199,6 @@ if($s != 1){
          if (mysqli_num_rows($result) > 0) {
           $num=0;
              while ($row = mysqli_fetch_assoc($result)) {
-              $edit_link = sprintf("host_edit/edit_host.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
               $host_name = $row["name"];
               $num=$num+1;
               echo'
@@ -236,7 +235,6 @@ if($s != 1){
    if (mysqli_num_rows($result) > 0) {
     $num=0;
        while ($row = mysqli_fetch_assoc($result)) {
-        $edit_link = sprintf("host_edit/edit_host.php?user=%s&school_code=%s&pass=%s&id=%s", $titlecompleter, $code, $password, $book_id);
         $name = $row["Name"];
         $publisher = $row["book-publisher"];
         $date = $row["date"];
@@ -246,7 +244,7 @@ if($s != 1){
         echo'
         <div class="box">
         <div class="tutor">
-           <img src="'.$img.'" alt="">
+           <img src="../img/img.png" alt="">
            <div class="info">
               <h3>'.$publisher.'</h3>
               <span>'.$date.'</span>
