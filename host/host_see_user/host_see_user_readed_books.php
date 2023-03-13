@@ -69,7 +69,7 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'],$_GET['user_name'])) 
       $readedbooks = $row['readedbooks'];
       $type = $row["type"];
       $stage = $row["stage"];
-      $code = $row["school"];
+      $code = $row["school"];                     $img= $row["img"];               
       $idadded = $row["id_readed_added_books"];
 
       if($type !== "host"){
@@ -132,7 +132,7 @@ if($s != 1){
      </div>
 
      <div class="profile">
-        <img src="../../img/img.png" class="image" alt="">
+        <img src="../../img/users_img/'.$img.'" class="image" alt="">
         <h3 class="name">'.$name.'</h3>
         <p class="role">معلم</p>
         <a href="../profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -152,7 +152,7 @@ if($s != 1){
    </div>
 
    <div class="profile">
-      <img src="../../img/img.png" class="image" alt="">
+      <img src="../../img/users_img/'.$img.'" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">معلم</p>
       <a href="../profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -187,7 +187,7 @@ if (mysqli_num_rows($result) > 0) {
            <div class="info">
         
               <div class="user">
-                 <img src="../../img/img.png" alt="">
+                 <img src="../../img/users_img/'.$img.'" alt="">
                  <h3>'.$name_user.'</h3>
                  <p></p>
               </div>

@@ -58,7 +58,7 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       $stage = $row["stage"];
       $code = $row["school"];
       $readedbooks = $row["readedbooks"];
-      $scoore = $row["scoore"];
+      $scoore = $row["scoore"];$img= $row["img"];
 
 } else {
 echo '<center><a href="../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
@@ -102,7 +102,7 @@ if($s != 1){
      </div>
 
      <div class="profile">
-        <img src="'.$img.'" class="image" alt="">
+        <img src="../img/users_img/'.$img.'" class="image" alt="">
         <h3 class="name">'.$name.'</h3>
         <p class="role">طالب</p>
         <a href="profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -122,7 +122,7 @@ if($s != 1){
    </div>
 
    <div class="profile">
-      <img src="../img/img.png" class="image" alt="">
+      <img src="../img/users_img/'.$img.'" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">طالب</p>
       <a href="profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -145,7 +145,7 @@ if($s != 1){
    <div class="info">
 
       <div class="user">
-         <img src="../img/img.png" alt="">
+         <img src="../img/users_img/'.$img.'" alt="">
          <h3>'.$name.'</h3>
          <p>طالب</p>
          <a href="update_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">تعديل الحساب</a>

@@ -59,7 +59,7 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       $stage = $row["stage"];
       $code = $row["school"];
       $readedbooks = $row["readedbooks"];
-      $scoore = $row["scoore"];
+      $scoore = $row["scoore"];$img= $row["img"];
 
 } else {
 echo '<center><a href="../../login.php"><h1>404 يرجى المحاولة مرة اخري</h1></a></center>';
@@ -103,7 +103,7 @@ if($s != 1){
      </div>
 
      <div class="profile">
-        <img src="../../img/img.png" class="image" alt="">
+        <img src="../../img/users_img/'.$img.'" class="image" alt="">
         <h3 class="name">'.$name.'</h3>
         <p class="role">طالب</p>
         <a href="../profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -123,7 +123,7 @@ if($s != 1){
    </div>
 
    <div class="profile">
-      <img src="../../img/img.png" class="image" alt="">
+      <img src="../../img/users_img/'.$img.'" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">طالب</p>
       <a href="../profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -167,11 +167,13 @@ if (mysqli_num_rows($result) > 0) {
         $scoore = $row["scoore"];
         $readedbooks = $row["readedbooks"];
         $username1 = $row["username"];
+        $img1 = $row["img"];
+
         $go_to = sprintf("host_book.php?user=%s&school_code=%s&pass=%s&user_name=%s", $titlecompleter, $code, $password, $username1);
         echo'
         <div class="box">
         <div class="tutor">
-           <img src="../../img/img.png" alt="">
+           <img src="../'.$img1.'" alt="">
            <div>
               <h3>'.$users_name.'</h3>
               <span>طالب</span>

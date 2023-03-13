@@ -66,7 +66,7 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       $readedbooks = $row['readedbooks'];
       $type = $row["type"];
       $stage = $row["stage"];
-      $code = $row["school"];
+      $code = $row["school"];                     $img= $row["img"];               
       $idadded = $row["id_readed_added_books"];
 
       if($type !== "host"){
@@ -129,7 +129,7 @@ if($s != 1){
      </div>
 
      <div class="profile">
-        <img src="../img/img.png" class="image" alt="">
+        <img src="../img/users_img/'.$img.'" class="image" alt="">
         <h3 class="name">'.$name.'</h3>
         <p class="role">معلم</p>
         <a href="profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -149,7 +149,7 @@ if($s != 1){
    </div>
 
    <div class="profile">
-      <img src="../img/img.png" class="image" alt="">
+      <img src="../img/users_img/'.$img.'" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">معلم</p>
       <a href="profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -258,20 +258,20 @@ if($s != 1){
         $name = $row["Name"];
         $publisher = $row["book-publisher"];
         $date = $row["date"];
-        $img = $row["img"];
         $writer = $row["writer"];
         $url = $row["url"];
+        $img1 = $row["img"];
         echo'
         <div class="box">
         <div class="tutor">
-           <img src="../img/img.png" alt="">
+           <img src="../img/users_img/'.$img1.'" alt="">
            <div class="info">
               <h3>'.$publisher.'</h3>
               <span>'.$date.'</span>
            </div>
         </div>
         <div class="thumb">
-        <img src="'.$img.'" alt="">
+        <img src="../img/users_img/'.$img1.'" alt="">
                    <span>'.$writer.'</span>
         </div>
         <h3 class="title">'.$name.'</h3>

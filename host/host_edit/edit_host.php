@@ -198,7 +198,7 @@ if (!empty($_GET['user']) && !empty($_GET['school_code']) && !empty($_GET['pass'
       $readedbooks = $row['readedbooks'];
       $type = $row["type"];
       $stage = $row["stage"];
-      $code = $row["school"];
+      $code = $row["school"];                     $img= $row["img"];               
       $idadded = $row["id_readed_added_books"];
 
       if($type !== "host"){
@@ -327,7 +327,7 @@ if($s != 1){
      </div>
 
      <div class="profile">
-        <img src="../../img/img.png" class="image" alt="">
+        <img src="../../img/users_img/'.$img.'" class="image" alt="">
         <h3 class="name">'.$name.'</h3>
         <p class="role">معلم</p>
         <a href="../profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -347,7 +347,7 @@ if($s != 1){
    </div>
 
    <div class="profile">
-      <img src="../../img/img.png" class="image" alt="">
+      <img src="../../img/users_img/'.$img.'" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">معلم</p>
       <a href="../profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -419,7 +419,7 @@ if (mysqli_num_rows($result) > 0) {
         <label class="form-label">اسم المؤلف</label>
         <input type="text" name="new_writer" class="form-text2" value="'.$writer.'" />
         <label class="form-label">رابط الصورة</label>
-        <input type="text" name="new_img" class="form-text2" value="'.$img.'" />
+        <input type="text" name="new_img" class="form-text2" value="../../img/users_img/'.$img.'" />
         <label class="form-label">رابط الكتاب</label>
         <input type="text" name="new_url" class="form-text2" value="'.$url.'" />
 

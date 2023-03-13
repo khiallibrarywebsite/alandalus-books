@@ -32,7 +32,8 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       $readedbooks = $row['readedbooks'];
       $type = $row["type"];
       $stage = $row["stage"];
-      $code = $row["school"];
+      $code = $row["school"];                     $img= $row["img"];               
+      $img = $row["img"];
       $idadded = $row["id_readed_added_books"];
 
 
@@ -73,7 +74,7 @@ echo'
      </div>
 
      <div class="profile">
-        <img src="img/img.png" class="image" alt="">
+        <img src="img/users_img/'.$img.'" class="image" alt="">
            <a href="login.php" class="option-btn">تسجيل دخول</a>
         </div>
      </div>
@@ -161,7 +162,7 @@ echo'
        </div>
   
        <div class="profile">
-          <img src="img/img.png" class="image" alt="">
+          <img src="img/users_img/'.$img.'" class="image" alt="">
           <h3 class="name">'.$name.'</h3>
 
           <p class="role">معلم</p>
@@ -183,7 +184,7 @@ echo'
            </div>
         
            <div class="profile">
-              <img src="img/img.png" class="image" alt="">
+              <img src="img/users_img/'.$img.'" class="image" alt="">
               <h3 class="name">'.$name.'</h3>
               <p class="role">معلم</p>
               <a href="host/profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -217,7 +218,7 @@ echo'
          </div>
     
          <div class="profile">
-            <img src="img/img.png" class="image" alt="">
+            <img src="img/users_img/'.$img.'" class="image" alt="">
             <h3 class="name">'.$name.'</h3>
 
             <p class="role">طالب</p>
@@ -238,7 +239,7 @@ echo'
              </div>
           
              <div class="profile">
-                <img src="img/img.png" class="image" alt="">
+                <img src="img/users_img/'.$img.'" class="image" alt="">
                 <h3 class="name">'.$name.'</h3>
                 <p class="role">طالب</p>
                 <a href="user/profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
