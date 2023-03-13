@@ -147,6 +147,16 @@ form div {
 .radio_text {
     border: 2px solid #20B2AA;
 }
+.side-bar{
+   position: fixed;
+   top: 0; left: 0;
+   width: 30rem;
+   background-color: var(--white);
+   height: 100vh;
+   border-right: var(--border);
+   z-index: 1200;
+   overflow-y: auto; /* add this line */
+}
 
 .question label {
   display: block;
