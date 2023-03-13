@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
+<?php
+ob_start();
+?>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,7 +114,7 @@ if($s != 1){
      </div>
 
      <div class="profile">
-        <img src="../img/img.png" class="image" alt="">
+        <img src="'.$img.'" class="image" alt="">
         <h3 class="name">'.$name.'</h3>
         <p class="role">طالب</p>
         <a href="profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -131,7 +134,7 @@ if($s != 1){
    </div>
 
    <div class="profile">
-      <img src="../img/img.png" class="image" alt="">
+      <img src="'.$img.'" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">طالب</p>
       <a href="profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -170,26 +173,49 @@ if ($result && mysqli_num_rows($result) > 0) {
 <input type="text" name="name" placeholder="'.$name.'" class="box" required value="'.$name.'">
 <p>تعديل اسم المستخدم</p>
 <input type="text" name="username" placeholder="'.$username.'" class="box" required   value="'.$username.'">
+<form action="upload.php" method="POST" enctype="multipart/form-data">
+<p>تغير الصورة الشخصية</p>
+  <input type="file" id="image" name="image" onchange="updateFileName()">
+  <label for="image">Choose file</label>
+  <button type="submit">تحميل</button>
 <p>كلمة السر السابقة</p>
-<input type="password" name="old_pass" placeholder="اكتب كلمة السر السابقة" required  class="box">
+<input type="password" name="old_pass" placeholder="اكتب كلمة السر السابقة"   class="box">
 <p>كلمة سر جديدة</p>
-<input type="password" name="new_pass" placeholder="اكتب كلمة سر جديدة" required  class="box">
+<input type="password" name="new_pass" placeholder="اكتب كلمة سر جديدة"   class="box">
 <p>إعادة كلمة السر جديدة</p>
-<input type="password" name="re_new_pass" placeholder="قم بإعادة كتابة كلمة السر جديدة" required  class="box">
+<input type="password" name="re_new_pass" placeholder="قم بإعادة كتابة كلمة السر جديدة"   class="box">
 <input type="submit" value="تحديث" name="update" class="btn">
+
 </form>
+
+
 </section>
    ';
+    }
+    if(isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
+      $upload_dir = "../img/"; // folder to save uploaded files
+      $file_name = basename($_FILES["image"]["name"]);
+      $file_path = $upload_dir . $file_name;
+      if(move_uploaded_file($_FILES["image"]["tmp_name"], $file_path)) {
+        $sql = "UPDATE users SET img = '$file_path' WHERE password='$password' AND username='$titlecompleter' AND type='user'";
+        if (mysqli_query($conn, $sql)) {
+            echo "<h3 chass='headers'>تم التعديل بنجاح</h3>";
+            $redirect_url = "update_user.php?user=$username&school_code=$code&pass=$password&true=true";
+
+            // Redirect the user to the URL
+            header("Location: $redirect_url");
+            exit();
+        }
+      } else {
+        echo "يوجد خطا";
+      }
     }
     if (isset($_POST['update'])) {
       // Check if all form fields are set
       $requiredFields = [
   
         'name',
-        'username',
-        'old_pass',
-        'new_pass',
-        're_new_pass'
+        'username'
       ];
     foreach ($requiredFields as $field) {
         if (!isset($_POST[$field])) {
@@ -197,12 +223,19 @@ if ($result && mysqli_num_rows($result) > 0) {
             return;
             break; 
         } else {
-            // Get variables using mysqli_real_escape_string to prevent SQL injection
+          if(mysqli_real_escape_string($conn, $_POST['re_new_pass']) == '' &&mysqli_real_escape_string($conn, $_POST['old_pass'])== '' &&mysqli_real_escape_string($conn, $_POST['new_pass'])==''){
+            $new_name = mysqli_real_escape_string($conn, $_POST['name']);
+            $new_pass = $password1;
+            $re_new_pass = $password1;
+            $old_pass = $password1;
+            $username = mysqli_real_escape_string($conn, $_POST['username']);
+          }else{ // Get variables using mysqli_real_escape_string to prevent SQL injection
             $new_name = mysqli_real_escape_string($conn, $_POST['name']);
             $new_pass = mysqli_real_escape_string($conn, $_POST['new_pass']);
             $re_new_pass = mysqli_real_escape_string($conn, $_POST['re_new_pass']);
             $old_pass = mysqli_real_escape_string($conn, $_POST['old_pass']);
             $username = mysqli_real_escape_string($conn, $_POST['username']);
+            
             if($re_new_pass == $new_pass){
     
             // Check if the old password is correct
@@ -280,7 +313,10 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 }
         }
+      }
     }
+    ob_end_flush(); 
+
     }
   
 echo'</center><footer class="footer">
