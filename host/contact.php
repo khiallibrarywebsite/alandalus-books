@@ -257,9 +257,9 @@ if($s != 1){
 }
 ?>
 
-<link rel="stylesheet" href="../css/stylecss.css" />
+<link rel="stylesheet" href="../css/cssalandalus.css" />
 <!-- custom js file link  -->
-<script src="../js/js.js"></script>
+<script src="../js/jsalandalus.js"></script>
 
    
 </body>

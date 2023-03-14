@@ -66,7 +66,8 @@ if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
       $readedbooks = $row['readedbooks'];
       $type = $row["type"];
       $stage = $row["stage"];
-      $code = $row["school"];                     $img= $row["img"];               
+      $code = $row["school"];                     
+      $img12= $row["img"];               
       $idadded = $row["id_readed_added_books"];
 
       if($type !== "host"){
@@ -129,7 +130,7 @@ if($s != 1){
      </div>
 
      <div class="profile">
-        <img src="../../img/users_img/'.$img.'" class="image" alt="">
+        <img src="../../img/users_img/'.$img12.'" class="image" alt="">
         <h3 class="name">'.$name.'</h3>
         <p class="role">معلم</p>
         <a href="../profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -149,7 +150,7 @@ if($s != 1){
    </div>
 
    <div class="profile">
-      <img src="../img/users_img/'.$img.'" class="image" alt="">
+      <img src="../img/users_img/'.$img12.'" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">معلم</p>
       <a href="../profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -193,11 +194,12 @@ if (mysqli_num_rows($result) > 0) {
         $scoore = $row["scoore"];
         $readedbooks = $row["readedbooks"];
         $username1 = $row["username"];
+        $img1 = $row["img"];
         $go_to = sprintf("host_see_user_readed_books.php?user=%s&school_code=%s&pass=%s&user_name=%s", $titlecompleter, $code, $password, $username1);
         echo'
         <div class="box">
         <div class="tutor">
-           <img src="../../img/users_img/'.$img.'" alt="">
+           <img src="../../img/users_img/'.$img1.'" alt="">
            <div>
               <h3>'.$users_name.'</h3>
               <span>طالب</span>
@@ -224,8 +226,8 @@ if (mysqli_num_rows($result) > 0) {
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-<link rel="stylesheet" href="../../css/stylecss.css" />
-<script src="../../js/js.js"></script>
+<link rel="stylesheet" href="../../css/cssalandalus.css" />
+<script src="../../js/jsalandalus.js"></script>
  </body>
 
 </html>

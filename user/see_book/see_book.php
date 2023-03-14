@@ -823,7 +823,7 @@ ob_end_flush();
 
 </footer>
 </center>
-<link rel="stylesheet" href="../../css/stylecss.css" />
-<script src="../../js/js.js"></script>
+<link rel="stylesheet" href="../../css/cssalandalus.css" />
+<script src="../../js/jsalandalus.js"></script>
 </body>
 </html>

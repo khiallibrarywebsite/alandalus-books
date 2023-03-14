@@ -9,6 +9,13 @@
    --black:#2c3e50;
    --white:#fff;
    --border:.1rem solid rgba(0,0,0,.2);
+   --color-one: #07A5D1;
+   --color-two: #DC5E60;
+   --color-three: #0021f6;   
+   --color-four: #471F75;
+   --color-five: #3A4F8E;
+   --color-six: #9F418E;
+   --random-color: var(--color-one); /* default color */
 }
 
 *{
@@ -20,7 +27,7 @@
 }
 
 *::selection{
-   background-color: var(--main-color);
+   background-color: var(--random-color);
    color:#fff;
 }
 
@@ -39,7 +46,7 @@ html::-webkit-scrollbar-track{
 }
 
 html::-webkit-scrollbar-thumb{
-   background-color: var(--main-color);
+   background-color: var(--random-color);
 }
 
 body{
@@ -122,7 +129,7 @@ section{
 
 .btn,
 .inline-btn{
-   background-color: var(--main-color);
+   background-color: var(--random-color);
 }
 
 .option-btn,
@@ -261,15 +268,15 @@ section{
 }
  
 .side-bar{
-   position: fixed;
-   top: 0; left: 0;
-   width: 30rem;
-   background-color: var(--white);
-   height: 100vh;
-   border-right: var(--border);
-   z-index: 1200;
-   overflow-y: auto; /* add this line */
-}
+    position: fixed;
+    top: 0; left: 0;
+    width: 30rem;
+    background-color: var(--white);
+    height: 100vh;
+    border-right: var(--border);
+    z-index: 1200;
+    overflow-y: auto; /* add this line */
+ }
 
 .side-bar #close-btn{
    text-align: right;
@@ -327,7 +334,7 @@ section{
 
 .side-bar .navbar a i{
    margin-right: 1.5rem;
-   color:var(--main-color);
+   color:var(--random-color);
    transition: .2s linear;
 }
 
@@ -417,7 +424,7 @@ section{
 }
 
 .home-grid .box-container .likes span{
-   color:var(--main-color);
+   color:var(--random-color);
 }
 
 .about .row{
@@ -473,7 +480,7 @@ section{
 
 .about .box-container .box i{
    font-size: 4rem;
-   color: var(--main-color);
+   color: var(--random-color);
 }
 
 .about .box-container .box h3{
@@ -644,7 +651,7 @@ section{
 }
 
 .playlist-details .row .column .save-playlist button:hover i{
-   color: var(--main-color);
+   color: var(--random-color);
 }
 
 .playlist-details .row .column .save-playlist button:hover span{
@@ -803,7 +810,7 @@ section{
 
 .watch-video .video-container .info i{
    margin-right: 1rem;
-   color: var(--main-color);
+   color: var(--random-color);
 }
 
 .watch-video .video-container .tutor{
@@ -1046,7 +1053,7 @@ section{
 }
 
 .teachers .box-container .box p span{
-   color: var(--main-color);
+   color: var(--random-color);
 }
 
 .teacher-profile .details{
@@ -1091,7 +1098,7 @@ section{
 }
 
 .teacher-profile .details .flex p span{
-   color: var(--main-color);
+   color: var(--random-color);
 }
 
 .user-profile .info{
@@ -1158,7 +1165,7 @@ section{
 
 .user-profile .info .box-container .box .flex span{
    font-size: 2.5rem;
-   color: var(--main-color);
+   color: var(--random-color);
 }
 
 .user-profile .info .box-container .box .flex p{
@@ -1228,7 +1235,7 @@ section{
 
 .contact .box-container .box i{
    font-size: 3rem;
-   color: var(--main-color);
+   color: var(--random-color);
    margin-bottom: 1rem;
 }
 
@@ -1311,7 +1318,7 @@ section{
 }
 
 .footer span{
-   color:var(--main-color);
+   color:var(--random-color);
 }
 
 

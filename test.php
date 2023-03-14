@@ -159,6 +159,6 @@ if (mysqli_num_rows($result) > 0) {
 
 
 <link rel="stylesheet" href="css/stylecss.css"/>
-<script src="js/js.js"></script>
+<script src="js/jsalandalus.js"></script>
 </body>
 </html>

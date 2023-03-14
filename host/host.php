@@ -261,23 +261,24 @@ if($s != 1){
         $writer = $row["writer"];
         $url = $row["url"];
         $img1 = $row["img"];
+
         echo'
         <div class="box">
         <div class="tutor">
-           <img src="../img/users_img/'.$img1.'" alt="">
+
            <div class="info">
               <h3>'.$publisher.'</h3>
               <span>'.$date.'</span>
            </div>
         </div>
         <div class="thumb">
-        <img src="../img/users_img/'.$img1.'" alt="">
+        <img src="'.$img1.'" alt="">
                    <span>'.$writer.'</span>
         </div>
         <h3 class="title">'.$name.'</h3>
         <a href="'.$url.'" class="inline-btn">قرائة الكتاب</a>
      </div>      ';
-       }}
+            }}
        echo'
  
    </div>
@@ -294,8 +295,8 @@ if($s != 1){
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-    <link rel="stylesheet" href="../css/stylecss.css" />
-    <script src="../js/js.js"></script>
+    <link rel="stylesheet" href="../css/cssalandalus.css" />
+    <script src="../js/jsalandalus.js"></script>
  </body>
 </html>
 

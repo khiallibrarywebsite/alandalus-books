@@ -222,7 +222,7 @@ ob_end_flush();
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer></center>
-<link rel="stylesheet" href="../../css/stylecss.css" />
-<script src="../../js/js.js"></script>
+<link rel="stylesheet" href="../../css/cssalandalus.css" />
+<script src="../../js/jsalandalus.js"></script>
 </body>
 </html>

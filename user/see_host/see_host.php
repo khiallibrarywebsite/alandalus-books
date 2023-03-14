@@ -202,8 +202,8 @@ if (mysqli_num_rows($result) > 0) {
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-<link rel="stylesheet" href="../../css/stylecss.css" />
-<script src="../../js/js.js"></script>
+<link rel="stylesheet" href="../../css/cssalandalus.css" />
+<script src="../../js/jsalandalus.js"></script>
  </body>
 
 </html>
