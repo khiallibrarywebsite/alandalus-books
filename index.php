@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -96,6 +96,10 @@ textarea{
         </style>
     </head>
     <body id="page-top">
+        	<!-- Loading screen -->
+	<div id="loading-screen">
+		<img src="img/loading.gif" alt="Loading...">
+	</div>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
@@ -290,7 +294,7 @@ if (mysqli_num_rows($result) > 0) {
                foreach ($requiredFields as $field) {
                    if (!isset($_POST[$field])) {
                        echo "قم باكمال جميع المتطلبات";
-                       return;
+                       return;echo"<script>$('#loading-screen').hide();</script>";
                    } else {
                        // Get variables using mysqli_real_escape_string to prevent SQL injection
                        $name1 = mysqli_real_escape_string($conn, $_POST['name']);

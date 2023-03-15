@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <?php
 ob_start();
 ?>
@@ -135,31 +137,7 @@ ob_start();
   margin-bottom: 10px;
   color: #2196F3;
 }
-.side-bar{
-   position: fixed;
-   top: 0; left: 0;
-   width: 30rem;
-   background-color: var(--white);
-   height: 100vh;
-   border-right: var(--border);
-   z-index: 1200;
-   overflow-y: auto; /* add this line */
-}.footer {
-   /* existing styles */
-   opacity: 0;
-   animation: fade-in 0.5s ease forwards;
- }
- 
- @keyframes fade-in {
-    to {
-     opacity: 1;
-     transform: translateY(20px);
-   }
-   from {
-     opacity: 0;
-     transform: translateY(0);
-   }
- }</style>
+</style>
 
  
 
@@ -304,6 +282,10 @@ $s = 1;
 
 </head>
 <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+  <img src="../../img/loading.gif" alt="Loading...">
+	</div>
 
 <?php
 if($s != 1){
@@ -572,10 +554,11 @@ echo "Error updating record: " . mysqli_error($conn);
 }
 mysqli_close($conn);
 
-ob_end_flush(); // flush the output buffer
+// flush the output buffer
 
 
 }
+ob_end_flush(); 
 ?>
 <footer class="footer">
 

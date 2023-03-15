@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', event => {
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
         if (!navbarCollapsible) {
-            return;
+            return;echo"<script>$('#loading-screen').hide();</script>";
         }
         if (window.scrollY === 0) {
             navbarCollapsible.classList.remove('navbar-shrink')

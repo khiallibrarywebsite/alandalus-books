@@ -1,6 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<?php
+ob_start();
+?>
+
+
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,6 +61,10 @@ $s = 1;
 
    </head>
 <body style="width:100%">
+	<!-- Loading screen -->
+	<div id="loading-screen">
+		<img src="img/loading.gif" alt="Loading...">
+	</div>
 <?php
 if($s == 1){
 echo'
@@ -68,7 +79,6 @@ echo'
 
 
      <div class="icons">
-        <div id="search-btn" class="fas fa-search"></div>
         <div id="user-btn" class="fas fa-user"></div>
         <div id="toggle-btn" class="fas fa-sun"></div>
      </div>
@@ -156,7 +166,6 @@ echo'
   
        <div class="icons">
           <div id="menu-btn" class="fas fa-bars"></div>
-          <div id="search-btn" class="fas fa-search"></div>
           <div id="user-btn" class="fas fa-user"></div>
           <div id="toggle-btn" class="fas fa-sun"></div>
        </div>
@@ -212,7 +221,6 @@ echo'
     
          <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>
-            <div id="search-btn" class="fas fa-search"></div>
             <div id="user-btn" class="fas fa-user"></div>
             <div id="toggle-btn" class="fas fa-sun"></div>
          </div>

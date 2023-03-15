@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <?php
 ob_start();
 ?>
@@ -31,31 +33,7 @@ ob_start();
   justify-content: center;
   align-items: center;
 }
-.side-bar{
-   position: fixed;
-   top: 0; left: 0;
-   width: 30rem;
-   background-color: var(--white);
-   height: 100vh;
-   border-right: var(--border);
-   z-index: 1200;
-   overflow-y: auto; /* add this line */
-}.footer {
-   /* existing styles */
-   opacity: 0;
-   animation: fade-in 0.5s ease forwards;
- }
- 
- @keyframes fade-in {
-    to {
-     opacity: 1;
-     transform: translateY(20px);
-   }
-   from {
-     opacity: 0;
-     transform: translateY(0);
-   }
- }
+
 </style>
    <?php 
 require_once '../../connect.php';
@@ -103,6 +81,10 @@ $s = 1;
 
 </head>
 <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+   <img src="../../img/loading.gif" alt="Loading...">
+	</div>
 
 <?php
 if($s != 1){
@@ -175,6 +157,7 @@ if (mysqli_num_rows($result) > 0) {
         $schoolu = $row["school"];
         $readedbooksu = $row["readedbooks"];
         $number=0;
+        $img12 = $row["img"];
         echo'<center>
         <section class="user-profile">
         
@@ -183,7 +166,7 @@ if (mysqli_num_rows($result) > 0) {
            <div class="info">
         
               <div class="user">
-                 <img src="../../img/users_img/'.$img.'" alt="">
+                 <img src="../../img/users_img/'.$img12.'" alt="">
                  <h3>'.$name_user.'</h3>
                  <p></p>
               </div>
@@ -250,10 +233,11 @@ if (isset($_POST["read"])) {
     exit();
 }
 }
-ob_end_flush(); 
 
+
+ob_end_flush(); 
 ?>
-  <footer class="footer">
+<footer class="footer">
 
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 

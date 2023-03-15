@@ -125,24 +125,24 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `img`, `stage`, `scoore`, `readedbooks`, `name`, `id_readed_added_books`, `school`, `type`) VALUES
-('egy1', 123456, 'img/img.png', 1, 10, 1, 'اياد', '[{\"id\":\"589192664\",\"q1\":\"جن\",\"q2\":\"شاعر\",\"q3\":\"ابو متولي\"}]', 'egyand', 'user'),
-('egy2', 123456, 'img/img.png', 2, 0, 0, 'zad', '', 'egyand', 'user'),
-('egy3', 123456, 'img/img.png', 3, 0, 0, 'عكاشة', '', 'egyand', 'user'),
-('egyhost3', 123456, 'img/img.png', 3, 0, 0, 'بدر', '', 'egyand', 'host'),
-('egyhost2', 123456, 'img/img.png', 2, 0, 0, 'محمد بكر', '', 'egyand', 'host'),
-('egyhost1', 123456, 'img/img.png', 1, 30, 1, 'محمد جمال', '589192664,', 'egyand', 'host'),
-('ksa1', 123456, 'img/img.png', 1, 0, 0, 'سلمان', '', 'ksaand', 'user'),
-('ksa2', 123456, 'img/img.png', 2, 0, 0, 'عزيز', '', 'ksaand', 'user'),
-('ksa3', 123456, 'img/img.png', 3, 0, 0, 'وجيه', '', 'ksaand', 'user'),
-('ksahost1', 123456, 'img/img.png', 1, 0, 0, 'فيصل', '', 'ksaand', 'host'),
-('ksahost2', 123456, 'img/img.png', 2, 0, 0, 'مكرم', '', 'ksaand', 'host'),
-('ksahost3', 123456, 'img/img.png', 3, 0, 0, 'محمد', '', 'ksaand', 'host'),
-('ent3', 123456, 'img/img.png', 3, 0, 0, 'ahmed', '', 'entand', 'user'),
+('egy1', 123456, 'img.png', 1, 10, 1, 'اياد', '[{\"id\":\"589192664\",\"q1\":\"جن\",\"q2\":\"شاعر\",\"q3\":\"ابو متولي\"}]', 'egyand', 'user'),
+('egy2', 123456, 'img.png', 2, 0, 0, 'zad', '', 'egyand', 'user'),
+('egy3', 123456, 'img.png', 3, 0, 0, 'عكاشة', '', 'egyand', 'user'),
+('egyhost3', 123456, 'img.png', 3, 0, 0, 'بدر', '', 'egyand', 'host'),
+('egyhost2', 123456, 'img.png', 2, 0, 0, 'محمد بكر', '', 'egyand', 'host'),
+('egyhost1', 123456, 'img.png', 1, 30, 1, 'محمد جمال', '589192664,', 'egyand', 'host'),
+('ksa1', 123456, 'img.png', 1, 0, 0, 'سلمان', '', 'ksaand', 'user'),
+('ksa2', 123456, 'img.png', 2, 0, 0, 'عزيز', '', 'ksaand', 'user'),
+('ksa3', 123456, 'img.png', 3, 0, 0, 'وجيه', '', 'ksaand', 'user'),
+('ksahost1', 123456, 'img.png', 1, 0, 0, 'فيصل', '', 'ksaand', 'host'),
+('ksahost2', 123456, 'img.png', 2, 0, 0, 'مكرم', '', 'ksaand', 'host'),
+('ksahost3', 123456, 'img.png', 3, 0, 0, 'محمد', '', 'ksaand', 'host'),
+('ent3', 123456, 'img.png', 3, 0, 0, 'ahmed', '', 'entand', 'user'),
 ('ent2', 1234, 'imgegy.jpg', 2, 0, 0, 'metwaly', '', 'entand', 'user'),
-('ent1', 123456, 'img/img.png', 1, 0, 0, 'mohamed', '', 'entand', 'user'),
-('enthost1', 123456, 'img/img.png', 1, 0, 0, 'kalem', '', 'entand', 'host'),
+('ent1', 123456, 'img.png', 1, 0, 0, 'mohamed', '', 'entand', 'user'),
+('enthost1', 123456, 'img.png', 1, 0, 0, 'kalem', '', 'entand', 'host'),
 ('enthost2', 123456, 'علم-الصرف-في-اللغة-العربية.png', 2, 30, 1, 'malked', '516019511,', 'entand', 'host'),
-('enthost3', 123456, 'img/img.png', 3, 0, 0, 'waled', '', 'entand', 'host');
+('enthost3', 123456, 'img.png', 3, 0, 0, 'waled', '', 'entand', 'host');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

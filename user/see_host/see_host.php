@@ -1,7 +1,14 @@
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<?php
+ob_start();
+?>
+
+
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,31 +16,6 @@
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-   <style>.side-bar{
-   position: fixed;
-   top: 0; left: 0;
-   width: 30rem;
-   background-color: var(--white);
-   height: 100vh;
-   border-right: var(--border);
-   z-index: 1200;
-   overflow-y: auto; /* add this line */
-}.footer {
-   /* existing styles */
-   opacity: 0;
-   animation: fade-in 0.5s ease forwards;
- }
- 
- @keyframes fade-in {
-    to {
-     opacity: 1;
-     transform: translateY(20px);
-   }
-   from {
-     opacity: 0;
-     transform: translateY(0);
-   }
- }</style>
 
    <?php 
 require_once '../../connect.php';
@@ -80,6 +62,10 @@ $s = 1;
 
 </head>
 <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+   <img src="../../img/loading.gif" alt="Loading...">
+	</div>
 
 <?php
 if($s != 1){
@@ -143,14 +129,9 @@ if($s != 1){
 
 <h1 class="heading">المعلمين</h1>
 
-<div class="box-container">
+<section class="courses">
+<div class="box-container">';
 
-   <div class="box offer">
-   <h3>قم بقراءة الكتب</h3>
-   <p>يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
-      <a href="../see_book/library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة</a>
-   </div>
-';
 
 // Connect to database
 require_once '../../connect.php';
@@ -162,6 +143,13 @@ $sql = "SELECT * FROM `users` WHERE stage = '$stage' AND type = 'host' ORDER BY 
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
+   
+   echo'
+   <div class="class="box offer"" style="padding: 70px;">
+<h3 class="title" id ="offer">قم بقراءة الكتب</h3>
+<p class="title" id ="offer">يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
+<a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn"  id ="offer">قم بالقراءة الآن</a>
+</div>';
     while ($row = mysqli_fetch_assoc($result)) {
         $users_name = $row["name"];
         $scoore = $row["scoore"];
@@ -173,10 +161,10 @@ if (mysqli_num_rows($result) > 0) {
         echo'
         <div class="box">
         <div class="tutor">
-           <img src="../'.$img1.'" alt="">
+           <img src="../../img/users_img/'.$img1.'" alt="">
            <div>
               <h3>'.$users_name.'</h3>
-              <span>طالب</span>
+              <span>معلم</span>
            </div>
         </div>
         <center>
@@ -190,14 +178,20 @@ if (mysqli_num_rows($result) > 0) {
     echo'</div>
 
     </section>';
-} else {
-    echo "لا يوجد معلمين";
+}else{
+   echo'
+   <div class="class="box offer" " style="padding: 70px;">
+<h3 class="title">قم بقراءة الكتب</h3>
+<p class="title" >يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
+<a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة الآن</a>
+</div>';
 }
 
 
   }
+ob_end_flush(); 
 ?>
-  <footer class="footer">
+<footer class="footer">
 
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 

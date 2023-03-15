@@ -1,6 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<?php
+ob_start();
+?>
+
+
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,31 +15,6 @@
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-   <style>.side-bar{
-   position: fixed;
-   top: 0; left: 0;
-   width: 30rem;
-   background-color: var(--white);
-   height: 100vh;
-   border-right: var(--border);
-   z-index: 1200;
-   overflow-y: auto; /* add this line */
-}.footer {
-   /* existing styles */
-   opacity: 0;
-   animation: fade-in 0.5s ease forwards;
- }
- 
- @keyframes fade-in {
-    to {
-     opacity: 1;
-     transform: translateY(20px);
-   }
-   from {
-     opacity: 0;
-     transform: translateY(0);
-   }
- }</style>
 <?php 
 require_once '../../connect.php';
 $c=8;
@@ -107,6 +89,10 @@ $s = 1;
 
 </head>
 <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+   <img src="../../img/loading.gif" alt="Loading...">
+	</div>
 
 <?php
 if($s != 1){
@@ -150,7 +136,7 @@ if($s != 1){
    </div>
 
    <div class="profile">
-      <img src="../img/users_img/'.$img12.'" class="image" alt="">
+      <img src="../../img/users_img/'.$img12.'" class="image" alt="">
       <h3 class="name">'.$name.'</h3>
       <p class="role">معلم</p>
       <a href="../profilehost.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
@@ -172,7 +158,7 @@ if($s != 1){
 
 <div class="box-container">
 
-   <div class="box offer">
+   <div class="class="box offer"">
       <h3>قم برفع كتب</h3>
       <p>قم برفع الكتب الان ليقرئها طلاب من جميع الأنحاء</p>
       <a href="../host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالرفع</a>
@@ -194,12 +180,12 @@ if (mysqli_num_rows($result) > 0) {
         $scoore = $row["scoore"];
         $readedbooks = $row["readedbooks"];
         $username1 = $row["username"];
-        $img1 = $row["img"];
+        $imguser = $row["img"];
         $go_to = sprintf("host_see_user_readed_books.php?user=%s&school_code=%s&pass=%s&user_name=%s", $titlecompleter, $code, $password, $username1);
         echo'
         <div class="box">
         <div class="tutor">
-           <img src="../../img/users_img/'.$img1.'" alt="">
+           <img src="../../img/users_img/'.$imguser.'" alt="">
            <div>
               <h3>'.$users_name.'</h3>
               <span>طالب</span>
@@ -220,8 +206,9 @@ if (mysqli_num_rows($result) > 0) {
 
 
   }
+ob_end_flush(); 
 ?>
-  <footer class="footer">
+<footer class="footer">
 
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <?php
 ob_start();
 ?>
@@ -96,6 +98,10 @@ $s = 1;
 
 </head>
 <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+   <img src="../../img/loading.gif" alt="Loading...">
+	</div>
 
 <?php
 if($s != 1){
@@ -155,17 +161,18 @@ if($s != 1){
 </nav>
 
 </div>        <center><section class="courses">
-<div class="box-container">
-   <div class="box offer" style="padding: 70px;">
-   <h3 class="title">قم قراءة الكتب</h3>
-   <p class="title">يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
-   <a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة الآن</a>
-</div>';
+<div class="box-container">';
 // Retrieve all books from the table
 $sql = "SELECT * FROM books where stage = '$stage'";
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
+   echo'
+   <div class="class="box offer"" style="padding: 70px;">
+<h3 class="title" id ="offer">قم بقراءة الكتب</h3>
+<p class="title" id ="offer">يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
+<a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn"  id ="offer">قم بالقراءة الآن</a>
+</div>';
     while ($row = mysqli_fetch_assoc($result)) {
         $book_id = $row["id"];
         $book_name = $row["Name"];
@@ -188,6 +195,13 @@ if (mysqli_num_rows($result) > 0) {
     }
     echo "</div>
           </section></center>";
+}else{
+   echo'
+   <div class="class="box offer" " style="padding: 70px;">
+<h3 class="title">قم بقراءة الكتب</h3>
+<p class="title" >يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
+<a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة الآن</a>
+</div>';
 }
 // Handle form submission
 if (isset($_POST["read"])) {
@@ -232,6 +246,7 @@ if (isset($_POST["read"])) {
           // }
         }
 }
+
 
 ob_end_flush(); 
 ?>

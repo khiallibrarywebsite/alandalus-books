@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <?php
 ob_start();
 ?>
@@ -179,31 +181,7 @@ label {
 input[type="radio"] {
   color: black;
 }
-.side-bar{
-   position: fixed;
-   top: 0; left: 0;
-   width: 30rem;
-   background-color: var(--white);
-   height: 100vh;
-   border-right: var(--border);
-   z-index: 1200;
-   overflow-y: auto; /* add this line */
-}.footer {
-   /* existing styles */
-   opacity: 0;
-   animation: fade-in 0.5s ease forwards;
- }
- 
- @keyframes fade-in {
-    to {
-     opacity: 1;
-     transform: translateY(20px);
-   }
-   from {
-     opacity: 0;
-     transform: translateY(0);
-   }
- }</style>
+</style>
 
 
    <?php 
@@ -295,6 +273,10 @@ $s = 1;
 
 </head>
 <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+  <img src="../../img/loading.gif" alt="Loading...">
+	</div>
 
 <?php
 if($s != 1){
@@ -641,12 +623,13 @@ $q3id = 1;
 
   
 
-  ?>
-  </center><footer class="footer">
-  
-  &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
-  
-  </footer>
+ob_end_flush(); 
+?>
+</center><footer class="footer">
+
+&copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
+
+</footer>
   <link rel="stylesheet" href="../../css/cssalandalus.css" />
   <script src="../../js/jsalandalus.js"></script>
   </body>

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<?php
+ob_start();
+?>
+
+
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,6 +53,10 @@
   </head>
 
     <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+		<img src="img/loading.gif" alt="Loading...">
+	</div>
 
 
 
@@ -149,8 +160,9 @@ if (mysqli_num_rows($result) > 0) {
     }
     echo '</div></section>';
   }
+ob_end_flush(); 
 ?>
-  <footer class="footer">
+<footer class="footer">
 
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <?php
 ob_start();
 ?>
@@ -283,6 +285,10 @@ $s = 1;
 
 </head>
 <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+  <img src="../../img/loading.gif" alt="Loading...">
+	</div>
 
 <?php
 if($s != 1){
@@ -563,7 +569,7 @@ $requiredFields = [
   foreach ($requiredFields as $field) {
     if (!isset($_POST[$field])) {
       echo "الرجاء الإجابة علي الأسئلة";
-      return;
+      return;echo"<script>$('#loading-screen').hide();</script>";
     }
   }
 
@@ -815,6 +821,7 @@ if ($x==2){
 }
   }
 }}}}
+
 ob_end_flush(); 
 ?>
 <footer class="footer">

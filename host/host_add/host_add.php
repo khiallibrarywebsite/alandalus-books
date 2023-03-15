@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <?php
 ob_start();
 ?>
@@ -12,31 +14,7 @@ ob_start();
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
-   <style>.side-bar{
-   position: fixed;
-   top: 0; left: 0;
-   width: 30rem;
-   background-color: var(--white);
-   height: 100vh;
-   border-right: var(--border);
-   z-index: 1200;
-   overflow-y: auto; /* add this line */
-}.footer {
-   /* existing styles */
-   opacity: 0;
-   animation: fade-in 0.5s ease forwards;
- }
- 
- @keyframes fade-in {
-    to {
-     opacity: 1;
-     transform: translateY(20px);
-   }
-   from {
-     opacity: 0;
-     transform: translateY(0);
-   }
- }
+   <style>
   .form {
   max-width: 80%;
   margin: 50px auto;
@@ -301,6 +279,10 @@ $s = 1;
 
 </head>
 <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+  <img src="../../img/loading.gif" alt="Loading...">
+	</div>
 
 <?php
 if($s != 1){
@@ -544,7 +526,7 @@ $requiredFields = [
 foreach ($requiredFields as $field) {
   if (!isset($_POST[$field])) {
     echo "Please fill out all form fields and select the correct answers for the questions";
-    return;
+    return;echo"<script>$('#loading-screen').hide();</script>";
   }
 }
 
@@ -685,10 +667,11 @@ if ($finish == 1) {
 
     mysqli_close($conn);
 }
-ob_end_flush(); // flush the output buffer
+// flush the output buffer
 
 
 }
+ob_end_flush(); 
 ?>
 <footer class="footer">
 

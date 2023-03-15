@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="ar">
-<head>
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<?php
+ob_start();
+?>
+
 <?php
 ob_start();
 ?>
@@ -11,31 +17,6 @@ ob_start();
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-   <style>.side-bar{
-   position: fixed;
-   top: 0; left: 0;
-   width: 30rem;
-   background-color: var(--white);
-   height: 100vh;
-   border-right: var(--border);
-   z-index: 1200;
-   overflow-y: auto; /* add this line */
-}.footer {
-   /* existing styles */
-   opacity: 0;
-   animation: fade-in 0.5s ease forwards;
- }
- 
- @keyframes fade-in {
-    to {
-     opacity: 1;
-     transform: translateY(20px);
-   }
-   from {
-     opacity: 0;
-     transform: translateY(0);
-   }
- }</style>
 
    <?php 
 require_once '../connect.php';
@@ -91,6 +72,10 @@ $s = 1;
 
 </head>
 <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+		<img src="../img/loading.gif" alt="Loading...">
+	</div>
 
 <?php
 if($s != 1){
@@ -199,26 +184,37 @@ if ($result && mysqli_num_rows($result) > 0) {
         if (unlink($file_name1)) {
         }
       }
-        $upload_dir = "../img/users_img/"; // folder to save uploaded files
-        $file_name = basename($_FILES["image"]["name"]);
-        $file_path = $upload_dir . $file_name;
-        if(move_uploaded_file($_FILES["image"]["tmp_name"], $file_path)) {
-          // Replace the upload directory prefix with an empty string
-          $db_file_path = str_replace($upload_dir, '', $file_path);
-          $sql = "UPDATE users SET img = '$db_file_path' WHERE password='$password' AND username='$titlecompleter' AND type='user'";
-          if (mysqli_query($conn, $sql)) {
-            echo "<h3 chass='headers'>تم التعديل بنجاح</h3>";
-            $redirect_url = "update_user.php?user=$username&school_code=$code&pass=$password&true=true";
-        
-            // Redirect the user to the URL
-            header("Location: $redirect_url");
-            exit();
-          }
-        } else {
-          echo "يوجد خطا";
+      $upload_dir = "../img/users_img/"; // folder to save uploaded files
+      $file_name = basename($_FILES["image"]["name"]);
+      $file_path = $upload_dir . $file_name;
+      
+      // Check if the uploaded file is an image
+      $image_info = getimagesize($_FILES["image"]["tmp_name"]);
+      if($image_info != false) {
+
+      
+    
+      if(move_uploaded_file($_FILES["image"]["tmp_name"], $file_path)) {
+        // Replace the upload directory prefix with an empty string
+        $db_file_path = str_replace($upload_dir, '', $file_path);
+        $sql = "UPDATE users SET img = '$db_file_path' WHERE password='$password' AND username='$titlecompleter' AND type='user'";
+        if (mysqli_query($conn, $sql)) {
+          echo "<h3 chass='headers'>تم التعديل بنجاح</h3>";
+          $redirect_url = "update_user.php?user=$username&school_code=$code&pass=$password&true=true";
+    
+          // Redirect the user to the URL
+          header("Location: $redirect_url");
+          exit();
         }
-        
+      } else {
+        echo "يوجد خطا";
+      }
+    }else{
+      echo "يوجد خطا";
+
     }
+  }
+    
     if (isset($_POST['update'])) {
       // Check if all form fields are set
       $requiredFields = [
@@ -229,7 +225,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     foreach ($requiredFields as $field) {
         if (!isset($_POST[$field])) {
             echo "Please fill out all form fields and select the correct answers for the questions";
-            return;
+            return;echo"<script>$('#loading-screen').hide();</script>";
             break; 
         } else {
           if(mysqli_real_escape_string($conn, $_POST['re_new_pass']) == '' &&mysqli_real_escape_string($conn, $_POST['old_pass'])== '' &&mysqli_real_escape_string($conn, $_POST['new_pass'])==''){
@@ -324,7 +320,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         }
       }
     }
-    ob_end_flush(); 
+    
 
     }
   

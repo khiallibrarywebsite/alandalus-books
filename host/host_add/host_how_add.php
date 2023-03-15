@@ -3,32 +3,7 @@
 <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>.side-bar{
-   position: fixed;
-   top: 0; left: 0;
-   width: 30rem;
-   background-color: var(--white);
-   height: 100vh;
-   border-right: var(--border);
-   z-index: 1200;
-   overflow-y: auto; /* add this line */
-}.footer {
-   /* existing styles */
-   opacity: 0;
-   animation: fade-in 0.5s ease forwards;
- }
- 
- @keyframes fade-in {
-    to {
-     opacity: 1;
-     transform: translateY(20px);
-   }
-   from {
-     opacity: 0;
-     transform: translateY(0);
-   }
- }</style>
-    <?php 
+     <?php 
 require_once '../../connect.php';
 $s=0;
 if (isset($_GET['user'],$_GET['school_code'],$_GET['pass'])) {
@@ -86,6 +61,10 @@ $conn->close();
 
     </head>
 <body>
+	<!-- Loading screen -->
+	<div id="loading-screen">
+  <img src="../../img/loading.gif" alt="Loading...">
+	</div>
     <center>
 <p>قم بتحميل الكتاب بصيغة بيدي اف علي جوجل درايف وبعد التحميل قم باختيار الكتاب</p>
 <img src="../../img/1.png" height="500px" width="700px">

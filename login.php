@@ -1,5 +1,5 @@
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="ar">  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -118,7 +118,7 @@ ul {
       foreach ($requiredFields as $field) {
         if (!isset($_POST[$field])) {
           echo "الرجاء ادخال كلمة السر و اسم المستخدم";
-          return;
+          return;echo"<script>$('#loading-screen').hide();</script>";
         }
       }
       $password = mysqli_real_escape_string($conn, $_POST['password']);

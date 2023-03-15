@@ -69,34 +69,4 @@ elements.forEach((element) => {
 });
 
 
-// $(document).ready(function() {
-//     $('#my-form').on('submit', function(event) {
-//         // Prevent default form submission behavior
-//         event.preventDefault();
-
-//         // Show loading screen
-//         $('#loading-screen').show();
-
-//         // Get form data
-//         var formData = $(this).serialize();
-
-//         // Send AJAX request to submit form data
-//         $.ajax({
-//             url: 'submit-form.php',
-//             method: 'POST',
-//             data: formData,
-//             success: function(response) {
-//                 // Hide loading screen and do something with the response
-//                 $('#loading-screen').fadeOut();
-//                 // ...
-//             },
-//             error: function(xhr, status, error) {
-//                 // Handle errors
-//                 console.log(error);
-//             }
-//         });
-//     });
-// });
-
-
 
