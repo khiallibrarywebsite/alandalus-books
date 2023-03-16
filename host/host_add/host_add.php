@@ -55,7 +55,7 @@ ob_start();
   border: none;
   border-radius: 5px;
   display: block;
-  margin-left: 50px;  margin-top: 50px;
+  margin-left: 1.5%;  margin-top: 50px;
   background-color: #F2F2F2;
   cursor: pointer;
   color: black;
@@ -68,7 +68,7 @@ ob_start();
   border: none;
   border-radius: 5px;
   display: block;
-  margin-left: 50px;
+  margin-left: 1.5%;
   background-color: #F2F2F2;
   cursor: pointer;
   color: black;
@@ -92,7 +92,7 @@ ob_start();
   background-color: #3E6BE6;
 }
 .form input[type="radio"] {
-  margin-left: 50px;
+  margin-left:0.8%;
   margin-top: 50px;
 }
 
@@ -296,7 +296,7 @@ if($s != 1){
      <a href="../host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
 
         <div class="icons">

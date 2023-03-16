@@ -105,7 +105,7 @@ if($s != 1){
   <a href="host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
         <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>

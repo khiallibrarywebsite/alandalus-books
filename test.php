@@ -67,7 +67,7 @@ ob_start();
    <a href="login.php" class="logo">alandalus</a>
  
          
-         <h2>مدارس الأندلس الأهلية</h2>
+         <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
  
  
       <div class="icons">

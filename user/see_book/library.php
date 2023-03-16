@@ -115,7 +115,7 @@ if($s != 1){
   <a href="../user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
 
      <div class="icons">
@@ -161,18 +161,17 @@ if($s != 1){
 </nav>
 
 </div>        <center><section class="courses">
-<div class="box-container">';
+<div class="box-container">
+   <div class="box offer" style="padding: 70px;">
+   <h3 class="title">قم قراءة الكتب</h3>
+   <p class="title">يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
+   <a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة الآن</a>
+</div>';
 // Retrieve all books from the table
 $sql = "SELECT * FROM books where stage = '$stage'";
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
-   echo'
-   <div class="class="box offer"" style="padding: 70px;">
-<h3 class="title" id ="offer">قم بقراءة الكتب</h3>
-<p class="title" id ="offer">يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
-<a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn"  id ="offer">قم بالقراءة الآن</a>
-</div>';
     while ($row = mysqli_fetch_assoc($result)) {
         $book_id = $row["id"];
         $book_name = $row["Name"];
@@ -195,13 +194,6 @@ if (mysqli_num_rows($result) > 0) {
     }
     echo "</div>
           </section></center>";
-}else{
-   echo'
-   <div class="class="box offer" " style="padding: 70px;">
-<h3 class="title">قم بقراءة الكتب</h3>
-<p class="title" >يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
-<a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة الآن</a>
-</div>';
 }
 // Handle form submission
 if (isset($_POST["read"])) {

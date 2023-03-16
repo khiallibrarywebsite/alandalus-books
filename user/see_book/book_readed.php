@@ -13,6 +13,31 @@ ob_start();
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+   <style>.side-bar{
+   position: fixed;
+   top: 0; left: 0;
+   width: 30rem;
+   background-color: var(--white);
+   height: 100vh;
+   border-right: var(--border);
+   z-index: 1200;
+   overflow-y: auto; /* add this line */
+}.footer {
+   /* existing styles */
+   opacity: 0;
+   animation: fade-in 0.5s ease forwards;
+ }
+ 
+ @keyframes fade-in {
+    to {
+     opacity: 1;
+     transform: translateY(20px);
+   }
+   from {
+     opacity: 0;
+     transform: translateY(0);
+   }
+ }</style>
 
    <?php 
 require_once '../../connect.php';
@@ -62,7 +87,7 @@ $s = 1;
 <body>
 	<!-- Loading screen -->
 	<div id="loading-screen">
-    <img src="../../img/loading.gif" alt="Loading...">
+   <img src="../../img/loading.gif" alt="Loading...">
 	</div>
 
 <?php
@@ -77,7 +102,7 @@ if($s != 1){
   <a href="../user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
 
      <div class="icons">
@@ -122,19 +147,18 @@ if($s != 1){
    <a href="../contact.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-headset"></i><span>راسلنا</span></a>
 </nav>
 
-</div>       <center><section class="courses">
-<div class="box-container">';
+</div>        <center><section class="courses">
+<div class="box-container">
+   <div class="box offer" style="padding: 70px;">
+   <h3 class="title">قم بقراءة الكتب</h3>
+   <p class="title">يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
+   <a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة الآن</a>
+</div>';
 // Retrieve all books from the table
 $sql = "SELECT * FROM books";
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
-    echo'
-    <div class="class="box offer"" style="padding: 70px;">
- <h3 class="title" id ="offer">قم بقراءة الكتب</h3>
- <p class="title" id ="offer">يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
- <a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn"  id ="offer">قم بالقراءة الآن</a>
- </div>';
     while ($row = mysqli_fetch_assoc($result)) {
         $book_id = $row["id"];
         $book_name = $row["Name"];
@@ -178,14 +202,7 @@ if (mysqli_num_rows($result) > 0) {
     }
     echo "</div>
           </section>";
-}else{
-    echo'
-    <div class="class="box offer" " style="padding: 70px;">
- <h3 class="title">قم بقراءة الكتب</h3>
- <p class="title" >يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
- <a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة الآن</a>
- </div>';
- }
+}
 
 if (isset($_POST["see_an"])) {
     $book_id = $_POST["book_id"];
@@ -204,7 +221,6 @@ if (isset($_POST["read"])) {
 
 
 }
-
 ob_end_flush(); 
 ?>
 <footer class="footer">

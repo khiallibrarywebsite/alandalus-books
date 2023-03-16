@@ -106,7 +106,7 @@ if($s != 1){
   <a href="../host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
 
         <div class="icons">
@@ -158,7 +158,7 @@ if($s != 1){
 
 <div class="box-container">
 
-   <div class="class="box offer"">
+   <div class="box offer">
       <h3>قم برفع كتب</h3>
       <p>قم برفع الكتب الان ليقرئها طلاب من جميع الأنحاء</p>
       <a href="../host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالرفع</a>
@@ -206,9 +206,8 @@ if (mysqli_num_rows($result) > 0) {
 
 
   }
-ob_end_flush(); 
 ?>
-<footer class="footer">
+  <footer class="footer">
 
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 

@@ -102,10 +102,10 @@ if($s != 1){
    
   <section class="flex">
 
-  <a href="host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
+  <a href="host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo"><img src="../img/"></a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
 
      <div class="icons">
@@ -228,7 +228,7 @@ if($s != 1){
 <section class="courses">
 
    <h1 class="heading">المكتبة</h1>
-   <h2 class="tutor">ليس الطلاب فقط من يمكنهم القرءاة يمكنك ذلك أيضا</h2>
+   <h2 style="color: var(--black);">ليس الطلاب فقط من يمكنهم القرءاة يمكنك ذلك أيضا</h2>
    <br><br><br>
 
    <div class="box-container">

@@ -83,7 +83,7 @@ if($s != 1){
   <a href="user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
 
      <div class="icons">
@@ -206,7 +206,7 @@ if($s != 1){
 <section class="courses">
 
    <h1 class="heading">المكتبة</h1>
-   <h2 class="tutor">بعض الكتب من مكتبة المدرسه</h2>
+   <h2 style="color: var(--black);">بعض الكتب من مكتبة المدرسه</h2>
    <br><br><br>
 
    <div class="box-container">

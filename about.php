@@ -75,7 +75,7 @@ echo'
   <a href="login.php" class="logo">alandalus</a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
 
      <div class="icons">
@@ -161,7 +161,7 @@ echo'
           <a href="host/host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
   
           
-          <h2>مدارس الأندلس الأهلية</h2>
+          <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
   
   
        <div class="icons">
@@ -216,7 +216,7 @@ echo'
             <a href="user/user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
   
           
-            <h2>مدارس الأندلس الأهلية</h2>
+            <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
     
     
          <div class="icons">
@@ -258,7 +258,8 @@ echo'
                 <a href="about.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-question"></i><span>من نحن</span></a>
                 <a href="user/see_book/book_readed.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fa-solid fa-book"></i><span>الكتب المقروئة</span></a>
                 <a href="user/see_host/see_host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-male"></i><span>المعلمون</span></a>
-                <a href="user/see_book/library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-plus"></i><span>المكتبة</span></a>
+                <a href="user/see_book/library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fa-solid fa-book"></i><span>المكتبة</span></a>
+
                 <a href="user/contact.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"><i class="fas fa-headset"></i><span>راسلنا</span></a>
              </nav>
           

@@ -79,7 +79,7 @@ if($s != 1){
   <a href="../user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
 
      <div class="icons">
@@ -129,9 +129,14 @@ if($s != 1){
 
 <h1 class="heading">المعلمين</h1>
 
-<section class="courses">
-<div class="box-container">';
+<div class="box-container">
 
+   <div class="box offer">
+   <h3>قم بقراءة الكتب</h3>
+   <p>يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
+      <a href="../see_book/library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة</a>
+   </div>
+';
 
 // Connect to database
 require_once '../../connect.php';
@@ -143,13 +148,6 @@ $sql = "SELECT * FROM `users` WHERE stage = '$stage' AND type = 'host' ORDER BY 
 $result = mysqli_query($conn, $sql);
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
-   
-   echo'
-   <div class="class="box offer"" style="padding: 70px;">
-<h3 class="title" id ="offer">قم بقراءة الكتب</h3>
-<p class="title" id ="offer">يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
-<a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn"  id ="offer">قم بالقراءة الآن</a>
-</div>';
     while ($row = mysqli_fetch_assoc($result)) {
         $users_name = $row["name"];
         $scoore = $row["scoore"];
@@ -178,13 +176,8 @@ if (mysqli_num_rows($result) > 0) {
     echo'</div>
 
     </section>';
-}else{
-   echo'
-   <div class="class="box offer" " style="padding: 70px;">
-<h3 class="title">قم بقراءة الكتب</h3>
-<p class="title" >يمكنك قراءة الكتب واجابة الأسئلة لتحصل علي نقاط</p>
-<a href="library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالقراءة الآن</a>
-</div>';
+} else {
+    echo "لا يوجد معلمين";
 }
 
 

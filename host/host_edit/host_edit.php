@@ -106,7 +106,7 @@ if($s != 1){
      <a href="../host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
 
         <div class="icons">
@@ -153,7 +153,7 @@ if($s != 1){
 
 </div>        <center><section class="courses">
 <div class="box-container">
-   <div class="class="box offer""style="padding: 70px;">
+   <div class="box offer" style="padding: 70px;">
       <h3 class="title">قم برفع كتب</h3>
       <p  class="title">يمكنك رفع الكتب ليقرئها الطلاب في جميع فروع مدارس الأندلس</p>
       <a href="../host_add/host_add.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="inline-btn">قم بالرفع</a>
@@ -214,7 +214,6 @@ $conn->close();
 }
 }
 }
-ob_end_flush(); 
 ?>
 <footer class="footer">
 

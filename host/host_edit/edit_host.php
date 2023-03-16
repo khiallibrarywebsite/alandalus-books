@@ -55,7 +55,7 @@ ob_start();
   border: none;
   border-radius: 5px;
   display: block;
-  margin-left: 50px;  margin-top: 50px;
+  margin-left: 1.5%;  margin-top: 50px;
   background-color: #F2F2F2;
   cursor: pointer;
   color: black;
@@ -68,18 +68,16 @@ ob_start();
   border: none;
   border-radius: 5px;
   display: block;
-  margin-left: 50px;
+  margin-left: 1.5%;
   background-color: #F2F2F2;
   cursor: pointer;
   color: black;
   transition: background-color 0.3s ease-in-out;
 }
 
-.form .form-text1:hover {
+.form .form-text:hover {
   background-color: #3E6BE6;
 }
-
-
 
 .form .label {
   margin-right: 5px;
@@ -90,12 +88,13 @@ ob_start();
   text-decoration: underline;
 }
 
-
+.form  input[type="radio"]:checked + .form-text {
+  background-color: #3E6BE6;
+}
 .form input[type="radio"] {
-  margin-left: 50px;
+  margin-left:0.8%;
   margin-top: 50px;
 }
-
 
 .form input[type="email"],
 .form input[type="password"],
@@ -299,7 +298,7 @@ if($s != 1){
      <a href="../host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">alandalus</a>
 
         
-        <h2>مدارس الأندلس الأهلية</h2>
+        <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
 
 
         <div class="icons">
@@ -548,7 +547,7 @@ $new_q2a1=$q2a1;
 
 $sql = "UPDATE books SET Name='$new_Name', writer='$new_writer', img='$new_img', url='$new_url', q1='$new_q1', q1a1='$new_q1a1', q1a2='$new_q1a2', q2='$new_q2', q2a1='$new_q2a1', q2a2='$new_q2a2', q3='$new_q3', q3a1='$new_q3a1', q3a2='$new_q3a2', q1ak='$new_q1ak', q2ak='$new_q2ak', q3ak='$new_q3ak' WHERE id='$id' AND stage='$stage' AND school='$code'";
 if (mysqli_query($conn, $sql)) {
-echo "Record updated successfully";
+echo "تم التعديل بنجاح";
 } else {
 echo "Error updating record: " . mysqli_error($conn);
 }
