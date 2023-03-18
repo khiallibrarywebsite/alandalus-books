@@ -199,8 +199,10 @@ if($s != 1){
           }
           if(isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
             $file_name1="../img/users_img/$img1";
-            if (file_exists($file_name1)) {
-              if (unlink($file_name1)) {
+            if ($file_name1 != "../img/users_img/img.png"){
+              if (file_exists($file_name1)) {
+                if (unlink($file_name1)) {
+                }
               }
             }
             $upload_dir = "../img/users_img/"; // folder to save uploaded files
@@ -211,8 +213,6 @@ if($s != 1){
             $image_info = getimagesize($_FILES["image"]["tmp_name"]);
             if($image_info != false) {
       
-            
-          
             if(move_uploaded_file($_FILES["image"]["tmp_name"], $file_path)) {
               // Replace the upload directory prefix with an empty string
               $db_file_path = str_replace($upload_dir, '', $file_path);

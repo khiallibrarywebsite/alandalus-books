@@ -230,7 +230,7 @@ echo'
             <h3 class="name">'.$name.'</h3>
 
             <p class="role">طالب</p>
-            <a href="user/profileuser.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
+            <a href="user/profile_user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'" class="btn">مشاهدة الحساب</a>
             <div class="flex-btn">
                <a href="login.php" class="option-btn">تسجيل خروج</a>
             </div>

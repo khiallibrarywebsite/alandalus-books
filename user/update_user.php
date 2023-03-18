@@ -180,10 +180,12 @@ if ($result && mysqli_num_rows($result) > 0) {
     }
     if(isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
       $file_name1="../img/users_img/$img1";
+      if ($file_name1 != "../img/users_img/img.png"){
       if (file_exists($file_name1)) {
         if (unlink($file_name1)) {
         }
       }
+    }
       $upload_dir = "../img/users_img/"; // folder to save uploaded files
       $file_name = basename($_FILES["image"]["name"]);
       $file_path = $upload_dir . $file_name;
