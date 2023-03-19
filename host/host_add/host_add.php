@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="ar">
-<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- Include the Google API client library -->
+	<script src="https://apis.google.com/js/api.js"></script>
 
 <?php
 ob_start();
@@ -13,7 +16,29 @@ ob_start();
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-
+   <script>
+        function uploadFile(file) {
+          console.log('File Link:');
+            var formData = new FormData();
+            formData.append('file', file);
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('File ID:', data.id);
+                console.log('File Link:', data.link);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+        // document.querySelector('input[type=file]').addEventListener('change', event => {
+        //     const file = event.target.files[0];
+        //     uploadFile(file);
+        // });
+    </script>
    <style>
   .form {
   max-width: 80%;
@@ -411,14 +436,14 @@ $finish=0;
         <label for="file">Upload file:</label>
         <input type="file" id="file" name="file">
         
-        // <label class="form-label">رابط الكتاب</label>
-        // <input type="text" name="new_url" class="form-text2"  placeholder="https://drive.google.com/file/d/1B8m0jvypiNelJuG-W5V_QmVx5fX8tAGI/view?usp=share_link"/>
-        // <p class= "form-p">قم برفع الكتاب علي <a href="https://drive.google.com/">جوجل درايف</a> وبعدها قم بعمل مشاركة للكتاب وجعل صلاحية الدخول لكل من يحمل الرابط <a href="'.$go_link.'" target="_blank">معرفة المزيد</a></p>
+        <label class="form-label">رابط الكتاب</label>
+        <input type="text" name="new_url" class="form-text2"  placeholder="https://drive.google.com/file/d/1B8m0jvypiNelJuG-W5V_QmVx5fX8tAGI/view?usp=share_link"/>
+        <p class= "form-p">قم برفع الكتاب علي <a href="https://drive.google.com/">جوجل درايف</a> وبعدها قم بعمل مشاركة للكتاب وجعل صلاحية الدخول لكل من يحمل الرابط <a href="'.$go_link.'" target="_blank">معرفة المزيد</a></p>
 
 
-        // <label class="form-label">id الكتاب</label>
-        // <input type="text" name="new_img" class="form-text2"   placeholder="1B8m0jvypiNelJuG-W5V_QmVx5fX8tAGI"/>
-        // <p class= "form-p">بعد الحصول علي رابط الكتاب قم  <a href="'.$go_link.'" target="_blank">باخذ الرقم الأخير</a> في الرابط وضعه هنا</p>
+        <label class="form-label">id الكتاب</label>
+        <input type="text" name="new_img" class="form-text2"   placeholder="1B8m0jvypiNelJuG-W5V_QmVx5fX8tAGI"/>
+        <p class= "form-p">بعد الحصول علي رابط الكتاب قم  <a href="'.$go_link.'" target="_blank">باخذ الرقم الأخير</a> في الرابط وضعه هنا</p>
        
         
         
@@ -502,29 +527,29 @@ $finish=0;
 // Handle form submissions
 
 if (isset($_POST['add'])) {
+  
 // // Check if all form fields are set
 // $requiredFields = [
 
-//   // 'new_q1ak',
-//   // 'new_q2ak',
-//   // 'new_q3ak',
-//   // 'new_q3a1',
-//   // 'new_q3a2',
-//   // 'new_q3a3',
-//   // 'new_q2a1',
-//   // 'new_q2a2',
-//   // 'new_q2a3',
-//   // 'new_q1a1',
-//   // 'new_q1a2',
-//   // 'new_q1a3',
-//   // 'new_Name',
-//   // 'new_writer',
-//   // 'new_img',
-//   // 'new_url',
-//   // 'new_q1',
-//   // 'new_q2',
-//   // 'new_q3',
-//   'file'
+  // 'new_q1ak',
+  // 'new_q2ak',
+  // 'new_q3ak',
+  // 'new_q3a1',
+  // 'new_q3a2',
+  // 'new_q3a3',
+  // 'new_q2a1',
+  // 'new_q2a2',
+  // 'new_q2a3',
+  // 'new_q1a1',
+  // 'new_q1a2',
+  // 'new_q1a3',
+  // 'new_Name',
+  // 'new_writer',
+  // 'new_img',
+  // 'new_url',
+  // 'new_q1',
+  // 'new_q2',
+  // 'new_q3'
 // ];
 
 // foreach ($requiredFields as $field) {
@@ -543,49 +568,12 @@ if (isset($_POST['add'])) {
   // $file_tmp = $_FILES['file']['tmp_name'];
   // $file_type = $_FILES['file']['type'];
 
-  require_once __DIR__ . '/../../vendor/autoload.php';
-  
-  // Load the credentials file
-  $credentialsFile = __DIR__ . '/credentials.json';
-  if (!file_exists($credentialsFile)) {
-      die('Credentials file not found');
-  }
-  $credentials = json_decode(file_get_contents($credentialsFile), true);
-  
+
   // Set the upload directory and file path
-  $uploadDir = __DIR__ . '/../../img/';
+  $uploadDir ='../../img/';
   $filePath = $uploadDir . 'Math Grade-6.pdf';
-  $fileName = 'Math Grade-6.pdf';
-  
-  // Create a new Google Drive client
-  $client = new Google_Client();
-  $client->setApplicationName('Google Drive API PHP Quickstart');
-  $client->setScopes(Google_Service_Drive::DRIVE);
-  $client->setAuthConfig($credentials);
-// Create a new file on Google Drive
-$service = new Google_Service_Drive($client);
 
-$fileMetadata = new Google_Service_Drive_DriveFile(array(
-  'name' => $fileName,
-  'exportLinks' => [],
-  'parents' => array('1gg7xzkQTBe-7qccd_EL3H2HNFGQKNG8Z')
-));
-
-$file = $service->files->create($fileMetadata, array(
-  'data' => file_get_contents($filePath),
-  'mimeType' => mime_content_type($filePath),
-  'uploadType' => 'multipart'
-));
-
-$fileId = $file->getId();
-$file = $service->files->get($fileId);
-$file->setExportLinks($exportLinks);
-$file = $service->files->update($fileId, $file);
-
-  
-  // Print the file ID
-  printf("File ID: %s\n", $file->id);
-
+  echo "<script>uploadFile($filePath);</script>";
 
   // }
 
@@ -730,7 +718,7 @@ $file = $service->files->update($fileId, $file);
 
 
 }
-ob_end_flush(); 
+ ob_end_flush(); 
 ?>
 <footer class="footer">
 
@@ -740,4 +728,6 @@ ob_end_flush();
 <link rel="stylesheet" href="../../css/cssalandalus.css" />
 <script src="../../js/jsalandalus.js"></script>
 </body>
+
+
 </html>

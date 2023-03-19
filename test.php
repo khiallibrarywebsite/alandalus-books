@@ -1,70 +1,28 @@
 <?php
+// Check if the form was submitted
+if (isset($_POST['add'])) {
+    // Set the file path
+    $file_path = 'Math Grade-6.pdf';
+    $output = array();
+    exec("python up.py $file_path", $output);
 
-class Car {
-  // Properties
-  public $make;
-  public $model;
-  public $year;
-  
-  // Constructor
-  public function __construct($make, $model, $year) {
-    $this->make = $make;
-    $this->model = $model;
-    $this->year = $year;
-  }
-  
-  // Methods
-  public function getMake() {
-    return $this->make;
-  }
-  
-  public function setMake($make) {
-    $this->make = $make;
-  }
-  
-  public function getModel() {
-    return $this->model;
-  }
-  
-  public function setModel($model) {
-    $this->model = $model;
-  }
-  
-  public function getYear() {
-    return $this->year;
-  }
-  
-  public function setYear($year) {
-    $this->year = $year;
-  }
-  
-  public function displayInfo() {
-    echo "Make: " . $this->make . "<br>";
-    echo "Model: " . $this->model . "<br>";
-    echo "Year: " . $this->year . "<br>";
-  }
+    // Output the response from the Flask server
+    echo implode('<br>', $output);
 }
-
-// Create an instance of the Car class
-$car1 = new Car("Toyota", "Corolla", 2019);
-
-// Call methods to get and set properties
-echo "Before:<br>";
-echo $car1->getMake() . "<br>";
-echo $car1->getModel() . "<br>";
-echo $car1-> getYear() . "<br>";
-
-$car1->setMake("Honda");
-$car1->setModel("Civic");
-$car1->setYear(2020);
-
-echo "<br>After:<br>";
-echo $car1->getMake() . "<br>";
-echo $car1->getModel() . "<br>";
-echo $car1->getYear() . "<br>";
-
-// Call a method to display the car info
-echo "<br>Car Info:<br>";
-$car1->displayInfo();
-
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload to Google Drive</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        <input type="submit" name="add" value="Upload" class="btn btn-primary mt-2">
+    </form>
+</body>
+</html>
+
+
+
+
