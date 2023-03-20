@@ -5,7 +5,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import logging
 import sys
 
@@ -23,9 +23,12 @@ creds_file = 'token.json'
 # Define the Flask app
 app = Flask(__name__)
 
-def upload(file_path):
+@app.route('/upload', methods=['POST'])
+def upload():
+    # Get the file path from the request body
+    file_path = request.json['file_path']
     logging.debug('File path: %s', file_path)
-    
+
     # Authenticate with the Google Drive API
     creds = None
     if os.path.exists(creds_file):
@@ -34,7 +37,6 @@ def upload(file_path):
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
-
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
                 'cr.json', SCOPES)
@@ -67,4 +69,7 @@ def upload(file_path):
     ).execute()
 
     # Return the ID and URL of the uploaded file
-    return {'id': file['id'], 'url': file['webViewLink']}
+    return jsonify({'id': file['id'], 'url': file['webViewLink']})
+
+if __name__ == '__main__':
+    app.run(port=5000)
