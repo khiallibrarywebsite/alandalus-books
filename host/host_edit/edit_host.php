@@ -281,11 +281,11 @@ $s = 1;
 
 
 </head>
-<body>
-	<!-- Loading screen -->
-	<div id="loading-screen">
-  <img src="../../img/loading.gif" alt="Loading...">
-	</div>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
+
 
 <?php
 if($s != 1){
@@ -401,7 +401,7 @@ if (mysqli_num_rows($result) > 0) {
         <label class="form-label">اسم المؤلف</label>
         <input type="text" name="new_writer" class="form-text2" value="'.$writer.'" />
         <label class="form-label">رابط الصورة</label>
-        <input type="text" name="new_img" class="form-text2" value="../../img/users_img/'.$img.'" />
+        <input type="text" name="new_img" class="form-text2" value="'.$img.'" />
         <label class="form-label">رابط الكتاب</label>
         <input type="text" name="new_url" class="form-text2" value="'.$url.'" />
 

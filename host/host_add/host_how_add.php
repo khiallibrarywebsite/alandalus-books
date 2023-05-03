@@ -61,11 +61,11 @@ $conn->close();
 
 
     </head>
-<body>
-	<!-- Loading screen -->
-	<div id="loading-screen">
-  <img src="../../img/loading.gif" alt="Loading...">
-	</div>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
+
     <center>
 <p>قم بتحميل الكتاب بصيغة بيدي اف علي جوجل درايف وبعد التحميل قم باختيار الكتاب</p>
 <img src="../../img/1.png" height="500px" width="700px">

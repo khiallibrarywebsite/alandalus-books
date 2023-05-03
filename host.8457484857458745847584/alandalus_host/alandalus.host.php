@@ -88,11 +88,12 @@ $s = 1;
 
 
 </head>
-<body>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
 	<!-- Loading screen -->
-	<div id="loading-screen">
-   <img src="../img/loading.gif" alt="Loading...">
-	</div>
+
 
 <?php
 if($s != 1){

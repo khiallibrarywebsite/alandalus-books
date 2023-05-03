@@ -81,11 +81,10 @@ $s = 1;
 
 
 </head>
-<body>
-	<!-- Loading screen -->
-	<div id="loading-screen">
-   <img src="../../img/loading.gif" alt="Loading...">
-	</div>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
 
 <?php
 if($s != 1){
@@ -150,84 +149,84 @@ require_once '../../connect.php';
 
 $sql = "SELECT * FROM `users` WHERE type = 'host' and username = '$user_name'";
 $result = mysqli_query($conn, $sql);
-// Generate a form for each book
+
+// Generate a form for each user
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_assoc($result)) {
-        $stageu = $row["stage"];
-        $name_user = $row["name"];
-        $schoolu = $row["school"];
-        $readedbooksu = $row["readedbooks"];
-        $booids = $row["id_readed_added_books"];
-        $number=0;
-        $img12 = $row["img"];
-        echo'<center>
-        <section class="user-profile">
-        
-           <h1 class="heading">حساب المعلم '.$name_user.'</h1>
-        
-           <div class="info">
-        
-              <div class="user">
-                 <img src="../../img/users_img/'.$img12.'" alt="">
-                 <h3>'.$name_user.'</h3>
-                 <p></p>
-              </div>
-        
-              <div class="box-container" style = "align-items:center;">
-                 <div class="box"  style = "align-items:center;">
-                    <div class="flex">
-                       <i class="fas fa-book"></i>
-                       <div>
-                          <span>'.$readedbooksu.'</span>
-                          <p>عدد الكتب المرفوعة </p>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        
-        </section>
+    $stageu = $row["stage"];
+    $name_user = $row["name"];
+    $schoolu = $row["school"];
+    $host_username = $row["username"];
+    $readedbooksu = $row["readedbooks"];
+    $booids = $row["id_readed_added_books"];
+    $number=0;
+    $img12 = $row["img"];
+    echo'<center>
+    <section class="user-profile">
 
-        ';
+       <h1 class="heading">حساب المعلم '.$name_user.'</h1>
+
+       <div class="info">
+
+          <div class="user">
+             <img src="../../img/users_img/'.$img12.'" alt="">
+             <h3>'.$name_user.'</h3>
+             <p></p>
+          </div>
+
+          <div class="box-container" style = "align-items:center;">
+             <div class="box"  style = "align-items:center;">
+                <div class="flex">
+                   <i class="fas fa-book"></i>
+                   <div>
+                      <span>'.$readedbooksu.'</span>
+                      <p>عدد الكتب المرفوعة </p>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+
+    </section>
+
+    <section class="courses">
+    <div class="box-container"> ';
+  
+    $sql2 = "SELECT * FROM `books` WHERE `book-publisher`= '$host_username'";
+    $result2 = mysqli_query($conn, $sql2);
+
+    // Generate a form for each book
+    if (mysqli_num_rows($result2) > 0) {
+        while ($row2 = mysqli_fetch_assoc($result2)) {
+            $book_id = $row2["id"];
+            $book_name = $row2["Name"];
+            $book_author = $row2["writer"];
+            $book_img = $row2["img"];
+            $book_url = $row2["url"];
+            echo'
+            <div class="box">
+               <div class="thumb">
+                  <img src="'.$book_img.'" alt="">
+                  <span>'.$book_author.'</span>
+               </div>
+               <h3 class="title">'.$book_name.'</h3>
+               <a href="'.$book_url.'" class="inline-btn">قرائة الكتاب</a>
+            </div>';
+        }
     }
-
+    echo '</div></section></center>';
+  }
 } else {
   
     echo "<center>حدث خطا لا يمكن تحميل البيانات</center>";
 
 }
 
-echo'        <section class="courses">
-<div class="box-container">';
 
 
-$sql = "SELECT * FROM `books` WHERE stage = '$stageu' and school = '$schoolu'";
-$result = mysqli_query($conn, $sql);
-// Generate a form for each book
-if (mysqli_num_rows($result) > 0) {
-  while ($row = mysqli_fetch_assoc($result)) {
-    $book_id = $row["id"];
-    $book_name = $row["Name"];
-    $book_author = $row["writer"];
-    $book_img = $row["img"];
-    $book_url = $row["url"];
-    if(strpos($booids,$book_id)){
-      echo'
-      <div class="box">
-      <div class="thumb">
-          <img src="'.$book_img.'" alt="">
-          <span>'.$book_author.'</span>
-      </div>
-      <h3 class="title">'.$book_name.'</h3>
-      <form method="post" class="box">
-          <input type="hidden" name="book_id" value="'.$book_id.'">
-          <input type="submit" name="read" value="قراءة الكتاب" class ="inline-btn">
-      </form>
-  </div>'; 
-}
 
-}
-echo'</div></section>';
+
+// echo'</div></section>';
 }
 // Handle form submission
 if (isset($_POST["read"])) {
@@ -236,7 +235,7 @@ if (isset($_POST["read"])) {
     header("Location: $redirect_url");
     exit();
 }
-}
+
 
 
 ob_end_flush(); 
@@ -251,3 +250,13 @@ ob_end_flush();
  </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+

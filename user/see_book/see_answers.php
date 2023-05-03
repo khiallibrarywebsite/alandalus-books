@@ -273,11 +273,11 @@ $s = 1;
 
 
 </head>
-<body>
-	<!-- Loading screen -->
-	<div id="loading-screen">
-  <img src="../../img/loading.gif" alt="Loading...">
-	</div>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
+
 
 <?php
 if($s != 1){
@@ -339,11 +339,10 @@ if($s != 1){
 </div> <center>';
 if($f == 1){
     require_once '../../connect.php';
-
-// Retrieve all books from the table
-$sql = "SELECT * FROM books where stage = '$stage' AND school = '$code' AND id=$id";
-$result = mysqli_query($conn, $sql);
-
+    $stmt = $conn->prepare("SELECT * FROM books where id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 // Generate a form for each book
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
@@ -501,9 +500,12 @@ echo'
 </div>
 </div>
 ';
-    }
-}
+
 $q3id = 1;
+$q3ide = 1;
+}
+}
+if($q3id == 1){
   $stmt = $conn->prepare("SELECT * FROM  `users` WHERE `username` = ? AND `password` = ? AND `stage` = '$stage' AND `school` = '$code'");
   $stmt->bind_param("ss", $titlecompleter, $password);
   $stmt->execute();
@@ -554,14 +556,14 @@ $q3id = 1;
                 }
               </script>
               ';
-              $q3id = 3;
+              $q3ide = 3;
 
                   } else {
                     // Book with the given ID was not found
                     echo "Book not found";
                   }
 
-    if($q3id == 3){
+    if($q3ide == 3){
         if($ok1 == $q1ak){
           echo '
           <script>
@@ -621,8 +623,8 @@ $q3id = 1;
     }
   }
 }
+}
 
-  
 
 ob_end_flush(); 
 ?>

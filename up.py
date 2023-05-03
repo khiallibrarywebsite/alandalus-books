@@ -5,7 +5,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import logging
 import sys
 
@@ -24,6 +24,7 @@ creds_file = 'token.json'
 app = Flask(__name__)
 
 @app.route('/upload', methods=['POST'])
+
 def upload():
     # Get the file path from the request body
     file_path = request.json['file_path']

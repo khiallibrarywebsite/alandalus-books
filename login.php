@@ -92,7 +92,10 @@ ul {
 });
 </script>
 </head>
-<body>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
 <center>
   <?php
   echo'

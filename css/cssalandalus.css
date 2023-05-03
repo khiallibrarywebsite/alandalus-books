@@ -17,34 +17,33 @@
    --color-six: #9F418E;
    --random-color: var(--color-one); /* default color */
 }
-#loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    z-index: 9999;
-    display: none;
-}
-
-#loading-screen img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-}
-
-@keyframes spin {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
+#loading-spinner {
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   z-index: 9999;
+ }
+ 
+ .spinner {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   border: 5px solid #f3f3f3;
+   border-top: 5px solid #3498db;
+   border-radius: 50%;
+   width: 50px;
+   height: 50px;
+   animation: spin 1s linear infinite;
+ }
+ 
+ @keyframes spin {
+   0% { transform: translate(-50%, -50%) rotate(0deg); }
+   100% { transform: translate(-50%, -50%) rotate(360deg); }
+ }
 *{
    font-family: 'Nunito', sans-serif;
    margin:0; padding:0;
@@ -429,6 +428,8 @@ section{
    background-color: var(--light-bg);
    border-radius: .5rem;
    padding: 1rem 1.5rem;
+   width: 100%;
+
    font-size: 1.5rem;
 }
 
@@ -441,9 +442,7 @@ section{
    color:var(--light-color);
 }
 
-.home-grid .box-container .flex a:hover{
-   background-color: #C0C0C0;
-}
+
 
 .home-grid .box-container .flex a:hover span{
    color: #000;
@@ -594,6 +593,7 @@ section{
    border-radius: .5rem;
    background-color: var(--white);
    padding: 2rem;
+
 }
 
 .courses .box-container .box .tutor{
@@ -608,8 +608,12 @@ section{
    width: 5rem;
    border-radius: 50%;
    object-fit: cover;
+   cursor: pointer; transition: transform .5s ease-in-out;
+   
 }
-
+.courses .box-container .box .tutor img:hover{
+transform: translateY(-10px);
+}
 .courses .box-container .box .tutor h3{
    font-size: 1.8rem;
    color: var(--black);
@@ -636,10 +640,15 @@ section{
 }
 
 .courses .box-container .box .thumb img{
-   width: 100%;
-   height: 20rem;
    object-fit: cover;
    border-radius: .5rem;
+   width:118px; 
+   height: 179px;
+   transition: transform .5s ease-in-out;
+}
+.courses .box-container .box .thumb img:hover{
+   transform: translateY(-10px);
+
 }
 
 .courses .box-container .box .title{

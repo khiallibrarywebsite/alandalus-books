@@ -88,11 +88,12 @@ $s = 1;
 
 
 </head>
-<body>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
 	<!-- Loading screen -->
-	<div id="loading-screen">
-   <img src="../img/loading.gif" alt="Loading...">
-	</div>
+
 
 <?php
 if($s != 1){
@@ -175,7 +176,7 @@ if($s != 1){
          
          
          // Retrieve all books from the table
-         $sql = "SELECT * FROM books wHERE school = '$code' AND stage = '$stage';";
+         $sql = "SELECT * FROM books wHERE school = '$code' AND stage = '$stage' ORDER BY date DESC LIMIT 3;";
          $result = mysqli_query($conn, $sql);
          // Generate a form for each book
          if (mysqli_num_rows($result) > 0) {
@@ -200,7 +201,7 @@ if($s != 1){
          ';
 
 
-         $sql = "SELECT * FROM users WHERE type = 'host' ORDER BY scoore DESC LIMIT 6";
+         $sql = "SELECT * FROM users WHERE type = 'host' ORDER BY scoore DESC LIMIT 3";
          $result = mysqli_query($conn, $sql);
          // Generate a form for each book
          if (mysqli_num_rows($result) > 0) {
@@ -209,7 +210,7 @@ if($s != 1){
               $host_name = $row["name"];
               $num=$num+1;
               echo'
-            <a href="#"><i class="book"></i><span style="width : 100%">'.$num.'-'.$host_name.'</span></a>
+            <a href="#"><i class="book"></i><span>'.$num.'-'.$host_name.'</span></a>
             ';
              }}
              echo'
@@ -238,34 +239,59 @@ if($s != 1){
 
    $sql = "SELECT * FROM books";
    $result = mysqli_query($conn, $sql);
+   
    // Generate a form for each book
    if (mysqli_num_rows($result) > 0) {
-    $num=0;
+       $num = 0;
        while ($row = mysqli_fetch_assoc($result)) {
-        $name = $row["Name"];
-        $publisher = $row["book-publisher"];
-        $date = $row["date"];
-        $writer = $row["writer"];
-        $url = $row["url"];
-        $img1 = $row["img"];
+           $name = $row["Name"];
+           $publisher = $row["book-publisher"];
+           $date = $row["date"];
+           $writer = $row["writer"];
+           $url = $row["url"];
+           $img1 = $row["img"];
+   
+           $sql2 = "SELECT * FROM users WHERE type = 'host' AND username = '$publisher'";
+           $result2 = mysqli_query($conn, $sql2);
+   
+           // Generate a form for each book
+           if (mysqli_num_rows($result2) > 0) {
+               while ($row2 = mysqli_fetch_assoc($result2)) {
+                   $publisher_name = $row2["name"];
+                   $publisher_img = $row2["img"];
+   
+                   echo '
+                   <div class="box">
+                       <div class="tutor">
+                           <img src="../img/users_img/' . $publisher_img . '" alt="">
+                           <div class="info">
+                               <h3>' . $publisher_name . '</h3>
+                               <span>' . $date . '</span>
+                           </div>
+                       </div>
+                       <div class="thumb">
 
-        echo'
-        <div class="box">
-        <div class="tutor">
+                        <img src="' . $img1 . '" alt="">
+                          <span>' . $writer . '</span>
+                       </div>
+                       <h3 class="title">' . $name . '</h3>
+                       <a href="' . $url . '" class="inline-btn">قراءة الكتاب</a>
+                   </div>';
+               }
+           }else{
+            echo '
+            <div class="box">
 
-           <div class="info">
-              <h3>'.$publisher.'</h3>
-              <span>'.$date.'</span>
-           </div>
-        </div>
-        <div class="thumb">
-        <img src="'.$img1.'" alt="">
-                   <span>'.$writer.'</span>
-        </div>
-        <h3 class="title">'.$name.'</h3>
-        <a href="'.$url.'" class="inline-btn">قرائة الكتاب</a>
-     </div>      ';
-            }}
+                <div class="thumb">
+                    <img src="' . $img1 . '" alt="">
+                    <span>' . $writer . '</span>
+                </div>
+                <h3 class="title">' . $name . '</h3>
+                <a href="' . $url . '" class="inline-btn">قراءة الكتاب</a>
+            </div>';
+           }
+       }
+   }
        echo'
  
    </div>

@@ -66,11 +66,11 @@ $s = 1;
 
 
 </head>
-<body>
-	<!-- Loading screen -->
-	<div id="loading-screen">
-		<img src="../img/loading.gif" alt="Loading...">
-	</div>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
+
 
 <?php
 if($s != 1){
@@ -178,7 +178,7 @@ if($s != 1){
          ';
 
 
-         $sql = "SELECT * FROM users WHERE type = 'user' ORDER BY scoore DESC LIMIT 6";
+         $sql = "SELECT * FROM users WHERE type = 'user' ORDER BY scoore DESC LIMIT 3";
          $result = mysqli_query($conn, $sql);
          // Generate a form for each book
          if (mysqli_num_rows($result) > 0) {
@@ -214,7 +214,7 @@ if($s != 1){
    ';
 
 
-   $sql = "SELECT * FROM books where stage = '$stage' ORDER BY `date` DESC LIMIT 6;";
+   $sql = "SELECT * FROM books where stage = '$stage' ORDER BY `date` DESC LIMIT 3;";
    $result = mysqli_query($conn, $sql);
    // Generate a form for each book
    if (mysqli_num_rows($result) > 0) {
@@ -223,26 +223,37 @@ if($s != 1){
         $name = $row["Name"];
         $publisher = $row["book-publisher"];
         $date = $row["date"];
-$img2= $row["img"];
+$img1= $row["img"];
         $writer = $row["writer"];
         $url = $row["url"];
-        echo'
-        <div class="box">
-        <div class="tutor">
-           <img src="'.$img2.'" alt="">
-           <div class="info">
-              <h3>'.$publisher.'</h3>
-              <span>'.$date.'</span>
-           </div>
-        </div>
-        <div class="thumb">
-        <img src="'.$img2.'" alt="">
-                   <span>'.$writer.'</span>
-        </div>
-        <h3 class="title">'.$name.'</h3>
-        <a href="'.$url.'" class="inline-btn">قرائة الكتاب</a>
-     </div>      ';
-       }}
+        $sql2 = "SELECT * FROM users WHERE type = 'host' AND username = '$publisher'";
+        $result2 = mysqli_query($conn, $sql2);
+
+        // Generate a form for each book
+        if (mysqli_num_rows($result2) > 0) {
+            while ($row2 = mysqli_fetch_assoc($result2)) {
+                $publisher_name = $row2["name"];
+                $publisher_img = $row2["img"];
+
+                echo '
+                <div class="box">
+                    <div class="tutor">
+                        <img src="../img/users_img/' . $publisher_img . '" alt="">
+                        <div class="info">
+                            <h3>' . $publisher_name . '</h3>
+                            <span>' . $date . '</span>
+                        </div>
+                    </div>
+                    <div class="thumb">
+
+                     <img src="' . $img1 . '" alt="">
+                       <span>' . $writer . '</span>
+                    </div>
+                    <h3 class="title">' . $name . '</h3>
+                    <a href="' . $url . '" class="inline-btn">قراءة الكتاب</a>
+                </div>';
+            }
+       }}}
        echo'
 
    </div>

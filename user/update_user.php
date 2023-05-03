@@ -72,11 +72,12 @@ $s = 1;
 
 
 </head>
-<body>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
 	<!-- Loading screen -->
-	<div id="loading-screen">
-		<img src="../img/loading.gif" alt="Loading...">
-	</div>
+
 
 <?php
 if($s != 1){
@@ -158,8 +159,6 @@ if ($result && mysqli_num_rows($result) > 0) {
 <h3>تعديل الحساب</h3>
 <p>تعديل الإسم</p>
 <input type="text" name="name" placeholder="'.$name.'" class="box" required value="'.$name.'">
-<p>تعديل اسم المستخدم</p>
-<input type="text" name="username" placeholder="'.$username.'" class="box" required   value="'.$username.'">
 <form action="upload.php" method="POST" enctype="multipart/form-data">
 <p>تغير الصورة الشخصية</p>
   <input type="file" id="image" name="image">
@@ -218,115 +217,41 @@ if ($result && mysqli_num_rows($result) > 0) {
     }
   }
     
-    if (isset($_POST['update'])) {
-      // Check if all form fields are set
-      $requiredFields = [
-  
-        'name',
-        'username'
-      ];
-    foreach ($requiredFields as $field) {
-        if (!isset($_POST[$field])) {
-            echo "Please fill out all form fields and select the correct answers for the questions";
-            return;echo"<script>$('#loading-screen').hide();</script>";
-            break; 
-        } else {
-          if(mysqli_real_escape_string($conn, $_POST['re_new_pass']) == '' &&mysqli_real_escape_string($conn, $_POST['old_pass'])== '' &&mysqli_real_escape_string($conn, $_POST['new_pass'])==''){
-            $new_name = mysqli_real_escape_string($conn, $_POST['name']);
-            $new_pass = $password1;
-            $re_new_pass = $password1;
-            $old_pass = $password1;
-            $username = mysqli_real_escape_string($conn, $_POST['username']);
-          }else{ // Get variables using mysqli_real_escape_string to prevent SQL injection
-            $new_name = mysqli_real_escape_string($conn, $_POST['name']);
-            $new_pass = mysqli_real_escape_string($conn, $_POST['new_pass']);
-            $re_new_pass = mysqli_real_escape_string($conn, $_POST['re_new_pass']);
-            $old_pass = mysqli_real_escape_string($conn, $_POST['old_pass']);
-            $username = mysqli_real_escape_string($conn, $_POST['username']);
-            
-            if($re_new_pass == $new_pass){
-    
+  if (isset($_POST['update'])) {
+    // Check if all form fields are set
+    if (mysqli_real_escape_string($conn, $_POST['name']) == '' || mysqli_real_escape_string($conn, $_POST['old_pass']) == '' || mysqli_real_escape_string($conn, $_POST['new_pass']) == '' || mysqli_real_escape_string($conn, $_POST['re_new_pass']) == '') {
+        echo "<h3 class='headers'>يرجى ملء جميع الحقول</h3>";
+    } else {
+        $new_name = mysqli_real_escape_string($conn, $_POST['name']);
+        $new_pass = mysqli_real_escape_string($conn, $_POST['new_pass']);
+        $re_new_pass = mysqli_real_escape_string($conn, $_POST['re_new_pass']);
+        $old_pass = mysqli_real_escape_string($conn, $_POST['old_pass']);
+
+        if ($re_new_pass == $new_pass) {
             // Check if the old password is correct
-            if($password1 != $old_pass){
-
-              echo "<h3 chass='headers'>الرجاء كتابة كلمة السر القديمة الصحيحة</h3>";
-              break;                  
-          } else {
-              $sql = "SELECT * FROM users";
-              $result = mysqli_query($conn, $sql);
-              $num_users = mysqli_num_rows($result);
-              
-              // Check if there are any users in the database
-              if ($num_users > 0) {
-                  $user_count = 0;
-                  
-                  // Loop through each user
-                  while ($row = mysqli_fetch_assoc($result)) {
-                      $username1 = $row['username'];
-                      $user_count++;
-                      
-                      // Check if the current user matches the one we want to update
-                      if ($username == $username1) {
-                          
-                          // Check if the new username is different from the current one
-                          if ($username1 != $titlecompleter) {
-                              echo "<h3 chass='headers'>الرجاء كتابة اسم مستخدم اخر</h3>";
-                              break; 
-                          } else {
-                              
-                              // Check if we've reached the end of the user list
-                              if ($num_users == $user_count) {
-                                  $sql = "UPDATE users SET name='$new_name' , username='$username' , password='$new_pass' WHERE password='$password' AND username='$titlecompleter' AND type='user'";
-                                  if (mysqli_query($conn, $sql)) {
-                                      echo "<h3 chass='headers'>تم التعديل بنجاح</h3>";
-                                      $redirect_url = "update_user.php?user=$username&school_code=$code&pass=$new_pass&true=true";
+            if ($password1 != $old_pass) {
+                echo "<h3 class='headers'>الرجاء كتابة كلمة السر القديمة الصحيحة</h3>";
+            } else {
+                $sql = "UPDATE users SET name='$new_name', password='$new_pass' WHERE password='$password' AND username='$titlecompleter' AND type='host'";
+                if (mysqli_query($conn, $sql)) {
+                    echo "<h3 class='headers'>تم التعديل بنجاح</h3>";
+                    $redirect_url = "update.php?user=$username&school_code=$code&pass=$new_pass&true=true";
           
-                                      // Redirect the user to the URL
-                                      header("Location: $redirect_url");
-                                      exit();
-                                  } else {
-                                      echo "يرجي المحاولة مرة اخري" . mysqli_error($conn);
-                                      break; 
-                                  }
-                              }
-                          }
-                      } else {
-                          
-                          // Check if we've reached the end of the user list
-                          if ($num_users == $user_count) {
-                              $sql = "UPDATE users SET name='$new_name' , username='$username' , password='$new_pass' WHERE password='$password' AND username='$titlecompleter' AND type='user'";
-                              if (mysqli_query($conn, $sql)) {
-                                  echo "<h3 chass='headers'>تم التعديل بنجاح</h3>";
-                                  $redirect_url = "update_user.php?user=$username&school_code=$code&pass=$new_pass&true=true";
-      
-                                  // Redirect the user to the URL
-                                  header("Location: $redirect_url");
-                                  exit();
-                              } else {
-          
-                                  echo "يرجي المحاولة مرة اخري" . mysqli_error($conn);
-                                  break; 
-                      } 
-                          }
-
-          }
-
-        
+                    // Redirect the user to the URL
+                    header("Location: $redirect_url");
+                    exit();
+                } else {
+                    echo "يرجي المحاولة مرة اخرى" . mysqli_error($conn);
+                }
+            }
+        } else {
+            echo "<h3 class='headers'>كلمة السر الجديدة غير متطابقة مع الإعادة</h3>";
         }
-      }
-  }
-}else{
-  echo "<h3 chass='headers'>كلمة السر الجديدة غير متطابقة مع الإعادة</h3>";
-  break;
-
-}
-        }
-      }
     }
-    
+} 
 
-    }
-  
+
+
 echo'</center><footer class="footer">
 
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!

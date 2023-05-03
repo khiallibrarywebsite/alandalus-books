@@ -61,7 +61,7 @@ const elements = document.querySelectorAll('.footer span, *::selection, html::-w
 
 // loop through the elements and set the same color for each one
 elements.forEach((element) => {
-element.style.setProperty('--random-color', colors[3]);
+element.style.setProperty('--random-color', colors[5]);
 element.classList.add(color-3);
 });
 
@@ -70,30 +70,29 @@ element.classList.add(color-3);
 //     $('#my-form').on('submit', function(event) {
 //         // Prevent default form submission behavior
 //         event.preventDefault();
-
 //         // Show loading screen
 //         $('#loading-screen').show();
-
-//         // Get form data
-//         var formData = $(this).serialize();
-
-//         // Send AJAX request to submit form data
-//         $.ajax({
-//             url: 'submit-form.php',
-//             method: 'POST',
-//             data: formData,
-//             success: function(response) {
-//                 // Hide loading screen and do something with the response
-//                 $('#loading-screen').fadeOut();
-//                 // ...
-//             },
-//             error: function(xhr, status, error) {
-//                 // Handle errors
-//                 console.log(error);
-//             }
-//         });
 //     });
 // });
+// window.addEventListener("load", function() {
+//    const loader = document.querySelector(".loader");
+//    loader.className += " hidden";
+//  });
+// window.addEventListener("load", function() {
+//    var loadingScreen = document.getElementById("loading-screen");
+//    loadingScreen.style.display = "none";
+//  });
 
-
-
+window.addEventListener('load', function() {
+   const spinner = document.getElementById('loading-spinner');
+   spinner.style.display = 'none';
+ });
+ 
+ document.onreadystatechange = function () {
+   const spinner = document.getElementById('loading-spinner');
+   if (document.readyState === "complete") {
+     spinner.style.display = 'none';
+   } else {
+     spinner.style.display = 'block';
+   }
+ };

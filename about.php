@@ -63,9 +63,7 @@ $s = 1;
    </head>
 <body style="width:100%">
 	<!-- Loading screen -->
-	<div id="loading-screen">
-		<img src="img/loading.gif" alt="Loading...">
-	</div>
+
 <?php
 if($s == 1){
 echo'

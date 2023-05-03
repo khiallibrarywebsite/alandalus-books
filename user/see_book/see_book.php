@@ -285,11 +285,11 @@ $s = 1;
 
 
 </head>
-<body>
-	<!-- Loading screen -->
-	<div id="loading-screen">
-  <img src="../../img/loading.gif" alt="Loading...">
-	</div>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
+
 
 <?php
 if($s != 1){
@@ -721,12 +721,7 @@ $scoore=0;
     document.getElementById("t3").style.display = "block";
     </script>
     ';
-    if ($scoore >10){
-    $x=2;
-  }else{
-    echo "يرجى قراءة الكتاب قبل الإجابة علي الأسئلة" ;   
 
-  }
   }else{
     echo '
     <script>
@@ -734,12 +729,6 @@ $scoore=0;
     document.getElementById("h3").style.display = "block";
     </script>
     ';
-    if ($scoore >10){
-      $x=2;
-    }else{
-      echo "يرجى قراءة الكتاب قبل الإجابة علي الأسئلة" ;   
-  
-    }
   }
 }
 if ($x==2){

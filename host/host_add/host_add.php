@@ -282,7 +282,10 @@ $s = 1;
 
 
 </head>
-<body>
+  <body>  <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
 	<!-- Loading screen
 	<div id="loading-screen">
   <img src="../../img/loading.gif" alt="Loading...">
@@ -535,8 +538,9 @@ $new_writer = mysqli_real_escape_string($conn, $_POST['new_writer']);
   $file_type = $_FILES['file']['type'];
   $file_path = $_FILES['file']['tmp_name'];
 
-        $url = "http://127.0.0.1:8000/upload";
-        // Define the request body
+
+  $url = "http://127.0.0.1:8000/upload";
+          // Define the request body
         $data = array('file_path' => $file_path);
         
         // Send a POST request to the Flask app
@@ -639,7 +643,7 @@ echo "Error adding record: $new_q3ak";
 if ($finish == 1) {
   $current_date = date('Y-m-d H:i:s');
   $sql = "INSERT INTO books (id, Name, writer, img, url, q1, q1ak, q1a2, q1a1, q2, q2ak, q2a2, q2a1, q3, q3ak, q3a2, q3a1, school, stage, date, `book-publisher`)
-          VALUES ('$id', '$new_Name', '$new_writer', '$new_img', '$new_url', '$new_q1', '$q1ak', '$q1a2', '$q1a1', '$new_q2', '$q2ak', '$q2a2', '$q2a1', '$new_q3', '$q3ak', '$q3a2', '$q3a1', '$code', '$stage', '$current_date', '$name')";
+          VALUES ('$id', '$new_Name', '$new_writer', '$new_img', '$new_url', '$new_q1', '$q1ak', '$q1a2', '$q1a1', '$new_q2', '$q2ak', '$q2a2', '$q2a1', '$new_q3', '$q3ak', '$q3a2', '$q3a1', '$code', '$stage', '$current_date', '$titlecompleter')";
   
     if (mysqli_query($conn, $sql)) {
         echo "Record added successfully";
