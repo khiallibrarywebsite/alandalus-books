@@ -1,3 +1,4 @@
+<?php include 'config.php';?>
 <!DOCTYPE html>
 <html lang="ar">  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8" />

@@ -1,3 +1,4 @@
+<?php include '../../config.php';?>
 <!DOCTYPE html>
 <html lang="ar">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -16,29 +17,7 @@ ob_start();
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-   <script>
-        function uploadFile(file) {
-          console.log('File Link:');
-            var formData = new FormData();
-            formData.append('file', file);
-            fetch('/upload', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('File ID:', data.id);
-                console.log('File Link:', data.link);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        }
-        // document.querySelector('input[type=file]').addEventListener('change', event => {
-        //     const file = event.target.files[0];
-        //     uploadFile(file);
-        // });
-    </script>
+
    <style>
   .form {
   max-width: 80%;
@@ -435,18 +414,7 @@ $finish=0;
         <label class="form-label">تحميل الكتاب</label>
         <label for="file">Upload file:</label>
         <input type="file" id="file" name="file">
-        
-        <label class="form-label">رابط الكتاب</label>
-        <input type="text" name="new_url" class="form-text2"  placeholder="https://drive.google.com/file/d/1B8m0jvypiNelJuG-W5V_QmVx5fX8tAGI/view?usp=share_link"/>
-        <p class= "form-p">قم برفع الكتاب علي <a href="https://drive.google.com/">جوجل درايف</a> وبعدها قم بعمل مشاركة للكتاب وجعل صلاحية الدخول لكل من يحمل الرابط <a href="'.$go_link.'" target="_blank">معرفة المزيد</a></p>
 
-
-        <label class="form-label">id الكتاب</label>
-        <input type="text" name="new_img" class="form-text2"   placeholder="1B8m0jvypiNelJuG-W5V_QmVx5fX8tAGI"/>
-        <p class= "form-p">بعد الحصول علي رابط الكتاب قم  <a href="'.$go_link.'" target="_blank">باخذ الرقم الأخير</a> في الرابط وضعه هنا</p>
-       
-        
-        
         <label class="form-label">سؤال الأول</label>
         <input type="text" name="new_q1" class="form-text2" />
         <br>
@@ -528,193 +496,199 @@ $finish=0;
 
 if (isset($_POST['add'])) {
   
-// // Check if all form fields are set
-// $requiredFields = [
+// Check if all form fields are set
+$requiredFields = [
 
-  // 'new_q1ak',
-  // 'new_q2ak',
-  // 'new_q3ak',
-  // 'new_q3a1',
-  // 'new_q3a2',
-  // 'new_q3a3',
-  // 'new_q2a1',
-  // 'new_q2a2',
-  // 'new_q2a3',
-  // 'new_q1a1',
-  // 'new_q1a2',
-  // 'new_q1a3',
-  // 'new_Name',
-  // 'new_writer',
-  // 'new_img',
-  // 'new_url',
-  // 'new_q1',
-  // 'new_q2',
-  // 'new_q3'
-// ];
+  'new_q1ak',
+  'new_q2ak',
+  'new_q3ak',
+  'new_q3a1',
+  'new_q3a2',
+  'new_q3a3',
+  'new_q2a1',
+  'new_q2a2',
+  'new_q2a3',
+  'new_q1a1',
+  'new_q1a2',
+  'new_q1a3',
+  'new_Name',
+  'new_writer',
+  'new_q1',
+  'new_q2',
+  'new_q3'
+];
 
-// foreach ($requiredFields as $field) {
-//   if (!isset($_POST[$field])) {
-//     echo "Please fill out all form fields and select the correct answers for the questions";
-//     return;echo"<script>$('#loading-screen').hide();</script>";
-//   }
-// }
+foreach ($requiredFields as $field) {
+  if (!isset($_POST[$field])) {
+    echo "Please fill out all form fields and select the correct answers for the questions";
+    return;echo"<script>$('#loading-screen').hide();</script>";
+  }
+}
 
-// // Escape input
-// $id = $id;
-// $new_Name = mysqli_real_escape_string($conn, $_POST['new_Name']);
-// $new_writer = mysqli_real_escape_string($conn, $_POST['new_writer']);
-  // $file_name = $_FILES['file']['name'];
-  // $file_size = $_FILES['file']['size'];
-  // $file_tmp = $_FILES['file']['tmp_name'];
-  // $file_type = $_FILES['file']['type'];
-
-
+// Escape input
+$id = $id;
+$new_Name = mysqli_real_escape_string($conn, $_POST['new_Name']);
+$new_writer = mysqli_real_escape_string($conn, $_POST['new_writer']);
   // Set the upload directory and file path
-  $uploadDir ='../../img/';
-  $filePath = $uploadDir . 'Math Grade-6.pdf';
+  $file_name = $_FILES['file']['name'];
+  $file_size = $_FILES['file']['size'];
+  $file_type = $_FILES['file']['type'];
+  $file_path = $_FILES['file']['tmp_name'];
 
-  echo "<script>uploadFile($filePath);</script>";
+        $url = "http://127.0.0.1:8000/upload";
+        // Define the request body
+        $data = array('file_path' => $file_path);
+        
+        // Send a POST request to the Flask app
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/json\r\n",
+                'method'  => 'POST',
+                'content' => json_encode($data),
+            ),
+        );
+        $context  = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
 
-  // }
-
-
-
-// $new_img = "https://drive.google.com/thumbnail?id=" . mysqli_real_escape_string($conn, $_POST['new_img']);
-// $new_url = mysqli_real_escape_string($conn, $_POST['new_url']);
-
-
-
-// $new_q1 = mysqli_real_escape_string($conn, $_POST['new_q1']);
-// $new_q1a1 = mysqli_real_escape_string($conn, $_POST['new_q1a1']);
-// $new_q1a2 = mysqli_real_escape_string($conn, $_POST['new_q1a2']);
-// $new_q1a3 = mysqli_real_escape_string($conn, $_POST['new_q1a3']);
-// $new_q1ak = mysqli_real_escape_string($conn, $_POST['new_q1ak']);
-
-// $new_q2 = mysqli_real_escape_string($conn, $_POST['new_q2']);
-// $new_q2a1 = mysqli_real_escape_string($conn, $_POST['new_q2a1']);
-// $new_q2a2 = mysqli_real_escape_string($conn, $_POST['new_q2a2']);
-// $new_q2a3 = mysqli_real_escape_string($conn, $_POST['new_q2a3']);
-// $new_q2ak = mysqli_real_escape_string($conn, $_POST['new_q2ak']);
-
-// $new_q3 = mysqli_real_escape_string($conn, $_POST['new_q3']);
-// $new_q3a1 = mysqli_real_escape_string($conn, $_POST['new_q3a1']);
-// $new_q3a2 = mysqli_real_escape_string($conn, $_POST['new_q3a2']);
-// $new_q3a3 = mysqli_real_escape_string($conn, $_POST['new_q3a3']);
-// $new_q3ak = mysqli_real_escape_string($conn, $_POST['new_q3ak']);
-
-// if ($new_q1ak == $new_q1a3) {
-// $q1ak = $new_q1ak;
-// $q1a2 = $new_q1a2;
-// $q1a1 = $new_q1a1;
-// $finish=1;
-// } elseif ($new_q1ak == $new_q1a2) {
-// $q1ak = $new_q1ak;
-// $q1a2 = $new_q1a3;
-// $q1a1 = $new_q1a1;
-// $finish=1;
-// } elseif ($new_q1ak == $new_q1a1) {
-// $q1ak = $new_q1ak;
-// $q1a2 = $new_q1a2;
-// $q1a1 = $new_q1a3;
-// $finish=1;
-// }else{
-// echo "Error adding record: $new_q1ak";
-
-// }
-// if ($new_q2ak == $new_q2a3) {
-// $q2ak = $new_q2ak;
-// $q2a2 = $new_q2a2;
-// $q2a1 = $new_q2a1;
-// $finish=1;
-// } elseif ($new_q2ak == $new_q2a2) {
-// $q2ak = $new_q2ak;
-// $q2a2 = $new_q2a3;
-// $q2a1 = $new_q2a1;
-// $finish=1;
-// } elseif ($new_q2ak == $new_q2a1) {
-// $q2ak = $new_q2ak;
-// $q2a2 = $new_q2a2;
-// $q2a1 = $new_q2a3;
-// $finish=1;
-// }else{
-// echo "Error adding record:$new_q2ak" ;
-
-// }
-
-// if ($new_q3ak == $new_q3a3) {
-// $q3ak = $new_q3ak;
-// $q3a2 = $new_q3a2;
-// $q3a1 = $new_q3a1;    
-// $finish=1;
-// } elseif ($new_q3ak == $new_q3a2) {
-// $q3ak = $new_q3ak;
-// $q3a2 = $new_q3a3;
-// $q3a1 = $new_q3a1;
-// $finish=1;
-// } elseif ($new_q3ak == $new_q3a1) {
-// $q3ak = $new_q3ak;
-// $q3a2 = $new_q3a2;
-// $q3a1 = $new_q3a3;
-// $finish=1;
-// }else{
-// echo "Error adding record: $new_q3ak";
-// }
+        if ($result === FALSE) {
+          echo "Error calling upload function";
+        } else { 
+         $new_img = "https://drive.google.com/thumbnail?id=" .  $result;
+         $new_url = "https://drive.google.com/file/d/".$result;
+        }
+        
 
 
-// if ($finish == 1) {
-//   $current_date = date('Y-m-d H:i:s');
-//   $sql = "INSERT INTO books (id, Name, writer, img, url, q1, q1ak, q1a2, q1a1, q2, q2ak, q2a2, q2a1, q3, q3ak, q3a2, q3a1, school, stage, date, `book-publisher`)
-//           VALUES ('$id', '$new_Name', '$new_writer', '$new_img', '$new_url', '$new_q1', '$q1ak', '$q1a2', '$q1a1', '$new_q2', '$q2ak', '$q2a2', '$q2a1', '$new_q3', '$q3ak', '$q3a2', '$q3a1', '$code', '$stage', '$current_date', '$name')";
+$new_q1 = mysqli_real_escape_string($conn, $_POST['new_q1']);
+$new_q1a1 = mysqli_real_escape_string($conn, $_POST['new_q1a1']);
+$new_q1a2 = mysqli_real_escape_string($conn, $_POST['new_q1a2']);
+$new_q1a3 = mysqli_real_escape_string($conn, $_POST['new_q1a3']);
+$new_q1ak = mysqli_real_escape_string($conn, $_POST['new_q1ak']);
+
+$new_q2 = mysqli_real_escape_string($conn, $_POST['new_q2']);
+$new_q2a1 = mysqli_real_escape_string($conn, $_POST['new_q2a1']);
+$new_q2a2 = mysqli_real_escape_string($conn, $_POST['new_q2a2']);
+$new_q2a3 = mysqli_real_escape_string($conn, $_POST['new_q2a3']);
+$new_q2ak = mysqli_real_escape_string($conn, $_POST['new_q2ak']);
+
+$new_q3 = mysqli_real_escape_string($conn, $_POST['new_q3']);
+$new_q3a1 = mysqli_real_escape_string($conn, $_POST['new_q3a1']);
+$new_q3a2 = mysqli_real_escape_string($conn, $_POST['new_q3a2']);
+$new_q3a3 = mysqli_real_escape_string($conn, $_POST['new_q3a3']);
+$new_q3ak = mysqli_real_escape_string($conn, $_POST['new_q3ak']);
+
+if ($new_q1ak == $new_q1a3) {
+$q1ak = $new_q1ak;
+$q1a2 = $new_q1a2;
+$q1a1 = $new_q1a1;
+$finish=1;
+} elseif ($new_q1ak == $new_q1a2) {
+$q1ak = $new_q1ak;
+$q1a2 = $new_q1a3;
+$q1a1 = $new_q1a1;
+$finish=1;
+} elseif ($new_q1ak == $new_q1a1) {
+$q1ak = $new_q1ak;
+$q1a2 = $new_q1a2;
+$q1a1 = $new_q1a3;
+$finish=1;
+}else{
+echo "Error adding record: $new_q1ak";
+
+}
+if ($new_q2ak == $new_q2a3) {
+$q2ak = $new_q2ak;
+$q2a2 = $new_q2a2;
+$q2a1 = $new_q2a1;
+$finish=1;
+} elseif ($new_q2ak == $new_q2a2) {
+$q2ak = $new_q2ak;
+$q2a2 = $new_q2a3;
+$q2a1 = $new_q2a1;
+$finish=1;
+} elseif ($new_q2ak == $new_q2a1) {
+$q2ak = $new_q2ak;
+$q2a2 = $new_q2a2;
+$q2a1 = $new_q2a3;
+$finish=1;
+}else{
+echo "Error adding record:$new_q2ak" ;
+
+}
+
+if ($new_q3ak == $new_q3a3) {
+$q3ak = $new_q3ak;
+$q3a2 = $new_q3a2;
+$q3a1 = $new_q3a1;    
+$finish=1;
+} elseif ($new_q3ak == $new_q3a2) {
+$q3ak = $new_q3ak;
+$q3a2 = $new_q3a3;
+$q3a1 = $new_q3a1;
+$finish=1;
+} elseif ($new_q3ak == $new_q3a1) {
+$q3ak = $new_q3ak;
+$q3a2 = $new_q3a2;
+$q3a1 = $new_q3a3;
+$finish=1;
+}else{
+echo "Error adding record: $new_q3ak";
+}
+
+
+if ($finish == 1) {
+  $current_date = date('Y-m-d H:i:s');
+  $sql = "INSERT INTO books (id, Name, writer, img, url, q1, q1ak, q1a2, q1a1, q2, q2ak, q2a2, q2a1, q3, q3ak, q3a2, q3a1, school, stage, date, `book-publisher`)
+          VALUES ('$id', '$new_Name', '$new_writer', '$new_img', '$new_url', '$new_q1', '$q1ak', '$q1a2', '$q1a1', '$new_q2', '$q2ak', '$q2a2', '$q2a1', '$new_q3', '$q3ak', '$q3a2', '$q3a1', '$code', '$stage', '$current_date', '$name')";
   
-//     if (mysqli_query($conn, $sql)) {
-//         echo "Record added successfully";
-//         $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ?");
-//         $stmt->bind_param("ss", $titlecompleter, $password);
-//         $stmt->execute();
-//         $result = $stmt->get_result();
-//     $xw=0;
-//         // Check if the query was successful, and only continue if it was
+    if (mysqli_query($conn, $sql)) {
+        echo "Record added successfully";
+        $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username` = ? AND `password` = ?");
+        $stmt->bind_param("ss", $titlecompleter, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    $xw=0;
+        // Check if the query was successful, and only continue if it was
 
-//         // Assuming that the SQL query result is stored in a variable called $result
-//         if ($result && $result->num_rows > 0) {
-//           // Loop through each row
-//           while ($row = $result->fetch_assoc()) {
-//             // Extract the id_readed_added_books and scoore columns from the users table
-//             $id_readed_added_books = $row["id_readed_added_books"];
-//             $scoore = $row["scoore"];
-//             // Update the id_readed_added_books column in the users table
-//             $new_id_readed_added_books = $id_readed_added_books . $id. ",";
-//             $update_id_readed_added_books_query = "UPDATE users SET id_readed_added_books='$new_id_readed_added_books' WHERE `username`='$titlecompleter'";
-//             $conn->query($update_id_readed_added_books_query);
+        // Assuming that the SQL query result is stored in a variable called $result
+        if ($result && $result->num_rows > 0) {
+          // Loop through each row
+          while ($row = $result->fetch_assoc()) {
+            // Extract the id_readed_added_books and scoore columns from the users table
+            $id_readed_added_books = $row["id_readed_added_books"];
+            $scoore = $row["scoore"];
+            // Update the id_readed_added_books column in the users table
+            $new_id_readed_added_books = $id_readed_added_books . $id. ",";
+            $update_id_readed_added_books_query = "UPDATE users SET id_readed_added_books='$new_id_readed_added_books' WHERE `username`='$titlecompleter'";
+            $conn->query($update_id_readed_added_books_query);
         
-//             // Update the scoore column in the users table
-//             $new_scoore = $scoore + 30;
-//             $update_scoore_query = "UPDATE users SET scoore='$new_scoore' WHERE `username`='$titlecompleter'";
-//             $conn->query($update_scoore_query);
+            // Update the scoore column in the users table
+            $new_scoore = $scoore + 30;
+            $update_scoore_query = "UPDATE users SET scoore='$new_scoore' WHERE `username`='$titlecompleter'";
+            $conn->query($update_scoore_query);
         
-//             // Update the readedbooks column in the users table
-//             $update_readedbooks_query = "UPDATE users SET readedbooks=readedbooks+1 WHERE `username`='$titlecompleter'";
-//             $conn->query($update_readedbooks_query);
-//             $xw = 12;
-//           }
+            // Update the readedbooks column in the users table
+            $update_readedbooks_query = "UPDATE users SET readedbooks=readedbooks+1 WHERE `username`='$titlecompleter'";
+            $conn->query($update_readedbooks_query);
+            $xw = 12;
+          }
         
-//           // Check if $xw is equal to 12
-//           if ($xw == 12) {
-//             $finish == 0;
-//             // Construct the redirect URL
-//             $redirect_url = "../host.php?user=$titlecompleter&school_code=$code&pass=$password&true=true";
-//             // Redirect the user to the URL
-//             header("Location: $redirect_url");
-//             exit();
-//           }
-//         }
-//     } else {
-//         echo "Error adding record: " . mysqli_error($conn);
-//     }
+          // Check if $xw is equal to 12
+          if ($xw == 12) {
+            $finish == 0;
+            // Construct the redirect URL
+            $redirect_url = "../host.php?user=$titlecompleter&school_code=$code&pass=$password&true=true";
+            // Redirect the user to the URL
+            header("Location: $redirect_url");
+            exit();
+          }
+        }
+    } else {
+        echo "Error adding record: " . mysqli_error($conn);
+    }
 
-//     mysqli_close($conn);
-// }
-// flush the output buffer
+    mysqli_close($conn);
+}
 
 
 }
@@ -725,8 +699,8 @@ if (isset($_POST['add'])) {
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-<link rel="stylesheet" href="../../css/cssalandalus.css" />
-<script src="../../js/jsalandalus.js"></script>
+<link rel="stylesheet" href="../../css/cssalandalus.css?v=<?=$virsion?>" />
+<script src="../../js/jsalandalus.js?v=<?=$virsion?>"></script>
 </body>
 
 

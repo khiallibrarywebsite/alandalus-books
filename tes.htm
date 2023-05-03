@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+ 
+</head>
+<body>
+  <nav class="sidebar close">
+  <header>
+      <div class="image-text">
+          <span class="image">
+             <img src="../img/users_img/'.$img.'" alt="">
+          </span>
+  
+          <div class="text logo-text">
+              <span class="name">'.$name.'</span>
+              <span class="profession">طالب</span>
+          </div>
+      </div>
+  
+      <i class="bx bx-chevron-right toggle"></i>
+  </header>
+  
+  <div class="menu-bar">
+      <div class="menu">
+          <ul class="menu-links">
+              <li class="nav-link">
+                  <a href="user.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">
+                  <i class="fas fa-home"></i>
+                      <span class="text nav-text">الصفحة الرئيسية</span>
+                  </a>
+              </li>
+  
+              <li class="nav-link">
+                  <a href="../about.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">
+                  <i class="fas fa-question"></i>
+                      <span class="text nav-text">من نحن</span>
+                  </a>
+              </li>
+  
+              <li class="nav-link">
+                  <a href="see_book/book_readed.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">
+                  <i class="fa-solid fa-book"></i>
+                  <span class="text nav-text">الكتب المقروئة</span>
+                  </a>
+              </li>
+  
+              <li class="nav-link">
+                  <a href="see_host/see_host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">
+                  <i class="fas fa-male"></i>
+                      <span class="text nav-text">المعلمون</span>
+                  </a>
+              </li>
+  
+              <li class="nav-link">
+                  <a href="see_book/library.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">
+                  <i class="fa-solid fa-book"></i>
+                      <span class="text nav-text">المكتبة</span>
+                  </a>
+              </li>
+  
+              <li class="nav-link">
+                  <a href="contact.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'">
+                  <i class="fas fa-headset"></i>
+                      <span class="text nav-text">راسلنا</span>
+                  </a>
+              </li>
+  
+          </ul>
+      </div>
+  
+      <div class="bottom-content">
+          <li class="">
+              <a href="../login.php">
+                  <i class="bx bx-log-out icon"></i>
+                  <span class="text nav-text">تسجيل خروج</span>
+              </a>
+          </li>
+  
+          <li class="mode">
+              <div class="sun-moon">
+                  <i class="bx bx-moon icon moon"></i>
+                  <i class="bx bx-sun icon sun"></i>
+              </div>
+              <span class="mode-text text">الوضع المظلم</span>
+  
+              <div class="toggle-switch">
+                  <span class="switch"></span>
+              </div>
+          </li>
+          
+      </div>
+  </div>
+  
+  </nav>
+  <section class="overlay"></section> <script> const navBar = document.querySelector("nav"), menuBtns = document.querySelectorAll(".menu-icon"), overlay = document.querySelector(".overlay"); menuBtns.forEach((menuBtn) => { menuBtn.addEventListener("click", () => { navBar.classList.toggle("open"); }); }); overlay.addEventListener("click", () => { navBar.classList.remove("open"); }); </script>
+</body>
+</html>  

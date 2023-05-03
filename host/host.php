@@ -1,3 +1,4 @@
+<?php include '../config.php';?>
 <!DOCTYPE html>
 <html lang="ar">
 <head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -102,7 +103,7 @@ if($s != 1){
    
   <section class="flex">
 
-  <a href="host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo"><img src="../img/"></a>
+  <a href="host.php?user='.$titlecompleter.'&school_code='.$code.'&pass='.$password.'&stage='.$stage.'"" class="logo">ALANDALUS</a>
 
         
         <h2 style="color: var(--black);">مدارس الأندلس الأهلية</h2>
@@ -282,8 +283,8 @@ if($s != 1){
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-    <link rel="stylesheet" href="../css/cssalandalus.css" />
-    <script src="../js/jsalandalus.js"></script>
+    <link rel="stylesheet" href="../css/cssalandalus.css?v=<?=$virsion?>" />
+    <script src="../js/jsalandalus.js?v=<?=$virsion?>"></script>
  </body>
 </html>
 

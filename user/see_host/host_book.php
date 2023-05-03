@@ -1,3 +1,4 @@
+<?php include '../../config.php';?>
 <!DOCTYPE html>
 <html lang="ar">
 <head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -156,6 +157,7 @@ if (mysqli_num_rows($result) > 0) {
         $name_user = $row["name"];
         $schoolu = $row["school"];
         $readedbooksu = $row["readedbooks"];
+        $booids = $row["id_readed_added_books"];
         $number=0;
         $img12 = $row["img"];
         echo'<center>
@@ -209,6 +211,7 @@ if (mysqli_num_rows($result) > 0) {
     $book_author = $row["writer"];
     $book_img = $row["img"];
     $book_url = $row["url"];
+    if(strpos($booids,$book_id)){
       echo'
       <div class="box">
       <div class="thumb">
@@ -221,6 +224,7 @@ if (mysqli_num_rows($result) > 0) {
           <input type="submit" name="read" value="قراءة الكتاب" class ="inline-btn">
       </form>
   </div>'; 
+}
 
 }
 echo'</div></section>';
@@ -242,8 +246,8 @@ ob_end_flush();
 &copy; copyright @ 2022 by <span>alandalus school</span> | all rights reserved!
 
 </footer>
-<link rel="stylesheet" href="../../css/cssalandalus.css" />
-<script src="../../js/jsalandalus.js"></script>
+<link rel="stylesheet" href="../../css/cssalandalus.css?v=<?=$virsion?>" />
+<script src="../../js/jsalandalus.js?v=<?=$virsion?>"></script>
  </body>
 
 </html>

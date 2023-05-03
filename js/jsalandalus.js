@@ -57,15 +57,12 @@ window.onscroll = () =>{
    }
 }
 const colors = ['#07A5D1', '#DC5E60', '#0021f6', '#471F75', '#3A4F8E', '#9F418E'];
+const elements = document.querySelectorAll('.footer span, *::selection, html::-webkit-scrollbar-thumb, .btn, .inline-btn, .side-bar .navbar a i, .home-grid .box-container .likes span, .about .box-container .box i, .playlist-details .row .column .save-playlist button:hover i, .watch-video .video-container .info i, .teachers .box-container .box p span, .teacher-profile .details .flex p span, .user-profile .info .box-container .box .flex span, .contact .box-container .box i');
 
-const elements = document.querySelectorAll('.footer span,*::selection,html::-webkit-scrollbar-thumb,.btn,.inline-btn,.side-bar .navbar a i,.home-grid .box-container .likes span,.about .box-container .box i,.playlist-details .row .column .save-playlist button:hover i,.watch-video .video-container .info i,.teachers .box-container .box p span,.teacher-profile .details .flex p span,.user-profile .info .box-container .box .flex span,.contact .box-container .box i');
-
-
-// loop through the elements and set a random color for each one
+// loop through the elements and set the same color for each one
 elements.forEach((element) => {
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  element.style.setProperty('--random-color', colors[randomIndex]);
-  element.classList.add(`color-${randomIndex+1}`);
+element.style.setProperty('--random-color', colors[3]);
+element.classList.add(color-3);
 });
 
 

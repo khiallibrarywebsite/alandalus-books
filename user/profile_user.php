@@ -1,3 +1,4 @@
+<?php include '../config.php';?>
 <!DOCTYPE html>
 <html lang="ar">
 <head>  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -176,7 +177,7 @@ if($s != 1){
 ';
 }
 ?>
-    <link rel="stylesheet" href="../css/cssalandalus.css" />
-    <script src="../js/jsalandalus.js"></script>
+    <link rel="stylesheet" href="../css/cssalandalus.css?v=<?=$virsion?>" />
+    <script src="../js/jsalandalus.js?v=<?=$virsion?>"></script>
 </body>
 </html>

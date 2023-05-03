@@ -69,7 +69,7 @@ def upload():
     ).execute()
 
     # Return the ID and URL of the uploaded file
-    return jsonify({'id': file['id'], 'url': file['webViewLink']})
+    return file['id']
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(port=8000)
